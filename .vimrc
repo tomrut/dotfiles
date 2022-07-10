@@ -29,9 +29,15 @@ inoremap <C-S> <Esc>:update<CR>
 nnoremap <C-S> :update<CR>
 
 inoremap <silent><expr> <c-space> coc#refresh()
-nnoremap <C-n> :Files<CR> " Open file
-nnoremap <C-t> :Rg<CR> " Fuzzy search files
-nnoremap <C-f> :Buffers<CR> " Search buffers
+
+" Open file
+nnoremap <C-n> :Files<CR> 
+
+" Fuzzy search files
+nnoremap <C-t> :Rg<CR> 
+
+" Search buffers
+nnoremap <C-f> :Buffers<CR> 
 
 " block mode since ctrl V is not working - just pasting text
 nnoremap q <c-v>
