@@ -37,20 +37,20 @@ Plug 'dense-analysis/ale'
 call plug#end()
 
 
-" Save remaped to ctrl+s
+" Save remaped to F2
 inoremap <F2> <Esc>:update<CR>i
 nnoremap <F2> :update<CR>
 
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " Open file
-nnoremap <C-n> :Files<CR>
+nnoremap <C-n> :Files<CR> 
 
 " Fuzzy search files
-nnoremap <C-t> :Rg<CR>
+nnoremap <C-t> :Rg<CR> 
 
 " Search buffers
-nnoremap <C-x> :Buffers<CR>
+nnoremap <C-x> :Buffers<CR> 
 
 " block mode since ctrl V is not working - just pasting text
 nnoremap q <c-v>
@@ -59,6 +59,7 @@ nnoremap q <c-v>
 set shiftwidth=2
 set autoindent
 set smartindent
+set number
 
 " when running at every change you may want to disable quickfix
 let g:prettier#quickfix_enabled = 0
