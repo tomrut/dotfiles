@@ -1,0 +1,1 @@
+/home/tomek/.doom.d
