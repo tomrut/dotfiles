@@ -2,13 +2,14 @@
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
-(straight-use-package 'org)
+;;(straight-use-package 'org)
 
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
 (setq user-full-name "John Doe"
-      user-mail-address "john@doe.com")
+      user-mail-address "john@doe.com"
+      projectile-project-search-path '("~/dev/workspace/"))
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
