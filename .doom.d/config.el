@@ -42,25 +42,31 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(use-package! org
 
-(setq org-agenda-files '("~/org/inbox.org.gpg"
-                         "~/org/gtd.org.gpg"
-                         "~/org/tickler.org.gpg"))
 
-(setq org-capture-templates '(("t" "Todo [inbox]" entry
-                               (file+headline "~/org/inbox.org.gpg" "Tasks")
-                               "* TODO %i%?")
-                              ("T" "Tickler" entry
-                               (file+headline "~/org/tickler.gpg" "Tickler")
-                               "* %i%? \n %U")))
+  :config
+  (setq org-directory "~/org/")
 
-(setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
+  (setq org-agenda-files '("~/org/inbox.org.gpg"
+                           "~/org/gtd.org.gpg"
+                           "~/org/tickler.org.gpg"))
 
-(setq org-refile-targets '(("~/org/gtd.org.gpg" :maxlevel . 3)
-                           ("~/org/someday.org.gpg" :level . 1)
-                           ("~/org/tickler.org.gpg" :maxlevel . 2)))
+  (setq org-capture-templates '(("t" "Todo [inbox]" entry
+                                 (file+headline "~/org/inbox.org.gpg" "Tasks")
+                                 "* TODO %i%?")
+                                ("T" "Tickler" entry
+                                 (file+headline "~/org/tickler.gpg" "Tickler")
+                                 "* %i%? \n %U")))
 
+  (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
+
+  (setq org-refile-targets '(("~/org/gtd.org.gpg" :maxlevel . 3)
+                             ("~/org/someday.org.gpg" :level . 1)
+                             ("~/org/tickler.org.gpg" :maxlevel . 2)))
+
+
+  )
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
@@ -98,6 +104,6 @@
 (org-crypt-use-before-save-magic)
 (setq org-tags-exclude-from-inheritance (quote ("crypt")))
 
-; (require 'elfeed-goodies)
+                                        ; (require 'elfeed-goodies)
 ;; (elfeed-goodies/setup)
 ;; (setq elfeed-goodies/entry-pane-size 0.5)
