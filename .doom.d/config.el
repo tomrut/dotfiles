@@ -39,6 +39,8 @@
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
+(menu-bar--wrap-long-lines-window-edge)
+(setq menu-bar--wrap-long-lines-window-edge t)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -104,6 +106,8 @@
 (org-crypt-use-before-save-magic)
 (setq org-tags-exclude-from-inheritance (quote ("crypt")))
 
+
+(add-hook 'web-mode #'toggle-truncate-lines)
                                         ; (require 'elfeed-goodies)
 ;; (elfeed-goodies/setup)
 ;; (setq elfeed-goodies/entry-pane-size 0.5)
