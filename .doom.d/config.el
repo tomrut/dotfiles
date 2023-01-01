@@ -3,6 +3,9 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 ;;(straight-use-package 'org)
+(require 'dap-firefox)
+(require 'dap-chrome)
+(setq dap-auto-configure-features '(sessions locals controls tooltip))
 
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
