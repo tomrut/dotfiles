@@ -44,6 +44,7 @@
 (setq display-line-numbers-type t)
 (menu-bar--wrap-long-lines-window-edge)
 (setq menu-bar--wrap-long-lines-window-edge t)
+(setq +format-on-save-enabled-modes '(not emacs-lisp-mode sql-mode tex-mode latex-mode js2x-mode typescript-mode web-mode))
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
