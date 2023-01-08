@@ -51,3 +51,4 @@
 (package! org-super-agenda)
 (package! elfeed-goodies)
 (package! dap-mode)
+(package! move-text)
