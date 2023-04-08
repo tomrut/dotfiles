@@ -4,11 +4,13 @@
 * Scripts
 ** Multimedia files conversion
 ** Playing music - command line
-I used mpg123 to play my mp3 music files for few years. Recently when I've found fzf (fuzzy find) tool and I've got an idea to use it to quickly search for music and kick of playing songs.
+I use mpg123 to play my mp3 music files for years. Recently I've found fzf (fuzzy find) tool and I've got an idea to use it to accelerate search and kick of playing songs from my music gallery.
 
-Below I present three handy scripts I've created for quick finding and playing music:
+Below you will find three handy scripts I've created for quick finding and playing of music:
 
-*** FZF + mocp - [[[file:bin/p]]]
+*** FZF + mocp [[[file:bin/p]]]
+It uses MOCP to play the songs from selected directory and its subdirectories. It also plays flac files if you install flac decoder.
+
 #+begin_src
 
 #!/bin/bash
@@ -19,7 +21,8 @@ fzfSelectedDir="$(find $musicDir -type d|fzf)"
 mocp -m "$fzfSelectedDir" -c -a "$fzfSelectedDir" -p
 mocp
 #+end_src
-*** FZF + mpg123 + playlist creation
+*** FZF + mpg123 + playlist creation [[[file:bin/m1]]]
+It creates a playlist, saves it in selected directory and uses mpg123 to play it.
 #+begin_src shell
 
 #!/bin/bash
@@ -31,7 +34,8 @@ cd "$fzfSelectedDir"
 find ./ -iregex '.*.mp.*' -type f -print > list.m3u
 mpg123 --list list.m3u
 #+end_src
-*** FZF + mpg123
+*** FZF + mpg123 [[[file:bin/m2]]]
+It plays songs from selected directory passing songs list directly to mpg123. You need to use ctrl+c to go to next track.
 #+begin_src shell
 
 #!/bin/bash
