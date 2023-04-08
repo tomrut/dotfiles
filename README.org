@@ -3,8 +3,7 @@
 #+OPTIONS: toc:2
 #+OPTIONS: p:t
 
-* TOC
-#+TOC: headlines 2
+#+TOC: headlines
 * Scripts
 ** Multimedia files conversion
 ** Playing music - command line
