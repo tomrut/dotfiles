@@ -1,9 +1,10 @@
-#+title: Index
-#+AUTHOR: TomRut
-#+OPTIONS: toc:2
+#+title: Dot files and scripts used on Linux
+#+AUTHOR: tomrut
+#+OPTIONS: toc:3
 #+OPTIONS: p:t
 
-#+TOC: headlines
+#+TOC: headlines 3
+
 * Scripts
 ** Multimedia files conversion
 ** Playing music - command line
