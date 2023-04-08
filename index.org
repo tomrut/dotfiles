@@ -4,7 +4,7 @@
 * Scripts
 ** Multimedia files conversion
 ** Playing music - command line
-*** FZF + mocp - added as [[file:blob/main/bin/p]] script
+*** FZF + mocp - added as [[file:bin/p]] script
 #+begin_src
 
 #!/bin/bash
