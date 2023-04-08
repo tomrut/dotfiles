@@ -2,6 +2,7 @@
 #+AUTHOR: TomRut
 #+OPTIONS: toc:2
 #+TOC: headlines 2
+#+OPTIONS: p:t
 
 * Scripts
 ** Multimedia files conversion
