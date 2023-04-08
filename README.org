@@ -62,7 +62,3 @@ const sum = (a, b) => {
 
 console.log('simple calculation:' + sum(30, 82))
 #+end_src
-
-#+RESULTS:
-: simple calculation:112
-: undefined
