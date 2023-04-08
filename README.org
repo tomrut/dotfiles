@@ -4,7 +4,11 @@
 * Scripts
 ** Multimedia files conversion
 ** Playing music - command line
-*** FZF + mocp - added as [[file:bin/p]] script
+I used mpg123 to play my mp3 music files for few years. Recently when I've found fzf (fuzzy find) tool and I've got an idea to use it to quickly search for music and kick of playing songs.
+
+Below I present three handy scripts I've created for quick finding and playing music:
+
+*** FZF + mocp - [[[file:bin/p]]]
 #+begin_src
 
 #!/bin/bash
