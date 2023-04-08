@@ -54,3 +54,15 @@ find ./ -iname '*.mp3' -type f -print | mpg123 --list -
 * Emacs
 ** Doom emacs configuration [[[file:.doom.d]]]
 * Other
+** Javascript example
+#+begin_src js
+const sum = (a, b) => {
+    return a + b;
+}
+
+console.log('simple calculation:' + sum(30, 82))
+#+end_src
+
+#+RESULTS:
+: simple calculation:112
+: undefined
