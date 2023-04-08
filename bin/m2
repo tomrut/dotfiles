@@ -1,0 +1,8 @@
+
+#!/bin/bash
+# depends on: fzf and mpg123 - need to do ctrl+c to go to next track
+
+musicDir=~/Music
+fzfSelectedDir="$(find $musicDir -type d|fzf)"
+cd "$fzfSelectedDir"
+find ./ -iname '*.mp3' -type f -print | mpg123 --list -

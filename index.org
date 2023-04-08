@@ -3,16 +3,42 @@
 
 * Scripts
 ** Multimedia files conversion
-** Playing music FZF + mocp
-#+BEGIN_SRC shell
+** Playing music - command line
+*** FZF + mocp
+#+begin_src
+
 #!/bin/bash
 # depends on: fzf and mocp (music on console)
 
-musicDir=~/Muzyka
+musicDir=~/Music
 fzfSelectedDir="$(find $musicDir -type d|fzf)"
 mocp -m "$fzfSelectedDir" -c -a "$fzfSelectedDir" -p
 mocp
-#+END_SRC
+#+end_src
+*** FZF + mpg123 + playlist creation
+#+begin_src shell
+
+#!/bin/bash
+# depends on: fzf and mpg123 - create a list.m3u file in selected folder then passes it to play to mpg123
+
+musicDir=~/Music
+fzfSelectedDir="$(find $musicDir -type d|fzf)"
+cd "$fzfSelectedDir"
+find ./ -iregex '.*.mp.*' -type f -print > list.m3u
+mpg123 --list list.m3u
+#+end_src
+*** FZF + mpg123
+#+begin_src shell
+
+#!/bin/bash
+# depends on: fzf and mpg123 - need to do ctrl+c to go to next track
+
+musicDir=~/Music
+fzfSelectedDir="$(find $musicDir -type d|fzf)"
+cd "$fzfSelectedDir"
+find ./ -iname '*.mp3' -type f -print | mpg123 --list -
+
+#+end_src
 
 * Emacs
 * Other

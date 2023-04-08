@@ -1,0 +1,9 @@
+
+#!/bin/bash
+# depends on: fzf and mpg123 - create a list.m3u file in selected folder then passes it to play to mpg123
+
+musicDir=~/Music
+fzfSelectedDir="$(find $musicDir -type d|fzf)"
+cd "$fzfSelectedDir"
+find ./ -iregex '.*.mp.*' -type f -print > list.m3u
+mpg123 --list list.m3u

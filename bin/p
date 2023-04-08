@@ -1,0 +1,5 @@
+#!/bin/bash
+musicDir=~/Music
+fzfSelectedDir="$(find $musicDir -type d|fzf)"
+mocp -m "$fzfSelectedDir" -c -a "$fzfSelectedDir" -p
+mocp
