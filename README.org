@@ -1,5 +1,6 @@
 #+title: Index
 #+AUTHOR: TomRut
+#+OPTIONS:   toc:2
 
 * Scripts
 ** Multimedia files conversion
