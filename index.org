@@ -3,5 +3,16 @@
 
 * Scripts
 ** Multimedia files conversion
+** Playing music FZF + mocp
+#+BEGIN_SRC shell
+#!/bin/bash
+# depends on: fzf and mocp (music on console)
+
+musicDir=~/Muzyka
+fzfSelectedDir="$(find $musicDir -type d|fzf)"
+mocp -m "$fzfSelectedDir" -c -a "$fzfSelectedDir" -p
+mocp
+#+END_SRC
+
 * Emacs
 * Other
