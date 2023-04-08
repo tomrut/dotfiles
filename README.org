@@ -53,5 +53,5 @@ find ./ -iname '*.mp3' -type f -print | mpg123 --list -
 #+end_src
 
 * Emacs
-** Doom emacs configuration [[[file:.doom]]]
+** Doom emacs configuration [[[file:.doom.d]]]
 * Other
