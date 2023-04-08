@@ -1,9 +1,10 @@
 #+title: Index
 #+AUTHOR: TomRut
 #+OPTIONS: toc:2
-#+TOC: headlines 2
 #+OPTIONS: p:t
 
+* TOC
+#+TOC: headlines 2
 * Scripts
 ** Multimedia files conversion
 ** Playing music - command line
