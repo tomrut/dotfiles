@@ -8,7 +8,11 @@
  '(org-agenda-files
    '("/home/tomek/org/inbox.org.gpg" "/home/tomek/org/gtd.org.gpg" "/home/tomek/org/tickler.org.gpg"))
  '(package-selected-packages
-   '(sdcv osx-org-clock-menubar org-chef encrypt-region elfeed-org)))
+   '(sdcv osx-org-clock-menubar org-chef encrypt-region elfeed-org))
+ '(warning-suppress-types
+   '((doom-first-file-hook)
+     (doom-first-input-hook)
+     (defvaralias))))
 
 ;
 (custom-set-faces

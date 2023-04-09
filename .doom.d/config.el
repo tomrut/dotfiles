@@ -3,16 +3,19 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 ;;(straight-use-package 'org)
-(require 'dap-firefox)
-(require 'dap-chrome)
-(setq dap-auto-configure-features '(sessions locals controls tooltip))
 
+;; debugging stuff uncomment if need it
+;;(require 'dap-firefox)
+;;(require 'dap-chrome)
+;;(setq dap-auto-configure-features '(sessions locals controls tooltip))
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
 (setq user-full-name "John Doe"
       user-mail-address "john@doe.com"
       projectile-project-search-path '("~/dev/workspace/"))
+
+(setq doom-projectile-fd-binary (executable-find "fdfind"))
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
@@ -44,13 +47,14 @@
 (setq display-line-numbers-type t)
 (menu-bar--wrap-long-lines-window-edge)
 (setq menu-bar--wrap-long-lines-window-edge t)
+
 (setq +format-on-save-enabled-modes '(not emacs-lisp-mode sql-mode tex-mode latex-mode js2x-mode typescript-mode web-mode))
 (global-set-key [f4] 'save-buffer)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (use-package! org
-
+  :ensure org-plus-contrib
 
   :config
   (setq org-directory "~/org/")
@@ -73,7 +77,23 @@
                              ("~/org/tickler.org.gpg" :maxlevel . 2)))
 
 
-  )
+)
+
+;; (require 'org-notify)
+;; (use-package org-notify
+;;   :after org
+;;   :config (org-notify-start)
+;;   )
+;; (require 'org-alert)
+;; (use-package org-alert
+;;   :ensure t
+;;   :custom (alert-default-style 'notifications)
+;;   :config
+;;   (setq org-alert-interval 300
+;;         org-alert-notification-title "Org Alert Reminder")
+;;   (org-alert-enable)
+;;  )
+
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
@@ -111,8 +131,14 @@
 (org-crypt-use-before-save-magic)
 (setq org-tags-exclude-from-inheritance (quote ("crypt")))
 
-
 (add-hook 'web-mode #'toggle-truncate-lines)
+(require 'org-bullets)
+(use-package org-bullets :ensure t)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+(setq org-hide-leading-stars t)
+(setq org-src-fontify-natively t)
+(global-prettify-symbols-mode t)
+
                                         ; (require 'elfeed-goodies)
 ;; (elfeed-goodies/setup)
 ;; (setq elfeed-goodies/entry-pane-size 0.5)

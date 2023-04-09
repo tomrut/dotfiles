@@ -11,9 +11,8 @@ I use mpg123 to play my mp3 music files for years. Recently I've found fzf (fuzz
 
 Below you will find three handy scripts I've created for quick finding and playing of music:
 
-*** [[HTTPS://github.com/junegunn/fzf][FZF]] + mocp [[file:bin/p]]
-It uses MOCP to play the songs from selected directory and its subdirectories. It also plays flac files if you install flac decoder.
-
+*** [[HTTPS://github.com/junegunn/fzf][FZF]] + [[https://moc.daper.net][mocp]] [[file:bin/p]]
+It uses _mocp_ to play the songs from selected directory and its subdirectories. It also plays flac files if you install flac decoder.
 #+begin_src
 
 #!/bin/bash
@@ -24,7 +23,7 @@ fzfSelectedDir="$(find $musicDir -type d|fzf)"
 mocp -m "$fzfSelectedDir" -c -a "$fzfSelectedDir" -p
 mocp
 #+end_src
-*** FZF + mpg123 + playlist creation [[file:bin/m1]]
+*** [[HTTPS://github.com/junegunn/fzf][FZF]] + mpg123 + playlist creation [[file:bin/m1]]
 It creates a playlist, saves it in selected directory and uses mpg123 to play it.
 #+begin_src shell
 
@@ -37,7 +36,7 @@ cd "$fzfSelectedDir"
 find ./ -iregex '.*.mp.*' -type f -print > list.m3u
 mpg123 --list list.m3u
 #+end_src
-*** FZF + mpg123 [[file:bin/m2]]
+*** [[HTTPS://github.com/junegunn/fzf][FZF]] + mpg123 [[file:bin/m2]]
 It plays songs from selected directory passing songs list directly to mpg123. You need to use ctrl+c to go to next track.
 #+begin_src shell
 #!/bin/bash
@@ -49,7 +48,6 @@ cd "$fzfSelectedDir"
 find ./ -iname '*.mp3' -type f -print | mpg123 --list -
 
 #+end_src
-
 * Emacs
 ** Doom emacs configuration [[[file:.doom.d]]]
 * Other
