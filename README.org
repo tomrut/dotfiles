@@ -6,13 +6,17 @@
 
 * Scripts
 ** Multimedia files conversion
+*** mp4 to mp3
+**** [[file:bin/mp4intomp3.sh][mp4intomp3]] - it uses avconv for doing conversion
+**** [[file:bin/mp42mp3.sh][mp42mp3.sh]] - it uses ffmpeg
+**** [[file:bin/mp4tomp3.sh][mp4tomp3]] - it uses ffmpeg and lame
 ** Playing music - command line
 I use mpg123 to play my mp3 music files for years. Recently I've found fzf (fuzzy find) tool and I've got an idea to use it to accelerate search and kick of playing songs from my music gallery.
 
 Below you will find three handy scripts I've created for quick finding and playing of music:
 
 *** [[HTTPS://github.com/junegunn/fzf][FZF]] + [[https://moc.daper.net][mocp]] [[file:bin/p]]
-It uses _mocp_ to play the songs from selected directory and its subdirectories. It also plays flac files if you install flac decoder.
+It uses _mocp_ to play the songs from selected directory and its subdirectories. Its advantage over mpg123 is that it can also play flac files if you hav installed flac decoder.
 #+begin_src
 
 #!/bin/bash
@@ -49,7 +53,7 @@ find ./ -iname '*.mp3' -type f -print | mpg123 --list -
 
 #+end_src
 * Emacs
-** Doom emacs configuration [[[file:.doom.d]]]
+** Doom Emacs configuration [[[file:.doom.d]]]
 * Other
 ** Javascript example
 #+begin_src js
