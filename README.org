@@ -68,13 +68,51 @@ find ./ -iname '*.mp3' -type f -print | mpg123 --list -
 * Neovim
 ** [[file:.config/nvim][.config/nvim]] neovim configuration
 * Emacs
+** Shortcuts
+*** Org mode
+**** format a word:select a fragment you need to format then use: ctrl+c ctrl+x ctrl+f then =choose= which /form/ you ~need~
+*** .
 ** Doom Emacs configuration [[[file:.doom.d]]]
-* Other
-** Javascript example
-#+begin_src js
-const sum = (a, b) => {
-    return a + b;
-}
+* Org mode hints
+** Footnotes [fn:1] ala
+** Subscript r_{d}
+** Special Greek char and superscript: \pi{}r^{2}
+** Drawers
+Still outside the drawer
+:mydrawer:
+This is inside the drawer.
+:END:
+** Embedded latex example
+:LOGBOOK:
+- Note taken on [2023-05-07 nie 15:56] \\
+  Work done.
+:END:
+#+STARTUP: latexpreview
+\begin{equation}                        % arbitrary environments,
+x=\sqrt{b}                              % even tables, figures
+\end{equation}
 
-console.log('simple calculation:' + sum(30, 82))
+#+STARTUP: nolatexpreview
+[fn:1] Some small footnote.
+** Dotmode
+
+#+BEGIN_SRC dot :file test-dot.png :cmdline -Kdot -Tpng
+
+strict graph {
+  a -- b;
+  a -- b;
+  b -- a [color=blue];
+}
+#+END_SRC
+
+#+RESULTS:
+[[file:test-dot.png]]
+
+* Typescript
+** Script 1
+#+begin_src js :hlines no
+
 #+end_src
+* ReactJS
+**
+.
