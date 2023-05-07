@@ -7,7 +7,7 @@
 * Scripts
 ** Playing youtube using ~yt-dlp~ + ~mpv~ player.
 This script is supposed to be run from active youtube tab in ~firefox~ browser. It can be adjusted for chrome by changing ~--class~ parameter. The best is to attach it as shortcut in your Window Manager.
-#+begin_src
+#+begin_src shell
 
 #!/bin/bash
 window_id=$(xdotool search --onlyvisible --class "firefox")
@@ -23,7 +23,7 @@ Below you will find three handy scripts I've created for quick finding and playi
 
 *** [[HTTPS://github.com/junegunn/fzf][FZF]] + [[https://moc.daper.net][mocp]] [[file:bin/p]]
 It uses _mocp_ to play the songs from selected directory and its subdirectories. Its advantage over mpg123 is that it can also play flac files if you have installed /flac/ decoder.
-#+begin_src
+#+begin_src shell
 
 #!/bin/bash
 # depends on: fzf and mocp (music on console)
