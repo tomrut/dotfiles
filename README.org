@@ -7,12 +7,14 @@
 * Scripts
 ** Playing youtube using ~yt-dlp~ + ~mpv~ player.
 This script is supposed to be run from active youtube tab in ~firefox~ browser. It can be adjusted for chrome by changing ~--class~ parameter. The best is to attach it as shortcut in your Window Manager.
-#+begin_src bash
+#+begin_src
+
 #!/bin/bash
 window_id=$(xdotool search --onlyvisible --class "firefox")
 xdotool key --window $window_id --delay 20 --clearmodifiers ctrl+l ctrl+c Escape
 
 yt-dlp -o -  $(xclip -o)|mpv -
+
 #+end_src
 ** Playing music - command line
 I use mpg123 to play my mp3 music files for years. Recently I've found fzf (fuzzy find) tool and I've got an idea to use it to accelerate search and kick of playing songs from my music gallery.
