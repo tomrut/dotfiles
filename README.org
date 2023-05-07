@@ -5,7 +5,8 @@
 
 
 * Scripts
-** Playing youtube using ~mpv~ player. This script is supposed to be run from active youtube tab in firefox browser. It can be adjusted for chrome by changing ~--class~ parameter. The best is to attach it as shortcut in your Window Manager.
+** Playing youtube using ~yt-dlp~ + ~mpv~ player.
+This script is supposed to be run from active youtube tab in ~firefox~ browser. It can be adjusted for chrome by changing ~--class~ parameter. The best is to attach it as shortcut in your Window Manager.
 #+begin_src bash
 #!/bin/bash
 window_id=$(xdotool search --onlyvisible --class "firefox")
