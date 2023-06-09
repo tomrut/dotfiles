@@ -5,6 +5,7 @@
 
 
 * Scripts
+* sss
 ** Playing youtube using ~yt-dlp~ + ~mpv~ player.
 This script is supposed to be run from active youtube tab in ~firefox~ browser. It can be adjusted for chrome by changing ~--class~ parameter. The best is to attach it as shortcut in your Window Manager.
 #+begin_src shell
@@ -65,6 +66,11 @@ find ./ -iname '*.mp3' -type f -print | mpg123 --list -
 **** [[file:bin/mp4tomp3.sh][mp4tomp3]] - it uses ~fmpeg~ and ~lame~
 *** 3gp to mp3
 **** [[file:bin/3gp2mp3.sh][3gp2mp3.sh]] - it uses ~avconv~ converter
+* dfsd
+** gsdf
+*** ss
+aDASDF
+***
 * Neovim
 ** [[file:.config/nvim][.config/nvim]] neovim configuration
 * Emacs
@@ -95,13 +101,14 @@ x=\sqrt{b}                              % even tables, figures
 #+STARTUP: nolatexpreview
 [fn:1] Some small footnote.
 ** Dotmode
+*** https://www.graphviz.org/doc/info/lang.html
 
 #+BEGIN_SRC dot :file test-dot.png :cmdline -Kdot -Tpng
 
 strict graph {
   a -- b;
   a -- b;
-  b -- a [color=blue];
+  b -- a [color=red];
 }
 #+END_SRC
 
@@ -114,5 +121,7 @@ strict graph {
 
 #+end_src
 * ReactJS
-**
+** Styled components - for attaching styles to specific components
+
 .
+ p
