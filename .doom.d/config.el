@@ -4,10 +4,6 @@
 ;; sync' after modifying this file!
 ;;(straight-use-package 'org)
 
-;; debugging stuff uncomment if need it
-;;(require 'dap-firefox)
-;;(require 'dap-chrome)
-;;(setq dap-auto-configure-features '(sessions locals controls tooltip))
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
@@ -29,6 +25,8 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
+(setq doom-font (font-spec :family "Liberation Mono" :size 15 :weight 'semi-light)
+      doom-variable-pitch-font (font-spec :family "Liberation Mono" :size 13))
 ;;(setq doom-font (font-spec :family "Fira Code" :size 14 :weight 'semi-light)
 ;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 ;;
@@ -50,9 +48,13 @@
 
 (setq +format-on-save-enabled-modes '(not emacs-lisp-mode sql-mode tex-mode latex-mode js2x-mode typescript-mode web-mode))
 (global-set-key [f4] 'save-buffer)
-
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
+
+;(use-package org-bullets :ensure t)
+;(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+;(setq org-hide-leading-stars t)
+
 (use-package! org
   :ensure org-plus-contrib
 
@@ -67,7 +69,7 @@
                                  (file+headline "~/org/inbox.org.gpg" "Tasks")
                                  "* TODO %i%?")
                                 ("T" "Tickler" entry
-                                 (file+headline "~/org/tickler.gpg" "Tickler")
+                                 (file+headline "~/org/tickler.org.gpg" "Tickler")
                                  "* %i%? \n %U")))
 
   (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
@@ -76,9 +78,39 @@
                              ("~/org/someday.org.gpg" :level . 1)
                              ("~/org/tickler.org.gpg" :maxlevel . 2)))
 
+  :custom
+  (org-deadline-warning-days 8)
+  (org-agenda-start-with-log-mode t)
+  (org-log-done 'time)
+  (org-log-into-drawer t)
+  (org-babel-do-load-languages
+  'org-babel-load-languages
+  '((dot . t))) ; this line activates dot
 
 )
 
+(require 'yasnippet)
+
+(defun yas-jsx-get-class-name-by-file-name ()
+  "Return name of class-like construct by `file-name'."
+  (if buffer-file-name
+      (let ((class-name (file-name-nondirectory
+                         (file-name-sans-extension buffer-file-name))))
+        (if (equal class-name "index")
+            (file-name-nondirectory
+             (directory-file-name (file-name-directory buffer-file-name)))
+          class-name))
+    ""))
+
+(defun yas-snake-case (s)
+  "Convert S to snake-case."
+  (mapconcat #'upcase (split-string s "[^[:word:]0-9]+" t) "_"))
+
+;; (define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action)
+(with-eval-after-load 'treemacs
+    (define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action))
+
+(setq yas-snippet-dirs '("~/.emacs.d/snippets"))
 ;; (require 'org-notify)
 ;; (use-package org-notify
 ;;   :after org
@@ -133,12 +165,13 @@
 
 (add-hook 'web-mode #'toggle-truncate-lines)
 (require 'org-bullets)
-(use-package org-bullets :ensure t)
+(use-package org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 (setq org-hide-leading-stars t)
 (setq org-src-fontify-natively t)
 (global-prettify-symbols-mode t)
 
-                                        ; (require 'elfeed-goodies)
+(setq ispell-dictionary "british")
+;(require 'elfeed-goodies)
 ;; (elfeed-goodies/setup)
 ;; (setq elfeed-goodies/entry-pane-size 0.5)
