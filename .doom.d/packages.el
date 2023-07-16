@@ -50,10 +50,6 @@
 ;(unpin! t)
 (package! org-super-agenda)
 (package! elfeed-goodies)
-
-;;(package! dap-mode)
-;;(package! move-text)
-
 ;; (package! org-alert)
 (package! org-notify)
 (package! org-bullets)
