@@ -5,7 +5,6 @@
 
 
 * Scripts
-* sss
 ** Playing youtube using ~yt-dlp~ + ~mpv~ player.
 This script is supposed to be run from active youtube tab in ~firefox~ browser. It can be adjusted for chrome by changing ~--class~ parameter. The best is to attach it as shortcut in your Window Manager.
 #+begin_src shell
@@ -59,6 +58,68 @@ cd "$fzfSelectedDir"
 find ./ -iname '*.mp3' -type f -print | mpg123 --list -
 
 #+end_src
+*** Open console and execute backup script
+#+begin_src bash
+
+#!/bin/bash
+export DISPLAY=:0.0
+gnome-terminal --tab --title="backup" -- $HOME/bin/synchronize_disk.sh
+
+#+end_src
+*** Crontab scripts
+#+begin_src bash
+*/10 * * * * $HOME/bin/mbsync -a
+49 16 * * * $HOME/bin/backup.sh
+#+end_src
+*** Backup script
+#+begin_src bash
+#!/bin/bash
+BACKUP_ROOT_DIR=/run/media/$USER/data
+BACKUP_MARKER_FILE=$HOME/last_backup.marker
+BACKUP_LOG_FILE=$HOME/backups.log
+BACKUP_DAYS=7
+
+function log {
+	echo "`date` - $1" >> $BACKUP_LOG_FILE
+}
+
+if [ ! -f "$BACKUP_MARKER_FILE" ]; then
+	log "Creating new backup marker file $BACKUP_LOG_FILE"
+	touch $BACKUP_MARKER_FILE
+fi
+
+if [[ $(find "$BACKUP_MARKER_FILE" -mtime +$BACKUP_DAYS -print) ]]; then
+	log "File $BACKUP_MARKER_FILE exists and is older than $BACKUP_DAYS days"
+else
+ 	log "Backup was done less than $BACKUP_DAYS days ago"
+ 	exit 0
+fi
+
+
+until [ -f "$BACKUP_ROOT_DIR/$USER/bin/synchronize_disk.sh" ]; do
+	read -p "Mount the backup drive and hit enter"
+done
+
+
+function synch {
+
+    if [ -f "$BACKUP_ROOT_DIR/$USER/bin/synchronize_disk.sh" ]; then
+       echo "Copying $1 directory"
+       echo "cp -Ru $HOME/$1 $BACKUP_ROOT_DIR/$2"
+       cp -Ru $HOME/$1 $BACKUP_ROOT_DIR/$2 >> $BACKUP_LOG_FILE
+    fi
+
+}
+notify-send "Backup started"
+synch bin $USER
+synch dev $USER
+synch "Bibl*" $USER
+synch ".[^.]*" $USER
+touch $BACKUP_MARKER_FILE
+notify-send "Backup finished"
+
+#+end_src
+
 ** Multimedia files conversion
 *** mp4 to mp3
 **** [[file:bin/mp4intomp3.sh][mp4intomp3]] - it uses ~avconv~ for doing conversion
@@ -66,11 +127,6 @@ find ./ -iname '*.mp3' -type f -print | mpg123 --list -
 **** [[file:bin/mp4tomp3.sh][mp4tomp3]] - it uses ~fmpeg~ and ~lame~
 *** 3gp to mp3
 **** [[file:bin/3gp2mp3.sh][3gp2mp3.sh]] - it uses ~avconv~ converter
-* dfsd
-** gsdf
-*** ss
-aDASDF
-***
 * Neovim
 ** [[file:.config/nvim][.config/nvim]] neovim configuration
 * Emacs
@@ -120,8 +176,14 @@ strict graph {
 #+begin_src js :hlines no
 
 #+end_src
+
+* Linux
+
+** Useful Commands
+#+begin_src bash
+
+touch -d "$(date -R -r /$HOME/last_backup.marker) - 10 days" /$HOME/last_backup.marker
+
+#+end_src
 * ReactJS
 ** Styled components - for attaching styles to specific components
-
-.
- p
