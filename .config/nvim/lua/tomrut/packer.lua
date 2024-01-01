@@ -21,8 +21,8 @@ return require('packer').startup(function(use)
         branch = 'v3.x',
         requires = {
             --- Uncomment these if you want to manage the language servers from neovim
-            -- {'williamboman/mason.nvim'},
-            -- {'williamboman/mason-lspconfig.nvim'},
+            {'williamboman/mason.nvim'},
+            {'williamboman/mason-lspconfig.nvim'},
 
             -- LSP Support
             {'neovim/nvim-lspconfig'},
@@ -32,9 +32,6 @@ return require('packer').startup(function(use)
             {'L3MON4D3/LuaSnip'},
         }
     }
-    use {
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
-        "neovim/nvim-lspconfig"
-    }
+    use("nvim-tree/nvim-tree.lua")
+    use("nvim-tree/nvim-web-devicons")
 end)
