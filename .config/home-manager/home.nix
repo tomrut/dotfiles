@@ -16,7 +16,6 @@
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
-
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
@@ -34,6 +33,9 @@
     pkgs.nerdfonts
     pkgs.unzip
     pkgs.mpg123
+    pkgs.cargo
+    pkgs.remind
+    pkgs.gnupg
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -80,12 +82,26 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
   programs.git = {
     enable = true;
     userName  = "tomrut";
     userEmail = "tomrut@localhost";
+    
   };
+
+  home.shellAliases = {
+    kal = "remind -n1 -c -@ .reminders";
+    kal2 = "remind -n1 -c2 -@ .reminders";
+  };
+
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true; # see note on other shells below
+    nix-direnv.enable = true;
+
+  };
+  
+  programs.bash.enable = true;
 
   programs.neovim = 
   let
