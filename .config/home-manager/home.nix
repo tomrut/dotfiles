@@ -7,7 +7,6 @@
   # manage.
   home.username = "tomek";
   home.homeDirectory = "/home/tomek";
-
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -21,7 +20,7 @@
   home.packages = [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
-    pkgs.lynx
+    pkgs.lynx    
     pkgs.ripgrep    
     pkgs.gcc
     pkgs.mc
@@ -76,9 +75,15 @@
   #
   #  /etc/profiles/per-user/tomek/etc/profile.d/hm-session-vars.sh
   #
-  home.sessionVariables = {
-     EDITOR = "nvim";
+
+  programs.bash = {
+    enable = true;
+
+    bashrcExtra = ''
+        export EDITOR="nvim";
+    '';
   };
+
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -87,6 +92,13 @@
     userName  = "tomrut";
     userEmail = "tomrut@localhost";
     
+  };
+  
+  programs.emacs = { 
+      enable = true;
+      extraPackages =  epkgs: [
+        epkgs.org
+      ];
   };
 
   home.shellAliases = {
@@ -101,8 +113,6 @@
 
   };
   
-  programs.bash.enable = true;
-
   programs.neovim = 
   let
     toLua = str: "lua << EOF\n${str}\nEOF\n";
