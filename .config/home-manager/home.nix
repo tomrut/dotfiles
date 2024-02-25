@@ -28,6 +28,7 @@
     pkgs.yt-dlp
     pkgs.keepassxc
     pkgs.ripgrep
+    pkgs.material-design-icons
     pkgs.nerdfonts
     pkgs.unzip
     pkgs.mpg123
@@ -36,6 +37,7 @@
     pkgs.gnupg
     pkgs.kitty
     pkgs.lazygit
+    pkgs.appimage-run
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -234,10 +236,35 @@
   programs.tmux = {
     enable = true;
     plugins = with pkgs;  [
-      tmuxPlugins.catppuccin
       tmuxPlugins.sensible
       tmuxPlugins.vim-tmux-navigator
       tmuxPlugins.yank
+
+      {
+        plugin = tmuxPlugins.catppuccin;
+        extraConfig = ''
+          set -g @catppuccin_window_status_enable "yes"
+          set -g @catppuccin_flavour 'frappe'
+          set -g @catppuccin_window_left_separator ""
+          set -g @catppuccin_window_right_separator " "
+          set -g @catppuccin_window_middle_separator " █"
+          set -g @catppuccin_window_number_position "right"
+
+          set -g @catppuccin_window_default_fill "number"
+          set -g @catppuccin_window_default_text "#W"
+
+          set -g @catppuccin_window_current_fill "number"
+          set -g @catppuccin_window_current_text "#W"
+
+          set -g @catppuccin_status_modules_right "directory user host session"
+          set -g @catppuccin_status_left_separator  " "
+          set -g @catppuccin_status_right_separator ""
+          set -g @catppuccin_status_right_separator_inverse "no"
+          set -g @catppuccin_status_fill "icon"
+          set -g @catppuccin_status_connect_separator "no"
+          set -g @catppuccin_directory_text "#{pane_current_path}" 
+        '';
+      }
     ];
 
     extraConfig = ''
@@ -274,16 +301,6 @@
       bind -n M-H previous-window
       bind -n M-L next-window
 
-      set -g @catppuccin_flavour 'mocha'
-
-      set -g @plugin 'tmux-plugins/tpm'
-      set -g @plugin 'tmux-plugins/tmux-sensible'
-      set -g @plugin 'christoomey/vim-tmux-navigator'
-      set -g @plugin 'dreamsofcode-io/catppuccin-tmux'
-      set -g @plugin 'tmux-plugins/tmux-yank'
-
-      run '~/.tmux/plugins/tpm/tpm'
-
       # set vi-mode
       set-window-option -g mode-keys vi
       # keybindings
@@ -295,4 +312,9 @@
       bind % split-window -h -c "#{pane_current_path}"
     '';
   };
+
+  programs.zathura = {
+    enable = true;
+  };
+
 }
