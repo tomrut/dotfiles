@@ -7,6 +7,36 @@
   # manage.
   home.username = "tomek";
   home.homeDirectory = "/home/tomek";
+
+  systemd.user.services = {
+    reminders_status = {
+      Unit = {
+      Description = "reminders notification service";
+    };
+      Service = {
+        Type = "oneshot";
+        ExecStart = toString (
+          pkgs.writeShellScript "reminders-status-script" ''
+            ${pkgs.bash}/bin/bash "/home/tomek/bin/display_notif.sh";
+          ''
+        );
+      };
+      Install.WantedBy = [ "default.target" ];
+    };
+  };
+
+  systemd.user.timers = {
+    reminders_status = {
+      Unit.Description = "timer for reminders_status service";
+      Timer = {
+        Unit = "reminders_status";
+        OnBootSec = "10m";
+        OnUnitActiveSec = "6h";
+      };
+      Install.WantedBy = [ "timers.target" ];
+    };
+  };
+
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -37,7 +67,7 @@
     pkgs.gnupg
     pkgs.kitty
     pkgs.lazygit
-    pkgs.appimage-run
+    pkgs.gxmessage
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -114,6 +144,8 @@
   home.shellAliases = {
     kal = "remind -n1 -c -@ .reminders";
     kal2 = "remind -n1 -c2 -@ .reminders";
+    lclassic = "mpg123 https://rs101-krk.rmfstream.pl/RMFCLASSIC48";
+    lsoundtracks = "mpg123 https://kathy.torontocast.com:1190/";
   };
 
   programs.direnv = {
