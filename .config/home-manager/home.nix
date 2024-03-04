@@ -11,8 +11,8 @@
   systemd.user.services = {
     reminders_status = {
       Unit = {
-      Description = "reminders notification service";
-    };
+        Description = "reminders notification service";
+      };
       Service = {
         Type = "oneshot";
         ExecStart = toString (
@@ -65,7 +65,6 @@
     pkgs.cargo
     pkgs.remind
     pkgs.gnupg
-    pkgs.kitty
     pkgs.lazygit
     pkgs.gxmessage
     # # It is sometimes useful to fine-tune packages, for example, by applying
@@ -123,7 +122,50 @@
     enableBashIntegration = true;
   };
 
+  programs.kitty = {
+    enable = true;
+    settings = {
+      font_size = 12;
+      font_family = "JetBrainsMono";
+      copy_on_select = "yes";
+      cursor_shape = "block";
+      cursor_blink_interval = 0;
+      enable_audio_bell = "no";
+      shell = "zsh";
+      editor = "nvim";
+      window_padding_width = 5;
+      tab_title_template = "{index}";
+      tab_bar_style = "powerline";
+      tab_powerline_style = "angled";
+      enabled_layouts = "vertical";
+    };
+  };
+
   programs.btop.enable = true;
+  programs.zsh = {
+    enable = true;
+    enableAutosuggestions = true;
+    enableCompletion = true;
+    autocd = true;
+    shellAliases = {
+      mci = "mvn clean install -DskipTests";
+      mcit = "mvn clean install";
+      mcp = "mvn clean package -DskipTests";
+      mcpt = "mvn clean package";
+      lg = "lazygit";
+    };
+
+    oh-my-zsh = {
+      enable = true;
+      theme = "random";
+      plugins = [
+        "git"
+        "vi-mode"
+      ];
+    };
+  };
+  programs.fzf.enable = true;
+  programs.bat.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
