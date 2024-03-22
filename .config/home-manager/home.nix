@@ -71,6 +71,7 @@
     pkgs.maven
     pkgs.jetbrains.idea-community
     pkgs.nodePackages.pnpm
+    pkgs.neofetch
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -310,6 +311,17 @@
       ];
 
     };
+
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscodium;
+    extensions = with pkgs.vscode-extensions; [
+      dracula-theme.theme-dracula
+      vscodevim.vim
+      yzhang.markdown-all-in-one
+    ];
+  };
+
 
   programs.tmux = {
     enable = true;
