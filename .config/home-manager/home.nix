@@ -72,6 +72,7 @@
     pkgs.jetbrains.idea-community
     pkgs.nodePackages.pnpm
     pkgs.neofetch
+    pkgs.anki
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
