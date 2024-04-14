@@ -23,6 +23,20 @@
       };
       Install.WantedBy = [ "default.target" ];
     };
+    mail_sync = {
+      Unit = {
+        Description = "mail sync service";
+      };
+      Service = {
+        Type = "oneshot";
+        ExecStart = toString (
+          pkgs.writeShellScript "mail-sync-script" ''
+            ${pkgs.isync}/bin/mbsync -a
+          ''
+        );
+      };
+      Install.WantedBy = [ "default.target" ];
+    };
   };
 
   systemd.user.timers = {
@@ -32,6 +46,16 @@
         Unit = "reminders_status";
         OnBootSec = "10m";
         OnUnitActiveSec = "6h";
+      };
+      Install.WantedBy = [ "timers.target" ];
+    };
+
+     mail_sync = {
+      Unit.Description = "timer for mail_sync service";
+      Timer = {
+        Unit = "mail_sync";
+        OnBootSec = "10m";
+        OnUnitActiveSec = "10m";
       };
       Install.WantedBy = [ "timers.target" ];
     };
@@ -73,6 +97,10 @@
     pkgs.nodePackages.pnpm
     pkgs.neofetch
     pkgs.anki
+    pkgs.neomutt
+    pkgs.isync
+    pkgs.pinentry
+    pkgs.notify-desktop
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
