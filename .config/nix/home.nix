@@ -115,6 +115,10 @@
         "vi-mode"
       ];
     };
+
+    initExtra = ''
+       source "/home/tomek/.nix-profile/etc/profile.d/nix.sh"
+    '';
   };
 
   programs.fzf.enable = true;
