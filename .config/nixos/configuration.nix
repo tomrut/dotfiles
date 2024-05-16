@@ -121,6 +121,7 @@
     librewolf
     ecryptfs
     firefox
+    nvd
    ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -153,10 +154,6 @@
   system.autoUpgrade = {
     enable = true;
     allowReboot = true;
-    rebootWindow = {
-      lower = "20:00";
-      upper = "20:30";
-    };
     dates = "daily";
     channel = "nixos-23.11";
   };
