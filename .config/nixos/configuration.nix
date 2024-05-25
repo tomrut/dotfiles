@@ -8,7 +8,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      <home-manager/nixos>
     ];
 
   # Bootloader.
@@ -103,13 +102,8 @@
     ];
   };
 
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users.tomek = import ./home-manager/home.nix;
-  };
-
   # Allow unfree packages
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = false;
 	
 
@@ -151,16 +145,21 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
-  system.autoUpgrade = {
-    enable = true;
-    allowReboot = true;
-    dates = "daily";
-    channel = "nixos-23.11";
-  };
 
+  boot.loader.systemd-boot.configurationLimit = 10;
+  # boot.loader.grub.configurationLimit = 10;
+
+  # Perform garbage collection weekly to maintain low disk usage
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 15d";
+    options = "--delete-older-than 1w";
   };
+
+  # Optimize storage
+  # You can also manually optimize the store via:
+  #    nix-store --optimise
+  # Refer to the following link for more details:
+  # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-auto-optimise-store
+  nix.settings.auto-optimise-store = true;
 }
