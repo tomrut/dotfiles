@@ -149,6 +149,14 @@
   boot.loader.systemd-boot.configurationLimit = 10;
   # boot.loader.grub.configurationLimit = 10;
 
+  system.autoUpgrade = {
+    enable = true;
+    dates = "12:15";
+    flags = ["--update-input" "nixpkgs" "--commit-lock-file"];
+    # this tricks nixos-rebuild into using /etc/nixos/flake.nix
+    flake = "''";
+  };
+  
   # Perform garbage collection weekly to maintain low disk usage
   nix.gc = {
     automatic = true;
