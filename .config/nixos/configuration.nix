@@ -147,14 +147,14 @@
   system.stateVersion = "23.05"; # Did you read the comment?
 
   boot.loader.systemd-boot.configurationLimit = 10;
-  # boot.loader.grub.configurationLimit = 10;
 
   system.autoUpgrade = {
     enable = true;
-    dates = "12:15";
+    dates = "daily";
+    randomizedDelaySec = "10min";
     flags = ["--update-input" "nixpkgs" "--commit-lock-file"];
-    # this tricks nixos-rebuild into using /etc/nixos/flake.nix
     flake = "''";
+    allowReboot = true;
   };
   
   # Perform garbage collection weekly to maintain low disk usage
@@ -164,10 +164,5 @@
     options = "--delete-older-than 1w";
   };
 
-  # Optimize storage
-  # You can also manually optimize the store via:
-  #    nix-store --optimise
-  # Refer to the following link for more details:
-  # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-auto-optimise-store
   nix.settings.auto-optimise-store = true;
 }
