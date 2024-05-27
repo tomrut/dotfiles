@@ -152,7 +152,7 @@
     enable = true;
     dates = "daily";
     randomizedDelaySec = "10min";
-    flags = ["--update-input" "nixpkgs home-manager" "--commit-lock-file"];
+    flags = ["--no-write-lock-file" "--commit-lock-file" "-L"];
     flake = "''";
     allowReboot = true;
   };
