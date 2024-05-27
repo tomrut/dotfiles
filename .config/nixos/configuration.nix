@@ -150,7 +150,8 @@
 
   system.autoUpgrade = {
     enable = true;
-    dates = "daily";
+    #dates = "daily";
+    dates = "09:50";
     randomizedDelaySec = "10min";
     flags = ["--update-input" "nixpkgs" "--commit-lock-file"];
     flake = "''";
