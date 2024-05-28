@@ -15,7 +15,7 @@
     grub = {
       enable = true;
       device = "/dev/sda";
-      configurationLimit = 10;
+      configurationLimit = 20;
       # useOSProber = true;
     };
     timeout = 3;
@@ -147,7 +147,7 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
 
-  boot.loader.systemd-boot.configurationLimit = 10;
+  boot.loader.systemd-boot.configurationLimit = 20;
 
   system.autoUpgrade = {
     enable = true;
