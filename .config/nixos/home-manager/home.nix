@@ -78,7 +78,7 @@
     pkgs.ripgrep
     pkgs.gcc
     pkgs.mc
-    pkgs.nodejs_21
+    pkgs.nodejs_22
     pkgs.yt-dlp
     pkgs.keepassxc
     pkgs.ripgrep
@@ -180,7 +180,7 @@
   programs.btop.enable = true;
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     enableCompletion = true;
     autocd = true;
     shellAliases = {

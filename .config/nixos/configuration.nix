@@ -60,8 +60,10 @@
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "pl";
-    xkbVariant = "";
+    xkb = {
+        layout = "pl";
+        variant = "";
+    };
   };
 
   # Configure console keymap
@@ -125,7 +127,7 @@
   services.pcscd.enable = true;
   programs.gnupg.agent = {
     enable = true;
-    pinentryFlavor = "gnome3";
+    pinentryPackage = pkgs.pinentry-gnome3;
     enableSSHSupport = true;
   };
   # List services that you want to enable:
