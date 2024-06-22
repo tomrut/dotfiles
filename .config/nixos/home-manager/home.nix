@@ -282,6 +282,7 @@
         cmp-nvim-lsp
         nvim-tree-lua
         luasnip
+        friendly-snippets
         nvim-web-devicons
         comment-nvim
         rose-pine
