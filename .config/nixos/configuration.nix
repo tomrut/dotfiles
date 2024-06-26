@@ -155,7 +155,7 @@
     enable = true;
     dates = "daily";
     randomizedDelaySec = "10min";
-    flags = ["--no-write-lock-file" "--commit-lock-file" "-L"];
+    flags = ["--no-write-lock-file" ];
     flake = "''";
     allowReboot = true;
   };
