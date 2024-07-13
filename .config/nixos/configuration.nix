@@ -58,8 +58,9 @@
   services.xserver.displayManager.lightdm = {
     enable = true;
     greeters.slick.enable = false;
-    greeters.gtk = {
+    greeters.mini = {
         enable = true;
+        user = "tomek";
     };
   };
 
