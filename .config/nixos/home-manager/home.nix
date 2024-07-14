@@ -292,6 +292,7 @@
         undotree
         playground
         lazygit-nvim
+        vim-fugitive
       ];
 
       extraConfig = builtins.concatStringsSep "\n" [
