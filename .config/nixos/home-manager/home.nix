@@ -279,7 +279,7 @@
         mason-lspconfig-nvim
         {
           plugin = nvim-cmp;
-          config = toLuaFile ./nvim/plugin/cmp.lua;
+          # config = toLuaFile ./nvim/plugin/cmp.lua;
         }
         cmp-nvim-lsp
         nvim-tree-lua
@@ -323,6 +323,9 @@
           ${lib.strings.fileContents ./remap.lua}
           ${lib.strings.fileContents ./set.lua}
           ${lib.strings.fileContents ./nvim/plugin/colors.lua}
+          ${lib.strings.fileContents ./nvim/plugin/harpoon.lua}
+          ${lib.strings.fileContents ./nvim/plugin/fugitive.lua}
+          ${lib.strings.fileContents ./nvim/plugin/undotree.lua}
           EOF
         ''
 
