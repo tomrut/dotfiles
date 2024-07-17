@@ -281,7 +281,7 @@
         mason-lspconfig-nvim
         {
           plugin = nvim-cmp;
-          # config = toLuaFile ./nvim/plugin/cmp.lua;
+          config = toLuaFile ./nvim/plugin/cmp.lua;
         }
         cmp-nvim-lsp
         nvim-tree-lua
