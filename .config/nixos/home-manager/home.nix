@@ -297,6 +297,7 @@
         vim-fugitive
         gitsigns-nvim
         lualine-nvim
+        which-key-nvim
       ];
 
       extraConfig = builtins.concatStringsSep "\n" [
