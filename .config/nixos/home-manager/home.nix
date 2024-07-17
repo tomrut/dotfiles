@@ -103,6 +103,8 @@
     pkgs.inkscape
     pkgs.flameshot
     pkgs.lazygit
+    pkgs.fd
+
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -294,6 +296,7 @@
         lazygit-nvim
         vim-fugitive
         gitsigns-nvim
+        lualine-nvim
       ];
 
       extraConfig = builtins.concatStringsSep "\n" [
@@ -326,6 +329,14 @@
           ${lib.strings.fileContents ./nvim/plugin/harpoon.lua}
           ${lib.strings.fileContents ./nvim/plugin/fugitive.lua}
           ${lib.strings.fileContents ./nvim/plugin/undotree.lua}
+          EOF
+        ''
+
+        ''
+          lua <<EOF
+            require('lualine').setup({
+                options = { theme = 'dracula' }
+            })
           EOF
         ''
 
