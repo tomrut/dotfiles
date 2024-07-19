@@ -104,6 +104,7 @@
     pkgs.flameshot
     pkgs.lazygit
     pkgs.fd
+    pkgs.marksman
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -255,6 +256,8 @@
         nodePackages.typescript-language-server
       ];
 
+      extraLuaPackages = ps: [ ps.jsregexp ];
+
       plugins = with pkgs.vimPlugins; [
 
         {
@@ -272,6 +275,7 @@
           p.tree-sitter-css
           p.tree-sitter-html
           p.tree-sitter-java
+          p.tree-sitter-markdown
         ]))
         telescope-nvim
         telescope-project-nvim
@@ -302,6 +306,8 @@
         nvim-ts-autotag
         nvim-ts-context-commentstring
         lspkind-nvim
+        nvim-treesitter-parsers.markdown
+        nvim-treesitter-parsers.markdown_inline
       ];
 
       extraConfig = builtins.concatStringsSep "\n" [

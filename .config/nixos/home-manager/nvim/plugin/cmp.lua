@@ -1,7 +1,7 @@
 local cmp = require('cmp')
 local luasnip = require('luasnip')
 
-require('luasnip.loaders.from_vscode').lazy_load()
+require('luasnip.loaders.from_vscode')
 luasnip.config.setup {}
 
 cmp.setup {
@@ -42,9 +42,9 @@ cmp.setup {
     sources = {
         { 
             name = "nvim_lsp",
-            entry_filter = function(entry, ctx)
-                return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind()
-            end 
+            -- entry_filter = function(entry, ctx)
+            --     return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind()
+            -- end 
         },
         { name = 'luasnip' },
     },
