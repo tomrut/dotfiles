@@ -298,18 +298,13 @@
         gitsigns-nvim
         lualine-nvim
         which-key-nvim
+        lspsaga-nvim
+        nvim-ts-autotag
+        nvim-ts-context-commentstring
+        lspkind-nvim
       ];
 
       extraConfig = builtins.concatStringsSep "\n" [
-        ''
-          let mapleader = "\<Space>"
-          nnoremap <C-q> <cmd>quit<cr>
-          nnoremap <C-s> <cmd>w<cr>
-          nnoremap <C-\> <cmd>NvimTreeToggle<cr>
-
-          imap <C-s> <esc>:w<cr>i
-          imap <C-\> <esc>:NvimTreeToggle<cr>i
-        ''
 
         ''
           lua <<EOF
