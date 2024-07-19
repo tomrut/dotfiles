@@ -1,12 +1,26 @@
 local cmp = require('cmp')
+require('luasnip.loaders.from_vscode').load()
 local luasnip = require('luasnip')
 
-require('luasnip.loaders.from_vscode')
 luasnip.config.setup {}
+
+vim.keymap.set({"i"}, "<C-K>", function() luasnip.expand() end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-L>", function() luasnip.jump( 1) end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-J>", function() luasnip.jump(-1) end, {silent = true})
+
+vim.keymap.set({"i", "s"}, "<C-E>", function()
+	if luasnip.choice_active() then
+		luasnip.change_choice(1)
+	end
+end, {silent = true})
 
 cmp.setup {
     snippet = {
         expand = function(args)
+            local luasnip = prequire("luasnip")
+            if not luasnip then
+                return
+            end
             luasnip.lsp_expand(args.body)
         end,
     },
@@ -17,13 +31,12 @@ cmp.setup {
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete {},
         ['<CR>'] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Replace,
             select = true,
         },
         ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
-            elseif luasnip.expand_or_locally_jumpable() then
+            elseif luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jump()
             else
                 fallback()
@@ -42,10 +55,9 @@ cmp.setup {
     sources = {
         { 
             name = "nvim_lsp",
-            -- entry_filter = function(entry, ctx)
-            --     return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind()
-            -- end 
         },
-        { name = 'luasnip' },
+        { name = 'luasnip', option = { show_autosnippets = true }  },
     },
 }
+require('cmp_luasnip')
+

@@ -9,14 +9,4 @@ vim.opt.termguicolors = true
 
 -- empty setup using defaults
 require("nvim-tree").setup()
-require('Comment').setup({
-            ignore = '^$',
-            toggler = {
-                line = '<leader>cc',
-                block = '<leader>bc',
-            },
-            opleader = {
-                line = '<leader>c',
-                block = '<leader>b',
-            },
-        })
+require('Comment').setup()

@@ -104,7 +104,8 @@
     pkgs.flameshot
     pkgs.lazygit
     pkgs.fd
-    pkgs.marksman
+    pkgs.md4c
+    pkgs.lua-language-server
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -288,6 +289,7 @@
           config = toLuaFile ./nvim/plugin/cmp.lua;
         }
         cmp-nvim-lsp
+        cmp_luasnip
         nvim-tree-lua
         luasnip
         friendly-snippets
@@ -330,21 +332,13 @@
             require('lualine').setup({
                 options = { theme = 'dracula' }
             })
-          EOF
-        ''
 
-        ''
-          lua <<EOF
             require("nvim-tree").setup()
             require('Comment').setup({
                 ignore = '^$',
                 toggler = {
                     line = '<leader>cc',
                     block = '<leader>bc',
-                },
-                opleader = {
-                    line = '<leader>c',
-                    block = '<leader>b',
                 },
             })
           EOF
