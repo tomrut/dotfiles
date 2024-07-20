@@ -14,6 +14,13 @@ vim.keymap.set({"i", "s"}, "<C-E>", function()
 	end
 end, {silent = true})
 
+local status, autopairs = pcall(require, "nvim-autopairs")
+if (not status) then return end
+
+autopairs.setup({
+  disable_filetype = { "TelescopePrompt" , "vim" },
+})
+
 cmp.setup {
     snippet = {
         expand = function(args)
@@ -53,9 +60,9 @@ cmp.setup {
         end, { 'i', 's' }),
     },
     sources = {
-        { 
-            name = "nvim_lsp",
-        },
+        { name = "nvim_lsp" },
+        { name = "buffer" },
+        { name = "path" },
         { name = 'luasnip', option = { show_autosnippets = true }  },
     },
 }
