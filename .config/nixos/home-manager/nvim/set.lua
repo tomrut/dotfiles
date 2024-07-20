@@ -38,3 +38,6 @@ function setupColors(color)
 	vim.api.nvim_set_hl(0, "NormalFloat", {bg = "none"})
 end
 setupColors()
+
+vim.opt.spell = true
+vim.opt.spelllang = { "en_us" }
