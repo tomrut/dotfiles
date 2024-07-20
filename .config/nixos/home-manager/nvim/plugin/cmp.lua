@@ -1,8 +1,11 @@
 local cmp = require('cmp')
 require('luasnip.loaders.from_vscode').load()
-local luasnip = require('luasnip')
 
+local luasnip = require('luasnip')
+luasnip.filetype_extend("typescriptreact", { "javascript" })
 luasnip.config.setup {}
+
+
 
 vim.keymap.set({"i"}, "<C-K>", function() luasnip.expand() end, {silent = true})
 vim.keymap.set({"i", "s"}, "<C-L>", function() luasnip.jump( 1) end, {silent = true})
@@ -60,7 +63,11 @@ cmp.setup {
         end, { 'i', 's' }),
     },
     sources = {
-        { name = "nvim_lsp" },
+        { name = "nvim_lsp",
+          entry_filter = function(entry, ctx)
+             return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind()
+          end
+        },
         { name = "buffer" },
         { name = "path" },
         { name = 'luasnip', option = { show_autosnippets = true }  },
