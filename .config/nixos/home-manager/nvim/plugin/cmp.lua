@@ -4,8 +4,7 @@ require('luasnip.loaders.from_vscode').load()
 local luasnip = require('luasnip')
 luasnip.filetype_extend("typescriptreact", { "javascript" })
 luasnip.config.setup {}
-
-
+local lspkind = require('lspkind')
 
 vim.keymap.set({"i"}, "<C-K>", function() luasnip.expand() end, {silent = true})
 vim.keymap.set({"i", "s"}, "<C-L>", function() luasnip.jump( 1) end, {silent = true})
@@ -40,8 +39,9 @@ cmp.setup {
         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete {},
+        ['<C-e>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm {
-            select = true,
+            select = true, behavior = cmp.ConfirmBehavior.Replace
         },
         ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
@@ -63,6 +63,7 @@ cmp.setup {
         end, { 'i', 's' }),
     },
     sources = {
+        { name = 'luasnip', option = { show_autosnippets = true }  },
         { name = "nvim_lsp",
           entry_filter = function(entry, ctx)
              return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind()
@@ -70,8 +71,10 @@ cmp.setup {
         },
         { name = "buffer" },
         { name = "path" },
-        { name = 'luasnip', option = { show_autosnippets = true }  },
     },
+    formatting = {
+        format = lspkind.cmp_format({ with_text = false, maxwidth = 50 })
+    }
 }
 require('cmp_luasnip')
 
