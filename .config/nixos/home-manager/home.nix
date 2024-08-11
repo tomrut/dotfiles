@@ -148,6 +148,10 @@
   #  /etc/profiles/per-user/tomek/etc/profile.d/hm-session-vars.sh
   #
 
+  home.sessionPath = [
+    "$HOME/bin"
+  ];
+
   programs.bash = {
     enable = true;
 
@@ -195,16 +199,8 @@
       mcpt = "mvn clean package";
       lg = "lazygit";
     };
-
-    oh-my-zsh = {
-      enable = true;
-      theme = "random";
-      plugins = [
-        "git"
-        "vi-mode"
-      ];
-    };
   };
+
   programs.fzf.enable = true;
   programs.bat.enable = true;
 
