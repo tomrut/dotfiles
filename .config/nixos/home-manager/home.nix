@@ -84,6 +84,7 @@
     pkgs.ripgrep
     pkgs.material-design-icons
     pkgs.nerdfonts
+    #(pkgs.nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono"  "Monoid" "DroidSansMono" "MPlus" "NerdFontsSymbolsOnly" ]; })
     pkgs.unzip
     pkgs.mpg123
     pkgs.cargo
