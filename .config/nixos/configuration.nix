@@ -124,7 +124,7 @@
   environment.systemPackages = with pkgs; [
     wget
     libreoffice-still
-    librewolf
+    # librewolf
     ecryptfs
     firefox
     nvd
