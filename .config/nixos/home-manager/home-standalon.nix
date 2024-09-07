@@ -3,6 +3,11 @@
 #
 
 {
+  imports =
+    [ 
+      ./nvim.nix
+    ]; 
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "tomek";
@@ -25,7 +30,7 @@
     pkgs.ripgrep
     pkgs.gcc
     pkgs.mc
-    pkgs.nodejs_21
+    pkgs.nodejs_22
     pkgs.yt-dlp
     pkgs.keepassxc
     pkgs.ripgrep
@@ -96,7 +101,7 @@
   programs.btop.enable = true;
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     enableCompletion = true;
     autocd = true;
     shellAliases = {
@@ -146,114 +151,6 @@
     lsoundtracks = "mpg123 https://kathy.torontocast.com:1190/";
   };
 
-  programs.neovim =
-    let
-      toLua = str: "lua << EOF\n${str}\nEOF\n";
-      toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
-    in
-    {
-      enable = true;
-      defaultEditor = true;
-      viAlias = true;
-      vimAlias = true;
-      vimdiffAlias = true;
-      extraPackages = with pkgs; [
-        tree-sitter
-        nodePackages.typescript-language-server
-        emmet-ls
-        vscode-langservers-extracted
-        tailwindcss-language-server
-        nodePackages.typescript-language-server
-      ];
-
-      plugins = with pkgs.vimPlugins; [
-
-        {
-          plugin = nvim-lspconfig;
-          config = toLuaFile ./nvim/plugin/lsp.lua;
-        }
-
-        (nvim-treesitter.withPlugins (p: [
-          p.tree-sitter-nix
-          p.tree-sitter-bash
-          p.tree-sitter-javascript
-          p.tree-sitter-typescript
-          p.tree-sitter-lua
-          p.tree-sitter-json
-          p.tree-sitter-css
-          p.tree-sitter-html
-          p.tree-sitter-java
-        ]))
-        telescope-nvim
-        telescope-project-nvim
-        lsp-zero-nvim
-        mason-nvim
-        emmet-vim
-        mason-lspconfig-nvim
-        {
-          plugin = nvim-cmp;
-          config = toLuaFile ./nvim/plugin/cmp.lua;
-        }
-        cmp-nvim-lsp
-        nvim-tree-lua
-        nvim-web-devicons
-        comment-nvim
-        rose-pine
-        harpoon
-        undotree
-        playground
-        lazygit-nvim
-      ];
-
-      extraConfig = builtins.concatStringsSep "\n" [
-        ''
-          let mapleader = "\<Space>"
-          nnoremap <leader>ff <cmd>Telescope find_files<cr>
-          nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-          nnoremap <leader>fb <cmd>Telescope buffers<cr>
-          nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-          nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-          nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-          nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-          nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
-
-          nnoremap <C-q> <cmd>quit<cr>
-          nnoremap <C-s> <cmd>w<cr>
-          nnoremap <C-\> <cmd>NvimTreeToggle<cr>
-
-          imap <C-s> <esc>:w<cr>i
-          imap <C-\> <esc>:NvimTreeToggle<cr>i
-        ''
-
-        ''
-          lua <<EOF
-          require("nvim-web-devicons").setup {}
-          require("nvim-tree").setup {}
-          ${lib.strings.fileContents ./remap.lua}
-          ${lib.strings.fileContents ./set.lua}
-          ${lib.strings.fileContents ./nvim/plugin/colors.lua}
-          EOF
-        ''
-
-        ''
-          lua <<EOF
-            require("nvim-tree").setup()
-            require('Comment').setup({
-                ignore = '^$',
-                toggler = {
-                    line = '<leader>cc',
-                    block = '<leader>bc',
-                },
-                opleader = {
-                    line = '<leader>c',
-                    block = '<leader>b',
-                },
-            })
-          EOF
-        ''
-      ];
-
-    };
 
   programs.vscode = {
     enable = true;
