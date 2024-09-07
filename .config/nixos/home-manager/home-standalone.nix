@@ -112,15 +112,6 @@
       lg = "lazygit";
     };
 
-    oh-my-zsh = {
-      enable = true;
-      theme = "random";
-      plugins = [
-        "git"
-        "vi-mode"
-      ];
-    };
-
     initExtra = ''
        source "/home/tomek/.nix-profile/etc/profile.d/nix.sh"
     '';
