@@ -5,7 +5,7 @@
 {
 
   imports =
-    [ # Include the results of the hardware scan.
+    [ 
       ./nvim.nix
     ];
 
@@ -164,33 +164,12 @@
 
     bashrcExtra = ''
       export EDITOR="nvim";
-      export TERMINAL="kitty";
     '';
   };
 
   programs.broot = {
     enable = true;
     enableBashIntegration = true;
-  };
-
-  programs.kitty = {
-    enable = true;
-    shellIntegration.enableZshIntegration = true;
-    settings = {
-      font_size = 12;
-      font_family = "JetBrainsMono";
-      copy_on_select = "yes";
-      cursor_shape = "block";
-      cursor_blink_interval = 0;
-      enable_audio_bell = "no";
-      shell = "zsh";
-      editor = "nvim";
-      window_padding_width = 5;
-      tab_title_template = "{index}";
-      tab_bar_style = "powerline";
-      tab_powerline_style = "angled";
-      enabled_layouts = "vertical";
-    };
   };
 
   programs.btop.enable = true;
