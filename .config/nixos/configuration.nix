@@ -98,6 +98,9 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  programs.zsh.enable = true;
+  environment.shells = with pkgs; [ zsh ];
+
   users.users.ola = {
     isNormalUser = true;
     description = "ola";
@@ -110,6 +113,7 @@
     isNormalUser = true;
     description = "tomek";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [
     ];
   };
