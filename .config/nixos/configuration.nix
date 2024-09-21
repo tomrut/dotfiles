@@ -57,9 +57,16 @@
   # Enable the Cinnamon Desktop Environment.
   services.xserver.displayManager.lightdm = {
     enable = true;
-    greeters.slick.enable = false;
-    greeters.mini = {
+    greeters.slick = {
+        extraConfig = ''
+            hidden-users=ola
+        '';
+
         enable = true;
+    };
+
+    greeters.mini = {
+        enable = false;
         user = "tomek";
     };
   };
