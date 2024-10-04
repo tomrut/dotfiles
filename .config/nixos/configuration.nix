@@ -15,7 +15,7 @@
     grub = {
       enable = true;
       device = "/dev/sda";
-      configurationLimit = 20;
+      configurationLimit = 5;
       # useOSProber = true;
     };
     timeout = 3;
