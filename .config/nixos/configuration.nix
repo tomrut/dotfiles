@@ -33,6 +33,8 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  services.thermald.enable = true;
+
   services.tlp = {
       enable = true;
       settings = {
@@ -52,6 +54,28 @@
         STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
 
       };
+  };
+
+  services.redshift = {
+    enable = true;
+    brightness = {
+      # Note the string values below.
+      day = "1";
+      night = "1";
+    };
+
+    temperature = {
+      day = 5500;
+      night = 3700;
+    };
+
+    location.provider = manual;
+
+  };
+
+  location = {
+    latitude = 50.0;
+    longitude = 19.9;
   };
 
   # Set your time zone.
