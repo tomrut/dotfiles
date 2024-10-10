@@ -53,6 +53,8 @@
         START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
         STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
 
+        START_CHARGE_THRESH_BAT1 = 40; # 40 and bellow it starts to charge
+        STOP_CHARGE_THRESH_BAT1 = 80; # 80 and above it stops charging
       };
   };
 
@@ -68,8 +70,6 @@
       day = 5500;
       night = 3700;
     };
-
-    location.provider = manual;
 
   };
 
