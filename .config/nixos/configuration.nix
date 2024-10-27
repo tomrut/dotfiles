@@ -58,6 +58,7 @@
       };
   };
 
+
   services.redshift = {
     enable = true;
     brightness = {
@@ -180,7 +181,7 @@
   environment.systemPackages = with pkgs; [
     wget
     libreoffice-still
-    # librewolf
+    librewolf
     ecryptfs
     firefox
     nvd
@@ -189,12 +190,14 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
+  services.udev.packages = [ pkgs.yubikey-personalization ];
   services.pcscd.enable = true;
   programs.gnupg.agent = {
     enable = true;
     pinentryPackage = pkgs.pinentry-gnome3;
     enableSSHSupport = true;
   };
+  
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
