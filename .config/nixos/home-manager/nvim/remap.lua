@@ -24,8 +24,8 @@ vim.keymap.set("n", "<C-s>", vim.cmd.w)
 vim.keymap.set("i", "<C-s>", '<Esc>:w<CR>i')
 vim.keymap.set("i", "<C-\\>", '<Esc>:NvimTreeToggle<CR>i')
 vim.keymap.set("n", "<C-\\>", vim.cmd.NvimTreeToggle)
-vim.keymap.set("n", "<C-PageDown>", vim.cmd.bNext)
-vim.keymap.set("n", "<C-PageUp>", vim.cmd.bprevious)
+vim.keymap.set("n", "<C-M-PageDown>", vim.cmd.bNext)
+vim.keymap.set("n", "<C-M-PageUp>", vim.cmd.bprevious)
 
 
 
