@@ -79,7 +79,7 @@
   };
 
   services.nginx = {
-    enable = true;
+    enable = false;
     virtualHosts."www.torrom.com" = {
         forceSSL = true;
         sslCertificate = "/etc/nginx/server-cert.pem";
@@ -99,7 +99,7 @@
 
 
   services.webdav = {
-    enable = true;
+    enable = false;
     user = "tomek";
     settings = {
         address = "0.0.0.0";
