@@ -207,10 +207,16 @@
       epkgs:
       (with epkgs; [
         org
+        org-superstar
         nix-mode
         nix-ts-mode
       ])
     );
+
+    extraConfig = ''
+          (require 'org-superstar)
+          (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
+    '';
   };
 
   home.shellAliases = {
