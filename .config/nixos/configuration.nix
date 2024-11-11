@@ -34,7 +34,11 @@
   networking.networkmanager.enable = true;
 
   networking.hosts = {
-      "192.168.0.108" = ["www.torrom.com" "torrom.com"];
+      "192.168.0.108" = ["organice.torrom.com" "webdav.torrom.com" ];
+  };
+
+  services.dnsmasq = {
+      enable = true;
   };
 
   services.thermald.enable = true;
@@ -79,27 +83,51 @@
   };
 
   services.nginx = {
-    enable = false;
-    virtualHosts."www.torrom.com" = {
-        forceSSL = true;
-        sslCertificate = "/etc/nginx/server-cert.pem";
-        sslCertificateKey = "/etc/nginx/server-key.pem";
-        locations."/" = {
-            extraConfig = ''
-                 proxy_pass http://127.0.0.1:8080;
-                 proxy_set_header X-Real-IP $remote_addr;
-                 proxy_set_header REMOTE-HOST $remote_addr;
-                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                 proxy_set_header Host $host;
-                 proxy_redirect off;
-            '';
-        };
+    enable = true;
+
+    virtualHosts."organice.torrom.com" = {
+            forceSSL = true;
+            sslCertificate = "/etc/nginx/server-cert.pem";
+            sslCertificateKey = "/etc/nginx/server-key.pem";
+            locations."/" = {
+                root = "/var/www/organice";
+            };
+
     };
+
+    virtualHosts."webdav.torrom.com" = {
+            forceSSL = true;
+            sslCertificate = "/etc/nginx/server-cert.pem";
+            sslCertificateKey = "/etc/nginx/server-key.pem";
+
+            locations."/" = {
+                    extraConfig = ''
+                         proxy_pass http://127.0.0.1:8080;
+                         proxy_set_header X-Real-IP $remote_addr;
+                         proxy_set_header REMOTE-HOST $remote_addr;
+                         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                         proxy_set_header Host $host;
+                         proxy_redirect off;
+                          
+                         if ($request_method = 'OPTIONS') {
+                           return 204;
+                         }
+
+
+                         add_header 'Access-Control-Allow-Origin' 'https://organice.torrom.com' always;
+                         add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS, POST, PROPFIND, PUT' always;
+                         add_header 'Access-Control-Allow-Headers' 'Authorization,Depth,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range' always;
+                         add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range' always;
+                         add_header 'Access-Control-Allow-Credentials' true;
+                         add_header 'Allow' 'OPTIONS,GET,HEAD,POST,DELETE,TRACE,PROPFIND,PROPPATCH,COPY,MOVE,LOCK,UNLOCK';
+                    '';
+            };
+        };
   };
 
 
   services.webdav = {
-    enable = false;
+    enable = true;
     user = "tomek";
     settings = {
         address = "0.0.0.0";
@@ -248,8 +276,8 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  # networking.firewall.allowedTCPPorts = [ 53 443 ];
+  # networking.firewall.allowedUDPPorts = [ 53 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
