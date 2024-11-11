@@ -5,10 +5,10 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader = {
@@ -21,7 +21,7 @@
     timeout = 3;
   };
 
-  boot.kernelModules = ["ecryptfs"];
+  boot.kernelModules = [ "ecryptfs" ];
   networking.hostName = "nixos"; # Define your hostname.
   security.pam.enableEcryptfs = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -36,36 +36,35 @@
   networking.hosts = {
       "192.168.0.108" = ["organice.torrom.com" "webdav.torrom.com" ];
   };
-
+  
   services.dnsmasq = {
-      enable = true;
+    enable = false;
   };
 
   services.thermald.enable = true;
 
   services.tlp = {
-      enable = true;
-      settings = {
-        CPU_SCALING_GOVERNOR_ON_AC = "performance";
-        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+    enable = true;
+    settings = {
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
 
-        CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
 
-        CPU_MIN_PERF_ON_AC = 0;
-        CPU_MAX_PERF_ON_AC = 100;
-        CPU_MIN_PERF_ON_BAT = 0;
-        CPU_MAX_PERF_ON_BAT = 20;
+      CPU_MIN_PERF_ON_AC = 0;
+      CPU_MAX_PERF_ON_AC = 100;
+      CPU_MIN_PERF_ON_BAT = 0;
+      CPU_MAX_PERF_ON_BAT = 20;
 
-        #Optional helps save long term battery health
-        START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
-        STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+      #Optional helps save long term battery health
+      START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
+      STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
 
-        START_CHARGE_THRESH_BAT1 = 40; # 40 and bellow it starts to charge
-        STOP_CHARGE_THRESH_BAT1 = 80; # 80 and above it stops charging
-      };
+      START_CHARGE_THRESH_BAT1 = 40; # 40 and bellow it starts to charge
+      STOP_CHARGE_THRESH_BAT1 = 80; # 80 and above it stops charging
+    };
   };
-
 
   services.redshift = {
     enable = true;
@@ -86,61 +85,59 @@
     enable = true;
 
     virtualHosts."organice.torrom.com" = {
-            forceSSL = true;
-            sslCertificate = "/etc/nginx/server-cert.pem";
-            sslCertificateKey = "/etc/nginx/server-key.pem";
-            locations."/" = {
-                root = "/var/www/organice";
-            };
+      forceSSL = true;
+      sslCertificate = "/etc/nginx/server-cert.pem";
+      sslCertificateKey = "/etc/nginx/server-key.pem";
+      locations."/" = {
+        root = "/var/www/organice";
+      };
 
     };
 
     virtualHosts."webdav.torrom.com" = {
-            forceSSL = true;
-            sslCertificate = "/etc/nginx/server-cert.pem";
-            sslCertificateKey = "/etc/nginx/server-key.pem";
+      forceSSL = true;
+      sslCertificate = "/etc/nginx/server-cert.pem";
+      sslCertificateKey = "/etc/nginx/server-key.pem";
 
-            locations."/" = {
-                    extraConfig = ''
-                         proxy_pass http://127.0.0.1:8080;
-                         proxy_set_header X-Real-IP $remote_addr;
-                         proxy_set_header REMOTE-HOST $remote_addr;
-                         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                         proxy_set_header Host $host;
-                         proxy_redirect off;
-                          
-                         if ($request_method = 'OPTIONS') {
-                           return 204;
-                         }
+      locations."/" = {
+        extraConfig = ''
+          proxy_pass http://127.0.0.1:8080;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header REMOTE-HOST $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header Host $host;
+          proxy_redirect off;
+           
+          if ($request_method = 'OPTIONS') {
+            return 204;
+          }
 
-
-                         add_header 'Access-Control-Allow-Origin' 'https://organice.torrom.com' always;
-                         add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS, POST, PROPFIND, PUT' always;
-                         add_header 'Access-Control-Allow-Headers' 'Authorization,Depth,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range' always;
-                         add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range' always;
-                         add_header 'Access-Control-Allow-Credentials' true;
-                         add_header 'Allow' 'OPTIONS,GET,HEAD,POST,DELETE,TRACE,PROPFIND,PROPPATCH,COPY,MOVE,LOCK,UNLOCK';
-                    '';
-            };
-        };
+          add_header 'Access-Control-Allow-Origin' 'https://organice.torrom.com' always;
+          add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS, POST, PROPFIND, PUT' always;
+          add_header 'Access-Control-Allow-Headers' 'Authorization,Depth,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range' always;
+          add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range' always;
+          add_header 'Access-Control-Allow-Credentials' true;
+          add_header 'Allow' 'OPTIONS,GET,HEAD,POST,DELETE,TRACE,PROPFIND,PROPPATCH,COPY,MOVE,LOCK,UNLOCK';
+        '';
+      };
+    };
   };
-
 
   services.webdav = {
     enable = true;
     user = "tomek";
     settings = {
-        address = "0.0.0.0";
-        port = 8080;
-        scope = "/home/tomek/public/webdav";
-        modify = true;
-        auth = true;
-        users = [
-            {
-                username = "{env}ENV_USERNAME";
-                password = "{env}ENV_PASSWORD";
-            }
-        ];
+      address = "0.0.0.0";
+      port = 8080;
+      scope = "/home/tomek/public/webdav";
+      modify = true;
+      auth = true;
+      users = [
+        {
+          username = "{env}ENV_USERNAME";
+          password = "{env}ENV_PASSWORD";
+        }
+      ];
     };
 
     environmentFile = /etc/nixos/webdav.env;
@@ -176,27 +173,26 @@
   services.xserver.displayManager.lightdm = {
     enable = true;
     greeters.slick = {
-        extraConfig = ''
-            hidden-users=ola
-        '';
+      extraConfig = ''
+        hidden-users=ola
+      '';
 
-        enable = true;
+      enable = true;
     };
 
     greeters.mini = {
-        enable = false;
-        user = "tomek";
+      enable = false;
+      user = "tomek";
     };
   };
-
 
   services.xserver.desktopManager.cinnamon.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
     xkb = {
-        layout = "pl";
-        variant = "";
+      layout = "pl";
+      variant = "";
     };
   };
 
@@ -229,25 +225,30 @@
   users.users.ola = {
     isNormalUser = true;
     description = "ola";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
+    extraGroups = [
+      "networkmanager"
+      "wheel"
     ];
+    packages = with pkgs; [ ];
   };
 
   users.users.tomek = {
     isNormalUser = true;
     description = "tomek";
-    extraGroups = [ "networkmanager" "wheel" ];
-    shell = pkgs.zsh;
-    packages = with pkgs; [
+    extraGroups = [
+      "networkmanager"
+      "wheel"
     ];
+    shell = pkgs.zsh;
+    packages = with pkgs; [ ];
   };
 
   # Allow unfree packages
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nixpkgs.config.allowUnfree = false;
-	
-
 
   # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [
@@ -257,7 +258,7 @@
     ecryptfs
     firefox
     nvd
-   ];
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -269,7 +270,7 @@
     pinentryPackage = pkgs.pinentry-gnome3;
     enableSSHSupport = true;
   };
-  
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
@@ -289,17 +290,17 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
 
-  boot.loader.systemd-boot.configurationLimit = 20;
+  boot.loader.systemd-boot.configurationLimit = 10;
 
   system.autoUpgrade = {
     enable = true;
     dates = "daily";
     randomizedDelaySec = "10min";
-    flags = ["--no-write-lock-file" ];
+    flags = [ "--no-write-lock-file" ];
     flake = "''";
     allowReboot = true;
   };
-  
+
   # Perform garbage collection weekly to maintain low disk usage
   nix.gc = {
     automatic = true;

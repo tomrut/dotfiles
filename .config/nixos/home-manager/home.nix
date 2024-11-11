@@ -1,13 +1,16 @@
-{ config, pkgs, lib, vimUtils, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  vimUtils,
+  ...
+}:
 
 #
 
 {
 
-  imports =
-    [ 
-      ./nvim.nix
-    ];
+  imports = [ ./nvim.nix ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -56,7 +59,7 @@
       Install.WantedBy = [ "timers.target" ];
     };
 
-     mail_sync = {
+    mail_sync = {
       Unit.Description = "timer for mail_sync service";
       Timer = {
         Unit = "mail_sync";
@@ -157,9 +160,7 @@
   #  /etc/profiles/per-user/tomek/etc/profile.d/hm-session-vars.sh
   #
 
-  home.sessionPath = [
-    "$HOME/bin"
-  ];
+  home.sessionPath = [ "$HOME/bin" ];
 
   programs.bash = {
     enable = true;
@@ -202,9 +203,14 @@
 
   programs.emacs = {
     enable = true;
-    extraPackages = epkgs: [
-      epkgs.org
-    ];
+    extraPackages = (
+      epkgs:
+      (with epkgs; [
+        org
+        nix-mode
+        nix-ts-mode
+      ])
+    );
   };
 
   home.shellAliases = {
@@ -224,8 +230,7 @@
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
-    extensions = with pkgs.vscode-extensions; [
-    ];
+    extensions = with pkgs.vscode-extensions; [ ];
   };
 
   programs.zathura = {
