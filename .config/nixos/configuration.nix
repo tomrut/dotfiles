@@ -33,7 +33,10 @@
   # Enable networking
   networking.networkmanager.enable = true;
   networking.hosts = {
-      "192.168.0.113" = ["organice.torrom.com" "webdav.torrom.com" ];
+    "192.168.0.113" = [
+      "organice.torrom.com"
+      "webdav.torrom.com"
+    ];
   };
 
   services.thermald.enable = true;
