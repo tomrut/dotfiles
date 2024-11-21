@@ -86,6 +86,19 @@
       };
     };
   };
+  
+  services.openssh = {
+    enable = true;
+    ports = [ 22 ];
+    allowSFTP = true;
+    settings = {
+      PasswordAuthentication = false;
+      AllowUsers = [ "tomek"];
+      UseDns = false;
+      X11Forwarding = false;
+      PermitRootLogin = "no";
+    };
+  };  
 
   services.webdav = {
     enable = true;
@@ -157,7 +170,7 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 53 443 ];
+  networking.firewall.allowedTCPPorts = [ 22 53 443 ];
   networking.firewall.allowedUDPPorts = [ 53 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
