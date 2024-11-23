@@ -2,10 +2,16 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
@@ -41,81 +47,50 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
-  networking.hosts = {
-    "192.168.0.113" = [ "organice.torrom.com" "webdav.torrom.com" ];
-  };
-
-  services.dnsmasq = { enable = true; };
-
-  services.nginx = {
-    enable = true;
-
-    virtualHosts."organice.torrom.com" = {
-      forceSSL = true;
-      sslCertificate = "/etc/nginx/server-cert.pem";
-      sslCertificateKey = "/etc/nginx/server-key.pem";
-      locations."/" = { root = "/var/www/organice"; };
-
-    };
-
-    virtualHosts."webdav.torrom.com" = {
-      forceSSL = true;
-      sslCertificate = "/etc/nginx/server-cert.pem";
-      sslCertificateKey = "/etc/nginx/server-key.pem";
-
-      locations."/" = {
-        extraConfig = ''
-          proxy_pass http://127.0.0.1:8080;
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_set_header REMOTE-HOST $remote_addr;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header Host $host;
-          proxy_redirect off;
-           
-          #if ($request_method = 'OPTIONS') {
-          #  return 204;
-          #}
-
-          add_header 'Access-Control-Allow-Origin' * always;
-          add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS, POST, PROPFIND, PUT' always;
-          add_header 'Access-Control-Allow-Headers' 'Authorization,Depth,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range' always;
-          add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range' always;
-          add_header 'Access-Control-Allow-Credentials' true;
-          add_header 'Allow' 'OPTIONS,GET,HEAD,POST,DELETE,TRACE,PROPFIND,PROPPATCH,COPY,MOVE,LOCK,UNLOCK';
-        '';
-      };
-    };
-  };
-  
   services.openssh = {
     enable = true;
     ports = [ 22 ];
     allowSFTP = true;
     settings = {
       PasswordAuthentication = false;
-      AllowUsers = [ "tomek"];
+      AllowUsers = [ "tomek" "share" ];
       UseDns = false;
       X11Forwarding = false;
-      PermitRootLogin = "no";
+      PermitRootLogin = "prohibit-password";
     };
-  };  
+  };
 
-  services.webdav = {
+
+  services.samba = {
     enable = true;
-    user = "tomek";
-    settings = {
-      address = "0.0.0.0";
-      port = 8080;
-      scope = "/home/tomek/public/webdav";
-      modify = true;
-      auth = true;
-      users = [{
-        username = "{env}ENV_USERNAME";
-        password = "{env}ENV_PASSWORD";
-      }];
-    };
+    securityType = "user";
+    openFirewall = true;
+    shares = {
+      global = {
+        "workgroup" = "WORKGROUP";
+        "server string" = "smbnix";
+        "netbios name" = "smbnix";
+        "security" = "user";
+        #"use sendfile" = "yes";
+        #"max protocol" = "smb2";
+        # note: localhost is the ipv6 localhost ::1
+        "hosts allow" = "192.168.0. 127.0.0.1 localhost";
+        "hosts deny" = "0.0.0.0/0";
+        "guest account" = "nobody";
+        "map to guest" = "bad user";
+      };
 
-    environmentFile = /etc/nixos/webdav.env;
+      share = {
+        "path" = "/mnt/Shares/share";
+        "browseable" = "yes";
+        "read only" = "yes";
+        "guest ok" = "no";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+        "force user" = "samba";
+        "force group" = "users";
+      };
+    };
   };
 
   # Configure keymap in X11
@@ -140,11 +115,21 @@
   users.users.tomek = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs;
-      [
-        #     firefox
-        #     tree
-      ];
+    packages = with pkgs; [
+      #     tree
+    ];
+  };
+
+  users.users.share = {
+    isNormalUser = true;
+    extraGroups = [ ]; # Enable ‘sudo’ for the user.
+    packages = with pkgs; [ ];
+  };
+
+  users.users.samba = {
+    isNormalUser = true;
+    extraGroups = [ ]; # Enable ‘sudo’ for the user.
+    packages = with pkgs; [ ];
   };
 
   # List packages installed in system profile. To search, run:
@@ -170,8 +155,10 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 53 443 ];
-  networking.firewall.allowedUDPPorts = [ 53 ];
+  networking.firewall.allowedTCPPorts = [
+    22
+  ];
+  # networking.firewall.allowedUDPPorts = [ ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
@@ -219,4 +206,3 @@
 
   nix.settings.auto-optimise-store = true;
 }
-
