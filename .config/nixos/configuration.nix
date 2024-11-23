@@ -32,12 +32,6 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  networking.hosts = {
-    "192.168.0.113" = [
-      "organice.torrom.com"
-      "webdav.torrom.com"
-    ];
-  };
 
   services.thermald.enable = true;
 
@@ -134,11 +128,6 @@
 
   # Configure console keymap
   console.keyMap = "pl2";
-
-  # Enable CUPS to print documents.
-  services.printing.enable = false;
-
-  services.davfs2.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;

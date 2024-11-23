@@ -32,6 +32,7 @@
       };
       Install.WantedBy = [ "default.target" ];
     };
+
     mail_sync = {
       Unit = {
         Description = "mail sync service";
@@ -41,6 +42,22 @@
         ExecStart = toString (
           pkgs.writeShellScript "mail-sync-script" ''
             ${pkgs.isync}/bin/mbsync -a
+          ''
+        );
+      };
+      Install.WantedBy = [ "default.target" ];
+    };
+
+    sync_share_sync = {
+      Unit = {
+        Description = "sync_share sync service";
+      };
+      Service = {
+        Type = "oneshot";
+        ExecStart = toString (
+          pkgs.writeShellScript "sync_share-sync-script" ''
+            ${pkgs.rsync}/bin/rsync -av -e ssh /home/tomek/org/deskt share@192.168.0.113:org
+            ${pkgs.rsync}/bin/rsync -av -e ssh share@192.168.0.113:org/phone /home/tomek/org 
           ''
         );
       };
@@ -65,6 +82,16 @@
         Unit = "mail_sync";
         OnBootSec = "10m";
         OnUnitActiveSec = "10m";
+      };
+      Install.WantedBy = [ "timers.target" ];
+    };
+    
+    sync_share_sync = {
+      Unit.Description = "timer for sync_share_sync service";
+      Timer = {
+        Unit = "sync_share_sync";
+        OnBootSec = "4m";
+        OnUnitActiveSec = "30m";
       };
       Install.WantedBy = [ "timers.target" ];
     };
