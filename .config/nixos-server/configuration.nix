@@ -53,7 +53,7 @@
     allowSFTP = true;
     settings = {
       PasswordAuthentication = false;
-      AllowUsers = [ "tomek" "share" ];
+      AllowUsers = [ "tomek" "share" "samba" ];
       UseDns = false;
       X11Forwarding = false;
       PermitRootLogin = "prohibit-password";
