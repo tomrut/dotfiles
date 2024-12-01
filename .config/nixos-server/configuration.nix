@@ -53,13 +53,16 @@
     allowSFTP = true;
     settings = {
       PasswordAuthentication = false;
-      AllowUsers = [ "tomek" "share" "samba" ];
+      AllowUsers = [
+        "tomek"
+        "share"
+        "samba"
+      ];
       UseDns = false;
       X11Forwarding = false;
       PermitRootLogin = "prohibit-password";
     };
   };
-
 
   services.samba = {
     enable = true;
@@ -138,8 +141,25 @@
     vim
     nixfmt-rfc-style
     nvd
-    #   wget
+    cryptsetup
   ];
+    
+  boot.initrd.luks.devices = {
+    crypted = {
+      device = "/dev/disk/by-id/ata-ST1000LX015-1U7172_WL105FTP-part1";
+      preLVM = true;
+    };
+  };
+
+  fileSystems."/mnt/drive" = { 
+      device = "/dev/mapper/crypted";
+      fsType = "ext4";
+      options = [
+         "users"
+         "nofail"
+         "noauto"  
+      ];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -155,9 +175,7 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [
-    22
-  ];
+  networking.firewall.allowedTCPPorts = [ 22 ];
   # networking.firewall.allowedUDPPorts = [ ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;

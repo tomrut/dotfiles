@@ -1,2 +1,3 @@
 .config/nixos/webdav.env
 .config/nixos/smb-secrets
+.config/nixos-server/webdav.env
