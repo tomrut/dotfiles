@@ -19,9 +19,10 @@
     grub = {
       enable = true;
       device = "/dev/sda";
-      configurationLimit = 5;
+      configurationLimit = 20;
+      enableCryptodisk = true;
     };
-    timeout = 3;
+    timeout = 5;
   };
 
   networking.hostName = "nixos-server";
@@ -47,6 +48,9 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
+  boot.kernelParams = [ "ip=192.168.0.113::192.168.0.1:255.255.255.0:nixos-server::none" ];
+  #boot.kernelParams = [ "ip=dhcp" ];
+
   services.openssh = {
     enable = true;
     ports = [ 22 ];
@@ -66,9 +70,8 @@
 
   services.samba = {
     enable = true;
-    securityType = "user";
     openFirewall = true;
-    shares = {
+    settings = {
       global = {
         "workgroup" = "WORKGROUP";
         "server string" = "smbnix";
@@ -143,12 +146,40 @@
     nvd
     cryptsetup
   ];
-    
+ 
+ # boot.initrd.prepend = ["${/crypto_keyfile.cpio.gz}"];
+ 
+  boot.initrd.secrets = {
+    "hdd.key" = "/etc/secrets/hdd.key";
+  };
+ 
+#  boot.initrd.luks.reusePassphrases = true; 
   boot.initrd.luks.devices = {
-    crypted = {
-      device = "/dev/disk/by-id/ata-ST1000LX015-1U7172_WL105FTP-part1";
+    system = {
+      device = "/dev/disk/by-id/ata-SK_hynix_SC401_SATA_256GB_MI93T009511203I0U-part1";
       preLVM = true;
+      allowDiscards = true;
+      keyFile = "/hdd.key";
     };
+#    crypted = {
+#      device = "/dev/disk/by-id/ata-ST1000LX015-1U7172_WL105FTP-part1";
+#      preLVM = true;
+#      keyFileSize = 4096;
+#      allowDiscards = true;
+#    };
+  };
+
+  environment.etc.crypttab = {
+    mode = "0600";
+    text = ''
+      # <volume-name> <encrypted-device> [key-file] [options]
+      crypted UUID=1dea32e5-9f59-4782-81c7-e861c993cec4 /etc/secrets/hdd.key key-size=4096
+    '';
+  }; 
+
+  fileSystems."/" = { 
+      device = "/dev/mapper/system";
+      fsType = "ext4";
   };
 
   fileSystems."/mnt/drive" = { 
@@ -202,7 +233,7 @@
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "24.11"; # Did you read the comment?
 
   boot.loader.systemd-boot.configurationLimit = 10;
 
