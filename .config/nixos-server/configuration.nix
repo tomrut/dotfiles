@@ -241,8 +241,6 @@
     enable = true;
     dates = "daily";
     randomizedDelaySec = "10min";
-    flags = [ "--no-write-lock-file" ];
-    flake = "''";
     allowReboot = true;
   };
 
