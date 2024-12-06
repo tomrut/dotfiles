@@ -84,6 +84,7 @@
         nvim-treesitter-parsers.markdown
         nvim-treesitter-parsers.markdown_inline
         nvim-autopairs
+        mini-icons
       ];
 
       extraConfig = builtins.concatStringsSep "\n" [

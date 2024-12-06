@@ -1,20 +1,14 @@
 local wk = require("which-key")
-wk.register({
-  g = {
-    name = "git",
-    l = { "<cmd>LazyGit<cr>", "Lazy Git" }, 
-    g = { "<cmd>Git<cr>", "Fugitive Git" }, 
-  },
-  f = {
-    name = "file", -- optional group name
-    f = { "<cmd>Telescope find_files<cr>", "Find File" }, 
-    h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
-    b = { "<cmd>Telescope buffers<cr>", "Buffers" },
-    g = { "<cmd>Telescope live_grep<cr>", "Live grep" },
-  },
-}, { prefix = "<leader>" })
-
-
+wk.add({
+    { "<leader>f", group = "file" },
+    { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
+    { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File" },
+    { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
+    { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
+    { "<leader>g", group = "git" },
+    { "<leader>gg", "<cmd>Git<cr>", desc = "Fugitive Git" },
+    { "<leader>gl", "<cmd>LazyGit<cr>", desc = "Lazy Git" }
+})
 
 vim.g.mapleader = " "
 vim.keymap.set("n", "<C-q>", vim.cmd.quit)

@@ -1,5 +1,5 @@
 local lsp_zero = require('lsp-zero')
-lsp_zero.setup_servers({'tsserver', 'cssls', 'emmet_ls', 'tailwindcss', 'unocss', 'stylelint_lsp', 'emmet_language_server', 'html'})
+lsp_zero.setup_servers({'ts_ls', 'cssls', 'emmet_ls', 'tailwindcss', 'unocss', 'stylelint_lsp', 'emmet_language_server', 'html'})
 require('lspsaga').setup({})
 require('lspkind').init({
     -- DEPRECATED (use mode instead): enables text annotations
