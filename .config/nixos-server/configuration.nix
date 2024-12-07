@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
 {
   config,
   lib,
@@ -19,37 +15,45 @@
     grub = {
       enable = true;
       device = "/dev/sda";
-      configurationLimit = 20;
+      configurationLimit = 10;
       enableCryptodisk = true;
     };
-    timeout = 5;
+    timeout = 4;
   };
 
   networking.hostName = "nixos-server";
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-
-  # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
-
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
+  time.timeZone = "Europe/Warsaw";
 
   boot.kernelParams = [ "ip=192.168.0.113::192.168.0.1:255.255.255.0:nixos-server::none" ];
-  #boot.kernelParams = [ "ip=dhcp" ];
+  boot.initrd = {
+    availableKernelModules = [
+      "r8169"
+      "kvm_amd"
+    ];
+    network = {
+      enable = true;
+      udhcpc.enable = false;
+      flushBeforeStage2 = true;
+      ssh = {
+        enable = true;
+        port = 22;
+        authorizedKeys = [
+          "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDgeAOxT4jXGtYtwyH3pcDOKWiHcC8yyN54fusHhekFyOL8bkqkKmyPm1Aim2RHu/o/K7y/foGYixX4RbbCzS7HoptsDXNKwkYuF3+6xfnvHIetAEcxsq1oK4NzI1ILrnGKWjb5X6ADmfrtrTVAvZDLDKFUFzSJ0vCwnCKaxS23ivWZe0jxt2Ibn57Gn/f2/2pe7QEBXXcteRRQ677/BtTFVsGNYx0/Ae4fMvoKV3RIOyt0ojY6oJR4F7u31uFmzSj2d9yfuaNOtSu28lCMljv7o7qFToRc0CcQzQfEbl9bW57nw35ajMTVNHApKnOBkRRehs+jpK0Zk/YldifP2PPfKzjFiDukgfhVm+Td9gMui2u31lan5QAJ0OSktbt89OsJ3YSAOybuXr3wxQttfsnZ3PaGnbnNXSsMyCmQjFenxwsJPexN88KJeRu77iG0cvjdExbIY5bNzx2LgMlGwYBYfUFME5BHfV4hxBJtSOSgSOyT8LOH+j7DheXNGxuKDc4fpIc0mjqlisPAHNdjI7WAIGL8IlQPY1V4sWtwswhtE5pKqj39G5zVSfoMFUPVXsvcE0DPiF0fBNY6UG41vQuIeybitRaSe8h9CHa8wUDwWx4qgQyxje6zYfcnALbzB3vmtncKMsAL5M7dMD/AAy2rYAGoItHngSTdeQdgFF6pSw== root@nixos"
+        ];
+        hostKeys = [ "/etc/secrets/initrd/ssh_host_rsa_key" ];
+      };
+
+      postCommands = ''
+        # Automatically ask for the password on SSH login
+        echo 'cryptsetup-askpass || echo "Unlock was successful; exiting SSH session" && exit 1' >> /root/.profile
+      '';
+
+    };
+  };
+
+  boot.initrd.secrets = {
+    "/etc/secrets/initrd/ssh_host_rsa_key" = "/etc/secrets/initrd/ssh_host_rsa_key";
+  };
 
   services.openssh = {
     enable = true;
@@ -99,24 +103,6 @@
     };
   };
 
-  # Configure keymap in X11
-  # services.xserver.xkb.layout = "us";
-  # services.xserver.xkb.options = "eurosign:e,caps:escape";
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # Enable sound.
-  # hardware.pulseaudio.enable = true;
-  # OR
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tomek = {
     isNormalUser = true;
@@ -146,41 +132,34 @@
     nvd
     cryptsetup
   ];
- 
- # boot.initrd.prepend = ["${/crypto_keyfile.cpio.gz}"];
- 
-  boot.initrd.secrets = {
-    "hdd.key" = "/etc/secrets/hdd.key";
-  };
- 
-#  boot.initrd.luks.reusePassphrases = true; 
+
+  boot.initrd.luks.reusePassphrases = true;
   boot.initrd.luks.devices = {
     system = {
-      device = "/dev/disk/by-id/ata-SK_hynix_SC401_SATA_256GB_MI93T009511203I0U-part1";
+      device = "/dev/disk/by-id/ata-SK_hynix_SC401_SATA_256GB_MI93T009511203I0U-part2";
       preLVM = true;
       allowDiscards = true;
-      keyFile = "/hdd.key";
     };
-#    crypted = {
-#      device = "/dev/disk/by-id/ata-ST1000LX015-1U7172_WL105FTP-part1";
-#      preLVM = true;
-#      keyFileSize = 4096;
-#      allowDiscards = true;
-#    };
   };
+
+  fileSystems."/" = {
+    device = "/dev/mapper/system";
+    fsType = "ext4";
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/sda1";
+    fsType = "ext4";
+  };
+
 
   environment.etc.crypttab = {
     mode = "0600";
     text = ''
       # <volume-name> <encrypted-device> [key-file] [options]
-      crypted UUID=1dea32e5-9f59-4782-81c7-e861c993cec4 /etc/secrets/hdd.key key-size=4096
+      crypted UUID=1dea32e5-9f59-4782-81c7-e861c993cec4 /etc/secrets/hdd.key key-size=4096 
     '';
   }; 
-
-  fileSystems."/" = { 
-      device = "/dev/mapper/system";
-      fsType = "ext4";
-  };
 
   fileSystems."/mnt/drive" = { 
       device = "/dev/mapper/crypted";
@@ -191,6 +170,7 @@
          "noauto"  
       ];
   };
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -236,6 +216,7 @@
   system.stateVersion = "24.11"; # Did you read the comment?
 
   boot.loader.systemd-boot.configurationLimit = 10;
+  system.copySystemConfiguration = true;
 
   system.autoUpgrade = {
     enable = true;
