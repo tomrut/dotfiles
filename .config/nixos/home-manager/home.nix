@@ -56,8 +56,8 @@
         Type = "oneshot";
         ExecStart = toString (
           pkgs.writeShellScript "sync_share-sync-script" ''
-            ${pkgs.rsync}/bin/rsync -av -e ssh /home/tomek/org/deskt share@192.168.0.113:org
-            ${pkgs.rsync}/bin/rsync -av -e ssh share@192.168.0.113:org/phone /home/tomek/org 
+            ${pkgs.bash}/bin/bash /home/tomek/bin/sync_org.sh
+            ${pkgs.bash}/bin/bash /home/tomek/bin/make_backup.sh
           ''
         );
       };
@@ -91,7 +91,7 @@
       Timer = {
         Unit = "sync_share_sync";
         OnBootSec = "4m";
-        OnUnitActiveSec = "30m";
+        OnUnitActiveSec = "1d";
       };
       Install.WantedBy = [ "timers.target" ];
     };
