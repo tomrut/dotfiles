@@ -47,24 +47,6 @@
       };
       Install.WantedBy = [ "default.target" ];
     };
-
-    sync_share_sync = {
-      Unit = {
-        Description = "sync_share sync service";
-      };
-      Service = {
-        Type = "oneshot";
-        ExecStart = toString (
-          pkgs.writeShellScript "sync_share-sync-script" ''
-            export PATH=/run/wrappers/bin:/home/tomek/.nix-profile/bin:/nix/profile/bin:/home/tomek/.local/state/nix/profile/bin:/etc/profiles/per-user/tomek/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin:/home/tomek/bin
-            ${pkgs.bash}/bin/bash /home/tomek/bin/sync_org.sh
-
-            ${pkgs.bash}/bin/bash /home/tomek/bin/make_backup.sh
-          ''
-        );
-      };
-      Install.WantedBy = [ "default.target" ];
-    };
   };
 
   systemd.user.timers = {
@@ -87,17 +69,7 @@
       };
       Install.WantedBy = [ "timers.target" ];
     };
-    
-    sync_share_sync = {
-      Unit.Description = "timer for sync_share_sync service";
-      Timer = {
-        Unit = "sync_share_sync";
-        OnBootSec = "14m";
-        OnUnitActiveSec = "1d";
-      };
-      Install.WantedBy = [ "timers.target" ];
-    };
-  };
+   }; 
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
