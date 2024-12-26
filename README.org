@@ -200,3 +200,30 @@ perl -MFile::Path -we '
 #+end_src
 * ReactJS
 ** Styled components - for attaching styles to specific components
+
+* Some hyperland stuff to return some day
+#+begin_src nix
+    # some hyprland stuff
+    # kitty
+    # wl-clipboard
+    # wofi
+    # waybar
+    # dunst
+    # rofi-wayland
+    # libnotify
+    # pyprland
+    # hyprpicker
+    # hyprcursor
+    # hyprlock
+    # hypridle
+    # hyprpaper
+
+
+  # some hyprland stuff
+  # xdg.portal.enable = true;
+  # xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+
+
+#+end_src
+
+

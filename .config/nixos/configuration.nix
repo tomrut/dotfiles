@@ -36,10 +36,12 @@
   fileSystems."/mnt/share" = {
     device = "//192.168.0.113/share";
     fsType = "cifs";
-    options = let
-      automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,user,users";
+    options =
+      let
+        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,user,users";
 
-      in ["${automount_opts},credentials=/etc/nixos/smb-secrets,uid=1001,gid=100"];
+      in
+      [ "${automount_opts},credentials=/etc/nixos/smb-secrets,uid=1001,gid=100" ];
     # or if you have specified `uid` and `gid` explicitly through NixOS configuration,
     # you can refer to them rather than hard-coding the values:
     # in ["${automount_opts},credentials=/etc/nixos/smb-secrets,uid=${toString config.users.users.tomek.uid},gid=${toString config.users.groups.users.gid}"];
@@ -114,21 +116,12 @@
   # Enable the Cinnamon Desktop Environment.
   services.xserver.displayManager.lightdm = {
     enable = true;
-    greeters.slick = {
-      extraConfig = ''
-        hidden-users=ola
-      '';
-
-      enable = true;
-    };
-
-    greeters.mini = {
-      enable = false;
-      user = "tomek";
-    };
+    greeters.slick.enable = true;
   };
 
   services.xserver.desktopManager.cinnamon.enable = true;
+
+  programs.hyprland.enable = true; # enable Hyprland
 
   # Configure keymap in X11
   services.xserver = {
@@ -160,22 +153,12 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   programs.zsh.enable = true;
   programs.git = {
-      enable = true;
-      config = {
-          safe.directory = "/home/plain/dotfiles";
-      };
+    enable = true;
+    config = {
+      safe.directory = "/home/plain/dotfiles";
+    };
   };
   environment.shells = with pkgs; [ zsh ];
-
-  users.users.ola = {
-    isNormalUser = true;
-    description = "ola";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
-    packages = with pkgs; [ ];
-  };
 
   users.users.tomek = {
     isNormalUser = true;

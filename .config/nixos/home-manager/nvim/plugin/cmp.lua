@@ -1,5 +1,6 @@
 local cmp = require('cmp')
 require('luasnip.loaders.from_vscode').load()
+require'lspconfig'.nixd.setup{}
 
 local luasnip = require('luasnip')
 luasnip.filetype_extend("typescriptreact", { "javascript" })
