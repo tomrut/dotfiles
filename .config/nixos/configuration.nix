@@ -121,8 +121,6 @@
 
   services.xserver.desktopManager.cinnamon.enable = true;
 
-  programs.hyprland.enable = true; # enable Hyprland
-
   # Configure keymap in X11
   services.xserver = {
     xkb = {
