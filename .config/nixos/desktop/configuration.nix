@@ -77,6 +77,12 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  programs.git = {
+    enable = true;
+    config = {
+      safe.directory = "/home/tomek/dotfiles";
+    };
+  };
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tomek = {
     isNormalUser = true;
