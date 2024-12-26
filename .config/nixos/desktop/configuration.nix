@@ -98,7 +98,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     git
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -136,7 +135,7 @@
     dates = "daily";
     randomizedDelaySec = "10min";
     flags = [ "--no-write-lock-file" ];
-    flake = "''";
+    flake = "/home/tomek/dotfiles/.config/nixos/flake.nix#nixos-desktop";
     allowReboot = true;
   };
 
