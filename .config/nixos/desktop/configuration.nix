@@ -124,7 +124,6 @@
 
 
   boot.loader.systemd-boot.configurationLimit = 10;
-  system.copySystemConfiguration = true;
 
   system.autoUpgrade = {
     enable = true;
