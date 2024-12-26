@@ -188,11 +188,11 @@
     packages = with pkgs; [ ];
   };
 
-  # Allow unfree packages
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
+
   nixpkgs.config.allowUnfree = false;
 
   # List packages installed in system profile. To search, run:
@@ -205,6 +205,7 @@
     nixfmt-rfc-style
     nvd
     cifs-utils
+    nixd
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

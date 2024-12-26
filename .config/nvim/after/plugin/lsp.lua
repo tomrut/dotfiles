@@ -1,5 +1,5 @@
 local lsp_zero = require('lsp-zero')
-lsp_zero.setup_servers({'tsserver', 'cssls', 'emmet_ls', 'tailwindcss', 'unocss', 'stylelint_lsp', 'emmet_language_server', 'html'})
+lsp_zero.setup_servers({'tsserver', 'cssls', 'emmet_ls', 'tailwindcss', 'unocss', 'stylelint_lsp', 'emmet_language_server', 'html' 'nixd'})
 
 lsp_zero.set_sign_icons({
   error = '✘',
