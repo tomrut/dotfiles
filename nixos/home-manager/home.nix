@@ -1,15 +1,16 @@
-{ config
-, pkgs
-, lib
-, vimUtils
-, ...
+{
+  pkgs,
+  inputs,
+  ...
 }:
-
-#
 
 {
 
-  imports = [ ./nvim.nix ];
+  # imports = [ ./nvim.nix ];
+  imports = [
+    inputs.nixvim.homeManagerModules.nixvim
+    ./nvimcfg.nix
+  ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
