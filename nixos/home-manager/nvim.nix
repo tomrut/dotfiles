@@ -74,7 +74,6 @@
         undotree
         playground
         lazygit-nvim
-        vim-fugitive
         gitsigns-nvim
         lualine-nvim
         which-key-nvim
