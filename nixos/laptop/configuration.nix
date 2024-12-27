@@ -178,15 +178,11 @@
 
   # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [
-    wget
     libreoffice-still
     librewolf
     ecryptfs
     firefox
-    nixfmt-rfc-style
-    nvd
     cifs-utils
-    nixd
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -118,6 +118,8 @@
     pkgs.lua-language-server
     pkgs.home-manager
     pkgs.yubioath-flutter
+    pkgs.nixfmt-rfc-style
+    pkgs.nvd
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the

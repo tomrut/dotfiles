@@ -23,6 +23,7 @@
         tree-sitter
         nodePackages.typescript-language-server
         emmet-ls
+        nixd
         vscode-langservers-extracted
         tailwindcss-language-server
         nodePackages.typescript-language-server
