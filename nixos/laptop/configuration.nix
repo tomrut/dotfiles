@@ -2,14 +2,19 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [
     # Include the results of the hardware scan.
- #  inputs.nixvim.nixosModules.nixvim
+    #  inputs.nixvim.nixosModules.nixvim
     ./hardware-configuration.nix
-#    ../nvimcfg.nix
+    #    ../nvimcfg.nix
   ];
 
   # Bootloader.
@@ -30,7 +35,8 @@
 
   boot.loader.grub.enableCryptodisk = true;
 
-  boot.initrd.luks.devices."luks-7219f85c-a0e5-4085-a00d-da8871b69144".keyFile = "/boot/crypto_keyfile.bin";
+  boot.initrd.luks.devices."luks-7219f85c-a0e5-4085-a00d-da8871b69144".keyFile =
+    "/boot/crypto_keyfile.bin";
   networking.hostName = "nixos"; # Define your hostname.
   security.pam.enableEcryptfs = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -167,9 +173,12 @@
   users.users.tomek = {
     isNormalUser = true;
     description = "tomek";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
-    #  thunderbird
+      #  thunderbird
     ];
     shell = pkgs.zsh;
   };
@@ -188,8 +197,8 @@
   environment.systemPackages = with pkgs; [
     libreoffice-still
     cifs-utils
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

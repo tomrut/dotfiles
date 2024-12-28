@@ -10,37 +10,44 @@
     };
   };
 
-  outputs = inputs @ { nixpkgs, home-manager, nixvim,... }: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
-      system = "x86_64-linux";
-      modules = [
-        ./laptop/configuration.nix
+  outputs =
+    inputs@{
+      nixpkgs,
+      home-manager,
+      nixvim,
+      ...
+    }:
+    {
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        system = "x86_64-linux";
+        modules = [
+          ./laptop/configuration.nix
 
-	    home-manager.nixosModules.home-manager
-        {
-          home-manager.extraSpecialArgs = { inherit inputs; };
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.tomek = import ./home-manager/home.nix;
-        }
-     ];
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.tomek = import ./home-manager/home.nix;
+          }
+        ];
+      };
+
+      nixosConfigurations.nixos-desktop = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        system = "x86_64-linux";
+        modules = [
+          ./desktop/configuration.nix
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.tomek = import ./home-manager/home.nix;
+          }
+        ];
+      };
     };
-
-    nixosConfigurations.nixos-desktop = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
-      system = "x86_64-linux";
-      modules = [
-        ./desktop/configuration.nix
-
-	    home-manager.nixosModules.home-manager
-        {
-          home-manager.extraSpecialArgs = { inherit inputs; };
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.tomek = import ./home-manager/home.nix;
-        }
-     ];
-    };
-  };
 }

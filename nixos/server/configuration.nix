@@ -154,34 +154,33 @@
     fsType = "ext4";
   };
 
-
   environment.etc.crypttab = {
     mode = "0600";
     text = ''
       # <volume-name> <encrypted-device> [key-file] [options]
       crypted1 UUID=1dea32e5-9f59-4782-81c7-e861c993cec4 /etc/secrets/hdd.key key-size=4096
       crypted2 UUID=327aee2b-4380-4fd7-b888-eb66b398eda1 /etc/secrets/hdd.key key-size=4096
-     '';
-  }; 
-
-  fileSystems."/mnt/drive1" = { 
-      device = "/dev/mapper/crypted1";
-      fsType = "ext4";
-      options = [
-         "users"
-         "nofail"
-         "noauto"  
-      ];
+    '';
   };
 
-  fileSystems."/mnt/drive2" = { 
-      device = "/dev/mapper/crypted2";
-      fsType = "ext4";
-      options = [
-         "users"
-         "nofail"
-         "noauto"  
-      ];
+  fileSystems."/mnt/drive1" = {
+    device = "/dev/mapper/crypted1";
+    fsType = "ext4";
+    options = [
+      "users"
+      "nofail"
+      "noauto"
+    ];
+  };
+
+  fileSystems."/mnt/drive2" = {
+    device = "/dev/mapper/crypted2";
+    fsType = "ext4";
+    options = [
+      "users"
+      "nofail"
+      "noauto"
+    ];
   };
 
   # Some programs need SUID wrappers, can be configured further or are

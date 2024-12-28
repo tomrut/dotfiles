@@ -1,12 +1,17 @@
-{ config, pkgs, lib, vimUtils, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  vimUtils,
+  ...
+}:
 
 #
 
 {
-  imports =
-    [ 
-      ./nvim.nix
-    ]; 
+  imports = [
+    ./nvim.nix
+  ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -93,9 +98,8 @@
 
   nix.gc = {
     frequency = "daily";
-    automatic = true;  
+    automatic = true;
   };
-
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. If you don't want to manage your shell through Home
@@ -124,7 +128,7 @@
     };
 
     initExtra = ''
-       source "/home/tomek/.nix-profile/etc/profile.d/nix.sh"
+      source "/home/tomek/.nix-profile/etc/profile.d/nix.sh"
     '';
   };
 
@@ -153,7 +157,6 @@
     lsoundtracks = "mpg123 https://kathy.torontocast.com:1190/";
   };
 
-
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
@@ -164,10 +167,9 @@
     ];
   };
 
-
   programs.tmux = {
     enable = true;
-    plugins = with pkgs;  [
+    plugins = with pkgs; [
       tmuxPlugins.sensible
       tmuxPlugins.vim-tmux-navigator
       tmuxPlugins.yank
@@ -250,6 +252,6 @@
   programs.zathura = {
     enable = true;
   };
-  
+
   programs.home-manager.enable = true;
 }
