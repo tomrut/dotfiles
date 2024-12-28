@@ -23,7 +23,14 @@
     timeout = 3;
   };
 
-  boot.kernelModules = [ "ecryptfs" ];
+  # Setup keyfile
+  boot.initrd.secrets = {
+    "/boot/crypto_keyfile.bin" = null;
+  };
+
+  boot.loader.grub.enableCryptodisk = true;
+
+  boot.initrd.luks.devices."luks-7219f85c-a0e5-4085-a00d-da8871b69144".keyFile = "/boot/crypto_keyfile.bin";
   networking.hostName = "nixos"; # Define your hostname.
   security.pam.enableEcryptfs = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -116,26 +123,19 @@
   services.xserver.enable = true;
 
   # Enable the Cinnamon Desktop Environment.
-  services.xserver.displayManager.lightdm = {
-    enable = true;
-    greeters.slick.enable = true;
-  };
-
+  services.xserver.displayManager.lightdm.enable = true;
   services.xserver.desktopManager.cinnamon.enable = true;
 
   # Configure keymap in X11
-  services.xserver = {
-    xkb = {
-      layout = "pl";
-      variant = "";
-    };
+  services.xserver.xkb = {
+    layout = "pl";
+    variant = "";
   };
 
   # Configure console keymap
   console.keyMap = "pl2";
 
   # Enable sound with pipewire.
-  #sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -145,6 +145,10 @@
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
+
+    # use the example session manager (no others are packaged yet so this is enabled by default,
+    # no need to redefine it in your config for now)
+    #media-session.enable = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -163,12 +167,11 @@
   users.users.tomek = {
     isNormalUser = true;
     description = "tomek";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
+    extraGroups = [ "networkmanager" "wheel" ];
+    packages = with pkgs; [
+    #  thunderbird
     ];
     shell = pkgs.zsh;
-    packages = with pkgs; [ ];
   };
 
   nix.settings.experimental-features = [
@@ -177,14 +180,16 @@
   ];
 
   nixpkgs.config.allowUnfree = false;
+  # Install firefox.
+  programs.firefox.enable = true;
 
   # List packages installed in system profile. To search, run:
+  # $ nix search wget
   environment.systemPackages = with pkgs; [
     libreoffice-still
-    librewolf
-    ecryptfs
-    firefox
     cifs-utils
+  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+  #  wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -204,8 +209,8 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ 53 443 ];
-  # networking.firewall.allowedUDPPorts = [ 53 ];
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
@@ -215,9 +220,8 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
-
   boot.loader.systemd-boot.configurationLimit = 10;
+  system.stateVersion = "24.11"; # Did you read the comment?
 
   system.autoUpgrade = {
     enable = true;
