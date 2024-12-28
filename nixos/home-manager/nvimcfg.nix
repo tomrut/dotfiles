@@ -48,6 +48,256 @@
         };
       }
 
+      # harpoon
+
+      {
+        mode = "n";
+        key = "<leader>ha";
+        action = ''<cmd>lua require("harpoon.mark").add_file()<CR>'';
+        options = {
+          desc = "Harpoon Add";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>hh";
+        action = ''<cmd>Telescope harpoon marks<CR>'';
+        options = {
+          desc = "Harpoon Telescope Marks";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>hh";
+        action = ''<cmd>Telescope harpoon marks<CR>'';
+        options = {
+          desc = "Harpoon Telescope Marks";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>hn";
+        action = ''<cmd>lua require("harpoon.ui").nav_next()<CR>'';
+        options = {
+          desc = "Harpoon Next Mark";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>hp";
+        action = ''<cmd>lua require("harpoon.ui").nav_prev()<CR>'';
+        options = {
+          desc = "Harpoon Previous Mark";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>hs";
+        action = ''<cmd>lua require("harpoon.ui").nav_file(1)<CR>'';
+        options = {
+          desc = "Harpoon Mark 1";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>hd";
+        action = ''<cmd>lua require("harpoon.ui").nav_file(2)<CR>'';
+        options = {
+          desc = "Harpoon Mark 2";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>hf";
+        action = ''<cmd>lua require("harpoon.ui").nav_file(3)<CR>'';
+        options = {
+          desc = "Harpoon Mark 3";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>hg";
+        action = ''<cmd>lua require("harpoon.ui").nav_file(4)<CR>'';
+        options = {
+          desc = "Harpoon Mark 4";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>hm";
+        action = ''<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>'';
+        options = {
+          desc = "Harpoon Menu";
+          silent = true;
+        };
+      }
+
+      # lsp
+      {
+        mode = "n";
+        key = "<leader>lc";
+        action = "<cmd>Lspsaga code_action<cr>";
+        options = {
+          desc = "Code Action";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>lff";
+        action = "<cmd>Lspsaga finder<cr>";
+        options = {
+          desc = "Finder";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>lfi";
+        action = "<cmd>Lspsaga finder imp<cr>";
+        options = {
+          desc = "Find Implementation";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>lfI";
+        action = "<cmd>Lspsaga incoming_calls<cr>";
+        options = {
+          desc = "Find Incoming Calls";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>lfo";
+        action = "<cmd>Lspsaga outgoing_calls<cr>";
+        options = {
+          desc = "Find Outgoing Calls";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>ln";
+        action = "<cmd>Navbuddy<cr>";
+        options = {
+          desc = "Navbuddy";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>lr";
+        action = "<cmd>Lspsaga rename<cr>";
+        options = {
+          desc = "Rename";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>lpd";
+        action = "<cmd>Lspsaga peek_definition<cr>";
+        options = {
+          desc = "Peek Definition";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>lpt";
+        action = "<cmd>Lspsaga peek_type_definition<cr>";
+        options = {
+          desc = "Peek Type Definition";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>lo";
+        action = "<cmd>Outline<cr>";
+        options = {
+          desc = "LSP Outline";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>lO";
+        action = "<cmd>Outline!<cr>";
+        options = {
+          desc = "LSP Outline";
+          silent = true;
+        };
+      }
+
+      # search
+      {
+        mode = "n";
+        key = "<leader>sb";
+        action = "<cmd>Telescope buffers<CR>";
+        options = {
+          desc = "Buffers";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>sB";
+        action = "<cmd>Telescope git_branches<CR>";
+        options = {
+          desc = "Git Branches";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>sf";
+        action = "<cmd>Telescope find_files<CR>";
+        options = {
+          desc = "Files";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>sh";
+        action = "<cmd>Telescope help_tags<CR>";
+        options = {
+          desc = "Help tags";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>st";
+        action = "<cmd>Telescope live_grep<CR>";
+        options = {
+          desc = "Live Grep";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>sp";
+        action = "<cmd>Telescope projects<CR>";
+        options = {
+          desc = "Projects";
+          silent = true;
+        };
+      }
+
     ];
 
     opts = {
@@ -80,6 +330,7 @@
     colorschemes.catppuccin.enable = true;
 
     plugins = {
+
       bufferline.enable = true;
 
       cmp = {
@@ -251,6 +502,13 @@
         fromVscode = [{ }];
       };
 
+      lspsaga.enable = true;
+
+      navbuddy = {
+        enable = true;
+        lsp.autoAttach = true;
+      };
+
       neorg = {
         enable = true;
 
@@ -414,10 +672,6 @@
             {
               __unkeyed-1 = "<leader>l";
               desc = "LSP";
-            }
-            {
-              __unkeyed-1 = "<leader>lb";
-              desc = "Bacon";
             }
             {
               __unkeyed-1 = "<leader>lf";
