@@ -1,11 +1,9 @@
-{ self, ... }: {
-
+{
   programs.nixvim.opts = {
 
     updatetime = 100; # Faster completion
 
     number = true;
-    relativenumber = true;
     splitbelow = true;
     splitright = true;
     scrolloff = 4;
@@ -24,8 +22,18 @@
 
     swapfile = false;
     undofile = true; # Build-in persistent undo
+    spell = true;
+    spelllang = "en_us";
 
-    # termguicolors = lib.mkForce pkgs.stdenv.isLinux;
+    guicursor = "";
+    nu = true;
+    relativenumber = false;
+    softtabstop = 2;
+    wrap = false;
+    backup = false;
+    hlsearch = false;
+    termguicolors = true;
+    signcolumn = "yes";
+    colorcolumn = "100";
   };
-
 }
