@@ -273,12 +273,14 @@
             __unkeyed-1 = "<leader>s";
             desc = "Search using Telescope";
           }
-          {
-            __unkeyed-1 = "<leader>t";
-            desc = "Testing";
-          }
         ];
       };
+    };
+
+    zk = {
+      enable = true;
+
+      settings = { picker = "telescope"; };
     };
 
   };
