@@ -170,11 +170,6 @@
     '';
   };
 
-  programs.broot = {
-    enable = true;
-    enableBashIntegration = true;
-  };
-
   programs.btop.enable = true;
   programs.zsh = {
     enable = true;
