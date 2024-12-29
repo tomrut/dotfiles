@@ -102,7 +102,7 @@
       {
         mode = "n";
         key = "<leader>bd";
-        action = "<cmd>lua require('bufdelete').bufdelete(0, true)<cr>";
+        action = "<cmd>bdelete<cr>";
         options = {
           desc = "Close Buffer";
           silent = true;
