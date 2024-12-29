@@ -65,6 +65,25 @@
           silent = true;
         };
       }
+      {
+        mode = "n";
+        key = "<F12>";
+        action = "<cmd>silent !firefox %<cr>";
+        options = {
+          desc = "Lazygit";
+          silent = true;
+        };
+      }
+      {
+        mode = "i";
+        key = "<F12>";
+        action = "<Esc>:w<cr>:silent !firefox %<cr>i";
+        options = {
+          desc = "Lazygit";
+          silent = true;
+        };
+      }
+
 
       # buffers
       {
