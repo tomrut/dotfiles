@@ -35,6 +35,24 @@
       }
       {
         mode = "n";
+        key = "<C-S>";
+        action = "<cmd>wa<cr>";
+        options = {
+          desc = "Save all";
+          silent = true;
+        };
+      }
+      {
+        mode = "i";
+        key = "<C-S>";
+        action = "<Esc>:wa<cr>i";
+        options = {
+          desc = "Save all";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
         key = "<C-\\>";
         action = "<cmd>NvimTreeToggle<cr>";
         options = {
