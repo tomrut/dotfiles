@@ -6,11 +6,67 @@
     vimAlias = true;
 
     luaLoader.enable = true;
-
     globals.mapleader = " ";
 
     keymaps = [
 
+      # general
+      {
+        mode = "n";
+        key = "<C-q>";
+        action = "<cmd>quit<cr>";
+        options = {
+          desc = "Quit";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<C-s>";
+        action = "<cmd>w<cr>";
+        options = {
+          desc = "Save";
+          silent = true;
+        };
+      }
+      {
+        mode = "i";
+        key = "<C-s>";
+        action = "<Esc>:w<cr>i";
+        options = {
+          desc = "Save";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<C-\\>";
+        action = "<cmd>NvimTreeToggle<cr>";
+        options = {
+          desc = "NTree toggle";
+          silent = true;
+        };
+      }
+      {
+        mode = "i";
+        key = "<C-\\>";
+        action = "<Esc>NvimTreeToggle<cr>i";
+        options = {
+          desc = "NTree toggle";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>gl";
+        action = "<cmd>LazyGit<cr>";
+        options = {
+          desc = "Lazygit";
+          silent = true;
+        };
+      }
+
+      # buffers
       {
         mode = "n";
         key = "<leader>bd";
@@ -48,11 +104,206 @@
         };
       }
 
-      # harpoon
-
+      # gitsigns
       {
         mode = "n";
-        key = "<leader>ha";
+        key = "]c";
+        action.__raw = ''
+          function()
+            if vim.wo.diff then
+              vim.cmd.normal { ']c', bang = true }
+            else
+              require('gitsigns').nav_hunk 'next'
+            end
+          end
+        '';
+        options = {
+          desc = "Jump to next git [C]hange";
+        };
+      }
+      {
+        mode = "n";
+        key = "[c";
+        action.__raw = ''
+          function()
+            if vim.wo.diff then
+              vim.cmd.normal { '[c', bang = true }
+            else
+              require('gitsigns').nav_hunk 'prev'
+            end
+          end
+        '';
+        options = {
+          desc = "Jump to previous git [C]hange";
+        };
+      }
+      # Actions
+      # visual mode
+      {
+        mode = "v";
+        key = "<leader>hs";
+        action.__raw = ''
+          function()
+            require('gitsigns').stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
+          end
+        '';
+        options = {
+          desc = "stage git hunk";
+        };
+      }
+      {
+        mode = "v";
+        key = "<leader>hr";
+        action.__raw = ''
+          function()
+            require('gitsigns').reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
+          end
+        '';
+        options = {
+          desc = "reset git hunk";
+        };
+      }
+      # normal mode
+      {
+        mode = "n";
+        key = "<leader>hs";
+        action.__raw = ''
+          function()
+            require('gitsigns').stage_hunk()
+          end
+        '';
+        options = {
+          desc = "git [s]tage hunk";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>hr";
+        action.__raw = ''
+          function()
+            require('gitsigns').reset_hunk()
+          end
+        '';
+        options = {
+          desc = "git [r]eset hunk";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>hS";
+        action.__raw = ''
+          function()
+            require('gitsigns').stage_buffer()
+          end
+        '';
+        options = {
+          desc = "git [S]tage buffer";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>hu";
+        action.__raw = ''
+          function()
+            require('gitsigns').undo_stage_hunk()
+          end
+        '';
+        options = {
+          desc = "git [u]ndo stage hunk";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>hR";
+        action.__raw = ''
+          function()
+            require('gitsigns').reset_buffer()
+          end
+        '';
+        options = {
+          desc = "git [R]eset buffer";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>hp";
+        action.__raw = ''
+          function()
+            require('gitsigns').preview_hunk()
+          end
+        '';
+        options = {
+          desc = "git [p]review hunk";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>hb";
+        action.__raw = ''
+          function()
+            require('gitsigns').blame_line()
+          end
+        '';
+        options = {
+          desc = "git [b]lame line";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>hd";
+        action.__raw = ''
+          function()
+            require('gitsigns').diffthis()
+          end
+        '';
+        options = {
+          desc = "git [d]iff against index";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>hD";
+        action.__raw = ''
+          function()
+            require('gitsigns').diffthis '@'
+          end
+        '';
+        options = {
+          desc = "git [D]iff against last commit";
+        };
+      }
+
+      # Toggles
+      {
+        mode = "n";
+        key = "<leader>tb";
+        action.__raw = ''
+          function()
+            require('gitsigns').toggle_current_line_blame()
+          end
+        '';
+        options = {
+          desc = "[T]oggle git show [b]lame line";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>tD";
+        action.__raw = ''
+          function()
+            require('gitsigns').toggle_deleted()
+          end
+        '';
+        options = {
+          desc = "[T]oggle git show [D]eleted";
+        };
+
+      }
+
+      # harpoon
+      {
+        mode = "n";
+        key = "<leader>ea";
         action = ''<cmd>lua require("harpoon.mark").add_file()<CR>'';
         options = {
           desc = "Harpoon Add";
@@ -61,7 +312,7 @@
       }
       {
         mode = "n";
-        key = "<leader>hh";
+        key = "<leader>eh";
         action = ''<cmd>Telescope harpoon marks<CR>'';
         options = {
           desc = "Harpoon Telescope Marks";
@@ -70,7 +321,7 @@
       }
       {
         mode = "n";
-        key = "<leader>hh";
+        key = "<leader>eh";
         action = ''<cmd>Telescope harpoon marks<CR>'';
         options = {
           desc = "Harpoon Telescope Marks";
@@ -79,7 +330,7 @@
       }
       {
         mode = "n";
-        key = "<leader>hn";
+        key = "<leader>en";
         action = ''<cmd>lua require("harpoon.ui").nav_next()<CR>'';
         options = {
           desc = "Harpoon Next Mark";
@@ -88,7 +339,7 @@
       }
       {
         mode = "n";
-        key = "<leader>hp";
+        key = "<leader>ep";
         action = ''<cmd>lua require("harpoon.ui").nav_prev()<CR>'';
         options = {
           desc = "Harpoon Previous Mark";
@@ -97,7 +348,7 @@
       }
       {
         mode = "n";
-        key = "<leader>hs";
+        key = "<leader>es";
         action = ''<cmd>lua require("harpoon.ui").nav_file(1)<CR>'';
         options = {
           desc = "Harpoon Mark 1";
@@ -106,7 +357,7 @@
       }
       {
         mode = "n";
-        key = "<leader>hd";
+        key = "<leader>ed";
         action = ''<cmd>lua require("harpoon.ui").nav_file(2)<CR>'';
         options = {
           desc = "Harpoon Mark 2";
@@ -115,7 +366,7 @@
       }
       {
         mode = "n";
-        key = "<leader>hf";
+        key = "<leader>ef";
         action = ''<cmd>lua require("harpoon.ui").nav_file(3)<CR>'';
         options = {
           desc = "Harpoon Mark 3";
@@ -124,7 +375,7 @@
       }
       {
         mode = "n";
-        key = "<leader>hg";
+        key = "<leader>eg";
         action = ''<cmd>lua require("harpoon.ui").nav_file(4)<CR>'';
         options = {
           desc = "Harpoon Mark 4";
@@ -133,7 +384,7 @@
       }
       {
         mode = "n";
-        key = "<leader>hm";
+        key = "<leader>em";
         action = ''<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>'';
         options = {
           desc = "Harpoon Menu";
@@ -226,16 +477,7 @@
       {
         mode = "n";
         key = "<leader>lo";
-        action = "<cmd>Outline<cr>";
-        options = {
-          desc = "LSP Outline";
-          silent = true;
-        };
-      }
-      {
-        mode = "n";
-        key = "<leader>lO";
-        action = "<cmd>Outline!<cr>";
+        action = "<cmd>Lspsaga outline<cr>";
         options = {
           desc = "LSP Outline";
           silent = true;
@@ -394,12 +636,6 @@
         settings = {
           formatters_by_ft = {
             "_" = [ "trim_whitespace" ];
-            go = [
-              "goimports"
-              "golines"
-              "gofmt"
-              "gofumpt"
-            ];
             javascript = [
               [
                 "prettierd"
@@ -437,6 +673,20 @@
             return { timeout_ms = 1000, lsp_fallback = true }
             end
           '';
+        };
+      };
+
+
+      gitsigns = {
+        enable = true;
+        settings = {
+          signs = {
+            add = { text = "+"; };
+            change = { text = "~"; };
+            delete = { text = "_"; };
+            topdelete = { text = "‾"; };
+            changedelete = { text = "~"; };
+          };
         };
       };
 
@@ -495,6 +745,10 @@
         };
       };
 
+      lazygit.enable = true;
+
+      lspsaga.enable = true;
+
       lualine.enable = true;
 
       luasnip = {
@@ -502,31 +756,9 @@
         fromVscode = [{ }];
       };
 
-      lspsaga.enable = true;
-
       navbuddy = {
         enable = true;
         lsp.autoAttach = true;
-      };
-
-      neorg = {
-        enable = true;
-
-        extraOptions = {
-          load = {
-            "core.defaults" = {
-              __empty = null;
-            };
-            "core.dirman" = {
-              config = {
-                workspaces = {
-                  home = "~/org/todo/home";
-                  work = "~/org/todo/work";
-                };
-              };
-            };
-          };
-        };
       };
 
       nvim-tree = {
@@ -537,7 +769,7 @@
       };
 
       octo = {
-        enable = true;
+        enable = false;
       };
 
       project-nvim = {
@@ -565,25 +797,6 @@
       };
 
       rainbow-delimiters.enable = true;
-
-      smartcolumn = {
-        enable = true;
-
-        settings = {
-          colorcolumn = "80";
-          scope = "file";
-
-          disable_filetypes = [
-            "NvimTree"
-            "Trouble"
-            "checkhealth"
-            "help"
-            "lazy"
-            "lspinfo"
-            "noice"
-          ];
-        };
-      };
 
       telescope = {
         enable = true;
@@ -618,15 +831,6 @@
         };
       };
 
-      trouble = {
-        enable = true;
-
-        settings = {
-          auto_refresh = true;
-          focus = true;
-        };
-      };
-
       web-devicons.enable = true;
 
       which-key = {
@@ -638,56 +842,20 @@
               desc = "Buffers";
             }
             {
-              __unkeyed-1 = "<leader>d";
-              desc = "Debugging";
-            }
-            {
-              __unkeyed-1 = "<leader>dB";
-              desc = "Breakpoint";
-            }
-            {
-              __unkeyed-1 = "<leader>ds";
-              desc = "Step";
+              __unkeyed-1 = "<leader>e";
+              desc = "Harpoon";
             }
             {
               __unkeyed-1 = "<leader>g";
               desc = "Git";
             }
             {
-              __unkeyed-1 = "<leader>gp";
-              desc = "Git Push";
-            }
-            {
-              __unkeyed-1 = "<leader>gP";
-              desc = "Github PR";
-            }
-            {
-              __unkeyed-1 = "<leader>gw";
-              desc = "Git Worktree";
-            }
-            {
               __unkeyed-1 = "<leader>h";
-              desc = "Harpoon";
+              desc = "Gitsigns";
             }
             {
               __unkeyed-1 = "<leader>l";
               desc = "LSP";
-            }
-            {
-              __unkeyed-1 = "<leader>lf";
-              desc = "LSP Finder";
-            }
-            {
-              __unkeyed-1 = "<leader>lp";
-              desc = "LSP Peek";
-            }
-            {
-              __unkeyed-1 = "<leader>lR";
-              desc = "Rust LSP";
-            }
-            {
-              __unkeyed-1 = "<leader>lrm";
-              desc = "Rust LSP Move Item";
             }
             {
               __unkeyed-1 = "<leader>s";
@@ -697,15 +865,11 @@
               __unkeyed-1 = "<leader>t";
               desc = "Testing";
             }
-            {
-              __unkeyed-1 = "<leader>z";
-              desc = "Zettelkasten";
-            }
           ];
         };
       };
 
     };
   };
-
 }
+
