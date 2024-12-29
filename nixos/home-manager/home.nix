@@ -1,7 +1,6 @@
-{
-  pkgs,
-  inputs,
-  ...
+{ pkgs
+, inputs
+, ...
 }:
 
 {
@@ -9,7 +8,7 @@
   # imports = [ ./nvim.nix ];
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
-    ./nvimcfg.nix
+    ./nixvim
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
