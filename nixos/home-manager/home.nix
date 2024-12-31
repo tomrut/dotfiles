@@ -182,6 +182,13 @@
       mcp = "mvn clean package -DskipTests";
       mcpt = "mvn clean package";
       lg = "lazygit";
+      gst = "git status";
+      gd = "git diff";
+      gds = "git diff --staged";
+      ga = "git add .";
+      gcm = "git commit -m $1";
+      gp = "git push";
+      gP = "git pull";
     };
   };
 
