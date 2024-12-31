@@ -165,7 +165,7 @@
   programs.git = {
     enable = true;
     config = {
-      safe.directory = "/home/plain/dotfiles";
+      safe.directory = "/home/tomek/dotfiles";
     };
   };
   environment.shells = with pkgs; [ zsh ];
