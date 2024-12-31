@@ -108,7 +108,6 @@
     pkgs.isync
     pkgs.pinentry
     pkgs.notify-desktop
-    pkgs.inkscape
     pkgs.flameshot
     pkgs.lazygit
     pkgs.fd
@@ -118,6 +117,7 @@
     pkgs.yubioath-flutter
     pkgs.nixfmt-rfc-style
     pkgs.nvd
+    pkgs.firefox
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the

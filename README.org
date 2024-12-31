@@ -3,6 +3,9 @@
 #+OPTIONS: toc:3
 #+OPTIONS: p:t
 
+* Nixos configuration
+
+
 
 * Scripts
 ** Playing youtube using ~yt-dlp~ + ~mpv~ player.

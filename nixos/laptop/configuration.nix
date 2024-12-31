@@ -2,19 +2,15 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{
-  config,
-  pkgs,
-  inputs,
-  ...
+{ config
+, pkgs
+, inputs
+, ...
 }:
 
 {
   imports = [
-    # Include the results of the hardware scan.
-    #  inputs.nixvim.nixosModules.nixvim
     ./hardware-configuration.nix
-    #    ../nvimcfg.nix
   ];
 
   # Bootloader.
@@ -39,11 +35,6 @@
     "/boot/crypto_keyfile.bin";
   networking.hostName = "nixos"; # Define your hostname.
   security.pam.enableEcryptfs = true;
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -57,9 +48,6 @@
 
       in
       [ "${automount_opts},credentials=/etc/nixos/smb-secrets,uid=1001,gid=100" ];
-    # or if you have specified `uid` and `gid` explicitly through NixOS configuration,
-    # you can refer to them rather than hard-coding the values:
-    # in ["${automount_opts},credentials=/etc/nixos/smb-secrets,uid=${toString config.users.users.tomek.uid},gid=${toString config.users.groups.users.gid}"];
   };
 
   services.thermald.enable = true;
@@ -87,26 +75,6 @@
     };
   };
 
-  services.redshift = {
-    enable = true;
-    brightness = {
-      # Note the string values below.
-      day = "1";
-      night = "1";
-    };
-
-    temperature = {
-      day = 5500;
-      night = 3700;
-    };
-
-  };
-
-  location = {
-    latitude = 50.0;
-    longitude = 19.9;
-  };
-
   # Set your time zone.
   time.timeZone = "Europe/Warsaw";
 
@@ -125,18 +93,9 @@
     LC_TIME = "pl_PL.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
 
-  # Enable the Cinnamon Desktop Environment.
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.desktopManager.cinnamon.enable = true;
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "pl";
-    variant = "";
-  };
+  programs.sway.enable = true;
 
   # Configure console keymap
   console.keyMap = "pl2";
@@ -156,9 +115,6 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   programs.zsh.enable = true;
@@ -189,17 +145,18 @@
   ];
 
   nixpkgs.config.allowUnfree = false;
-  # Install firefox.
-  programs.firefox.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     libreoffice-still
     cifs-utils
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #  wget
+    mako
+    wl-clipboard
+    alacritty
+    gammastep
   ];
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
