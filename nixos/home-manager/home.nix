@@ -38,6 +38,7 @@
         Type = "oneshot";
         ExecStart = toString (
           pkgs.writeShellScript "mail-sync-script" ''
+            export gpg_cmd=${pkgs.gnupg}/bin/gpg
             ${pkgs.isync}/bin/mbsync -a
           ''
         );
