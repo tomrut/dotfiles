@@ -75,6 +75,9 @@
     };
   };
 
+
+  services.gnome.gnome-keyring.enable = true;
+
   # Set your time zone.
   time.timeZone = "Europe/Warsaw";
 
@@ -153,8 +156,9 @@
     cifs-utils
     mako
     wl-clipboard
-    alacritty
     gammastep
+    libnotify
+    autotiling
   ];
 
 
