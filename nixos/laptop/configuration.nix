@@ -159,6 +159,7 @@
     gammastep
     libnotify
     autotiling
+    waybar
   ];
 
 
