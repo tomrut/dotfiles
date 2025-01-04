@@ -76,7 +76,7 @@
   };
 
 
-  services.gnome.gnome-keyring.enable = true;
+  # services.gnome.gnome-keyring.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Warsaw";
@@ -99,7 +99,18 @@
 
 
   programs.sway.enable = true;
+  services.greetd = {
+    enable = true;
+    settings = rec {
+      initial_session = {
+        command = "${pkgs.sway}/bin/sway";
+        user = "tomek";
+      };
+      default_session = initial_session;
+    };
+  };
 
+  #
   # Configure console keymap
   console.keyMap = "pl2";
 
