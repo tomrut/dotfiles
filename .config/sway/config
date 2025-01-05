@@ -1,4 +1,5 @@
 exec_always autotiling
+exec_always ~/bin/setup_wl_displays.sh
 # Default config for sway
 #
 # Copy this to ~/.config/sway/config and edit it to your liking.
@@ -36,7 +37,7 @@ output * bg /run/current-system/sw/share/backgrounds/sway/Sway_Wallpaper_Blue_19
 output HDMI-A-3 pos 0 0
 output DP-2 pos 1920 0
 #output LVDS-1 pos 3840 0
-output LVDS-1 disable
+#output LVDS-1 disable
 
 workspace "1" output HDMI-A-3
 workspace "2" output DP-2
