@@ -139,6 +139,17 @@ notify-send "Backup finished"
 *** 3gp to mp3
 **** [[file:bin/3gp2mp3.sh][3gp2mp3.sh]] - it uses ~avconv~ converter
 * Neovim
+** Shortcuts
+[[nvim quick reference][ https://neovim.io/doc/user/quickref.html]]
+ 
+
+| Shortcut | What does                                                       |
+|----------+-----------------------------------------------------------------|
+| CTRL-]   | jump to the tag under cursor - e.g. JSX component can be opened |
+| CTRL-O   | go to Nth older position in jump list - go back in history      |
+| CTRL-I   | go to Nth newer position in jump list - go next in history      |
+|          |                                                                 |
+
 ** [[file:.config/nvim][.config/nvim]] neovim configuration
 * Emacs
 ** Shortcuts

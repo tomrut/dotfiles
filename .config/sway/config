@@ -28,7 +28,7 @@ smart_borders on
 smart_gaps on
 titlebar_border_thickness 0
 
-
+font pango:Meslo LGM Nerd Font 14
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /run/current-system/sw/share/backgrounds/sway/)
@@ -66,6 +66,7 @@ exec gammastep -l 50.000:19.900 &
 exec swayidle -w \
           timeout 300 'swaylock -f -c 000000' \
           timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+          timeout 1200 'systemctl suspend' \
           before-sleep 'swaylock -f -c 000000' &
 
 workspace 1
@@ -122,7 +123,7 @@ exec foot neomutt
     bindsym Mod4+shift+g exec swaylock -c 000000
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym Mod4+shift+e exec swaynag  -t warning  -m 'What do you want to do?' -b 'Poweroff' 'systemctl poweroff' -b 'Reboot' 'systemctl reboot'  -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym Mod4+shift+e exec swaynag  -t warning  -m 'What do you want to do?' -b 'Suspend' 'systemctl suspend' -b 'Poweroff' 'systemctl poweroff' -b 'Reboot' 'systemctl reboot'  -B 'Yes, exit sway' 'swaymsg exit'
 
 # Moving around:
 #
