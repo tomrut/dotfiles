@@ -192,6 +192,7 @@
       swayTree = "swaymsg -t get_tree";
       swayOutputs = "swaymsg -t get_outputs";
       m = "neomutt";
+      f = "fzf --preview 'bat --color=always {}'";
     };
     envExtra = ''
       export gpg_cmd=${pkgs.gnupg}/bin/gpg
