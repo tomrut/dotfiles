@@ -163,10 +163,8 @@
   #
 
   home.sessionPath = [ "$HOME/bin" ];
-
   programs.bash = {
     enable = true;
-
     bashrcExtra = ''
       export EDITOR="nvim";
     '';
@@ -191,10 +189,37 @@
       gcm = "git commit -m $1";
       gp = "git push";
       gP = "git pull";
+      swayTree = "swaymsg -t get_tree";
+      swayOutputs = "swaymsg -t get_outputs";
+      m = "neomutt";
     };
+    envExtra = ''
+      export gpg_cmd=${pkgs.gnupg}/bin/gpg
+    '';
   };
 
-  programs.fzf.enable = true;
+  programs.fzf = {
+    colors = {
+      bg = "#1e1e1e";
+      "bg+" = "#1e1e1e";
+      fg = "#d4d4d4";
+      "fg+" = "#d4d4d4";
+    };
+    enable = true;
+    enableZshIntegration = true;
+    changeDirWidgetCommand = "fd --type d";
+    changeDirWidgetOptions = [
+      "--preview 'tree -C {} | head -200'"
+    ];
+
+    fileWidgetCommand = ''
+      fd --type f
+    '';
+    fileWidgetOptions = [
+      "--preview 'head {}'"
+    ];
+  };
+
   programs.bat.enable = true;
 
   # Let Home Manager install and manage itself.
