@@ -51,6 +51,11 @@ workspace "9" output HDMI-A-3
 workspace "10" output DP-2
 
 assign [app_id="firefox"] workspace 1
+
+for_window {
+  [ app_id="org.keepassxc.KeePassXC" ] move to scratchpad, scratchpad show
+}
+
 #
 # Example configuration:
 #
