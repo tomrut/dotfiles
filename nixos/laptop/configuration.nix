@@ -173,6 +173,7 @@
     gammastep
     libnotify
     autotiling
+    i3status
   ];
 
 
