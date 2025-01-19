@@ -2,3 +2,4 @@
 .config/nixos/smb-secrets
 .config/nixos-server/webdav.env
 nixos/smb-secrets
+.config/sway/outputs

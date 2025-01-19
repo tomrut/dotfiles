@@ -1,5 +1,6 @@
 exec_always autotiling
 exec_always ~/bin/setup_wl_displays.sh
+include ~/.config/sway/outputs
 # Default config for sway
 #
 # Copy this to ~/.config/sway/config and edit it to your liking.
@@ -33,7 +34,7 @@ font pango:Meslo LGM Nerd Font 14
 #
 # Default wallpaper (more resolutions are available in /run/current-system/sw/share/backgrounds/sway/)
 output * bg /run/current-system/sw/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-set $output1 DP-2
+#set $output1 DP-2
 set $output2 LVDS-1
 output $output1 pos 0 0
 output $output2 pos 1920 0
