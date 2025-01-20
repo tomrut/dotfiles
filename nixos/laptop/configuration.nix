@@ -99,6 +99,7 @@
 
 
   programs.sway.enable = true;
+  security.pam.services.swaylock = { };
   services.gnome.gnome-keyring.enable = true;
 
   # services.greetd = {
