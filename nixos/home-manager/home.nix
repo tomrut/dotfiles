@@ -23,7 +23,15 @@
         Type = "oneshot";
         ExecStart = toString (
           pkgs.writeShellScript "reminders-status-script" ''
-            ${pkgs.bash}/bin/bash "/home/tomek/bin/display_notif.sh";
+            #!/run/current-system/sw/bin/bash
+
+            export DISPLAY=:0.0
+            export WAYLAND_DISPLAY=wayland-1
+            export XDG_SESSION_TYPE=wayland
+            eval `${pkgs.dbus}/bin/dbus-launch --sh-syntax`
+
+            text=$(${pkgs.remind}/bin/rem)
+            ${pkgs.libnotify}/bin/notify-send -w "today's reminders" "$text"
           ''
         );
       };
@@ -53,7 +61,7 @@
       Timer = {
         Unit = "reminders_status";
         OnBootSec = "10m";
-        OnUnitActiveSec = "6h";
+        OnUnitActiveSec = "5h";
       };
       Install.WantedBy = [ "timers.target" ];
     };
