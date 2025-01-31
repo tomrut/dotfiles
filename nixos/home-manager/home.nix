@@ -29,7 +29,7 @@
             export WAYLAND_DISPLAY=wayland-1
             export XDG_SESSION_TYPE=wayland
             eval `${pkgs.dbus}/bin/dbus-launch --sh-syntax`
-
+            export DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS
             text=$(${pkgs.remind}/bin/rem)
             ${pkgs.libnotify}/bin/notify-send -w "today's reminders" "$text"
           ''
@@ -61,7 +61,7 @@
       Timer = {
         Unit = "reminders_status";
         OnBootSec = "10m";
-        OnUnitActiveSec = "5h";
+        OnUnitActiveSec = "4h";
       };
       Install.WantedBy = [ "timers.target" ];
     };
