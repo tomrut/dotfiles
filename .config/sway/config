@@ -1,4 +1,3 @@
-exec_always autotiling
 exec_always ~/bin/setup_wl_displays.sh
 include ~/.config/sway/outputs
 # Default config for sway

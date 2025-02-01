@@ -173,7 +173,6 @@
     wl-clipboard
     gammastep
     libnotify
-    autotiling
     i3status
   ];
 
