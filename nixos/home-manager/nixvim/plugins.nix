@@ -131,7 +131,7 @@
         pylyzer.enable = false;
         ruff_lsp.enable = false;
         tailwindcss.enable = true;
-        terraformls.enable = true;
+        terraformls.enable = false;
         ts_ls.enable = true;
         veryl_ls.enable = false;
         zls.enable = false;
