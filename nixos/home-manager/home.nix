@@ -29,6 +29,7 @@
             export WAYLAND_DISPLAY=wayland-1
             export XDG_SESSION_TYPE=wayland
             eval `${pkgs.dbus}/bin/dbus-launch --sh-syntax`
+            ${pkgs.dbus}/bin/dbus-update-activation-environment
             export DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS
             text=$(${pkgs.remind}/bin/rem)
             ${pkgs.libnotify}/bin/notify-send -w "today's reminders" "$text"
