@@ -103,23 +103,9 @@
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.desktopManager.cinnamon.enable = true;
 
-
-
   # programs.sway.enable = true;
   # security.pam.services.swaylock = { };
-  # services.gnome.gnome-keyring.enable = true;
-  #
-  # services.greetd = {
-  #   enable = true;
-  #   settings = rec {
-  #     initial_session = {
-  #       command = "${pkgs.sway}/bin/sway";
-  #       user = "tomek";
-  #     };
-  #     default_session = initial_session;
-  #   };
-  # };
-
+  services.gnome.gnome-keyring.enable = true;
 
   #
   # Configure console keymap
