@@ -165,7 +165,7 @@
     # mako
     # wl-clipboard
     # gammastep
-    # libnotify
+    libnotify
     # i3status
   ];
 
