@@ -24,7 +24,6 @@
         ExecStart = toString (
           pkgs.writeShellScript "reminders-status-script" ''
             #!/run/current-system/sw/bin/bash
-
             export DISPLAY=:0.0
             # export WAYLAND_DISPLAY=wayland-1
             # export XDG_SESSION_TYPE=wayland
@@ -32,7 +31,7 @@
             # ${pkgs.dbus}/bin/dbus-update-activation-environment
             # export DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS
             text=$(${pkgs.remind}/bin/rem)
-            ${pkgs.libnotify}/bin/notify-send -w "today's reminders" "$text"
+            ${pkgs.libnotify}/bin/notify-send "today's reminders" "$text"
           ''
         );
       };

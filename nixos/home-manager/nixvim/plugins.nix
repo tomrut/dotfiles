@@ -88,6 +88,7 @@
       };
     };
 
+    friendly-snippets.enable = true;
 
     gitsigns = {
       enable = true;
@@ -172,6 +173,8 @@
       enable = true;
       lsp.autoAttach = true;
     };
+
+    nvim-autopairs.enable = true;
 
     nvim-tree = {
       enable = true;
