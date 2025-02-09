@@ -175,6 +175,7 @@
     };
 
     nvim-autopairs.enable = true;
+    nvim-surround.enable = true;
 
     nvim-tree = {
       enable = true;
@@ -236,6 +237,15 @@
       settings = {
         highlight.enable = true;
         indent.enable = true;
+        incremental_selection = {
+          enable = true;
+          keymaps = {
+            init_selection = false;
+            node_decremental = "<bs>";
+            node_incremental = "<C-space>";
+            scope_incremental = "grc";
+          };
+        };
       };
     };
 
@@ -245,6 +255,9 @@
         max_lines = 2;
       };
     };
+
+    treesitter-refactor.enable = true;
+    treesitter-textobjects.enable = true;
 
     ts-autotag.enable = true;
     ts-comments.enable = true;
