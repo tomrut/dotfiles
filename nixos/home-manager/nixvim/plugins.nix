@@ -246,6 +246,10 @@
       };
     };
 
+    ts-autotag.enable = true;
+    ts-comments.enable = true;
+    ts-context-commentstring.enable = true;
+
     web-devicons.enable = true;
 
     which-key = {
