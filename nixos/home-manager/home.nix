@@ -94,7 +94,7 @@
     pkgs.ripgrep
     pkgs.gcc
     pkgs.mc
-    pkgs.nodejs_22
+    pkgs.nodejs_23
     pkgs.yt-dlp
     pkgs.keepassxc
     pkgs.ripgrep
