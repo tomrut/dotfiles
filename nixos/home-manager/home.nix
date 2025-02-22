@@ -173,7 +173,7 @@
     '';
   };
 
-  programs.btop.enable = true;
+  programs.htop.enable = true;
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
