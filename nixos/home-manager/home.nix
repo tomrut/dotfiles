@@ -286,8 +286,8 @@
   };
 
   home.shellAliases = {
-    kal = "remind -n1 -c -@ .reminders";
-    kal2 = "remind -n1 -c2 -@ .reminders";
+    kal = "remind -n1 -c -@ ~/.reminders";
+    kal2 = "remind -n1 -c2 -@ ~/.reminders";
     lclassic = "mpg123 https://rs101-krk.rmfstream.pl/RMFCLASSIC48";
     lsoundtracks = "mpg123 https://kathy.torontocast.com:1190/";
   };
