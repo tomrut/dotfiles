@@ -23,15 +23,15 @@
         Type = "oneshot";
         ExecStart = toString (
           pkgs.writeShellScript "reminders-status-script" ''
-            #!/run/current-system/sw/bin/bash
-            export DISPLAY=:0.0
-            # export WAYLAND_DISPLAY=wayland-1
+             #!/run/current-system/sw/bin/bash
+             export DISPLAY=:0.0
+             # export WAYLAND_DISPLAY=wayland-1
             # export XDG_SESSION_TYPE=wayland
-            # eval `${pkgs.dbus}/bin/dbus-launch --sh-syntax`
-            # ${pkgs.dbus}/bin/dbus-update-activation-environment
-            # export DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS
-            text=$(${pkgs.remind}/bin/rem)
-            ${pkgs.libnotify}/bin/notify-send "today's reminders" "$text"
+             # eval `${pkgs.dbus}/bin/dbus-launch --sh-syntax`
+             # ${pkgs.dbus}/bin/dbus-update-activation-environment
+             # export DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS
+             text=$(${pkgs.remind}/bin/rem)
+             ${pkgs.libnotify}/bin/notify-send "today's reminders" "$text"
           ''
         );
       };
@@ -192,8 +192,12 @@
       gcm = "git commit -m $1";
       gp = "git push";
       gP = "git pull";
-      swayTree = "swaymsg -t get_tree";
-      swayOutputs = "swaymsg -t get_outputs";
+      # swayTree = "swaymsg -t get_tree";
+      # swayOutputs = "swaymsg -t get_outputs";
+      bk = "~/bin/make_backup.sh";
+      tmrs = "systemctl list-timers";
+      reb = "sudo nixos-rebuild switch --no-write-lock-file";
+      nvdiff = "nvd diff $(ls -d1v /nix/var/nix/profiles/system-*-link|tail -n 2)";
       m = "neomutt";
       f = "fzf --preview 'bat --color=always {}'";
       rfv = "rfv";
@@ -291,8 +295,8 @@
   programs.direnv = {
     enable = true;
     enableBashIntegration = true; # see note on other shells below
+    enableZshIntegration = true;
     nix-direnv.enable = true;
-
   };
 
   programs.zathura = {
