@@ -53,7 +53,7 @@
       }
       {
         mode = "n";
-        key = "<C-\\>";
+        key = "<M-\\>";
         action = "<cmd>NvimTreeToggle<cr>";
         options = {
           desc = "NTree toggle";
@@ -62,7 +62,7 @@
       }
       {
         mode = "i";
-        key = "<C-\\>";
+        key = "<M-\\>";
         action = "<Esc>NvimTreeToggle<cr>i";
         options = {
           desc = "NTree toggle";
