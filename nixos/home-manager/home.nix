@@ -274,8 +274,6 @@
       (with epkgs; [
         org
         org-superstar
-        nix-mode
-        nix-ts-mode
       ])
     );
 
