@@ -121,7 +121,7 @@
     pkgs.yubioath-flutter
     pkgs.nixfmt-rfc-style
     pkgs.nvd
-    pkgs.firefox
+    pkgs.librewolf
     pkgs.feh
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
