@@ -207,7 +207,8 @@
     randomizedDelaySec = "10min";
     flags = [ "--no-write-lock-file" ];
     flake = "''";
-    allowReboot = true;
+
+    allowReboot = false;
   };
 
   # Perform garbage collection weekly to maintain low disk usage
