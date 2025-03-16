@@ -162,9 +162,24 @@
   environment.systemPackages = with pkgs; [
     libreoffice-still
     cifs-utils
+    # gtklock
+    # gtklock-powerbar-module
+    # nwg-hello
+    # nwg-look
+    # nwg-drawer
+    # swayfx # sway with fancy effects
+    # swaybg
+    # swayr # window switcher
+    # swayimg # image viewer for sway
+    # swappy # wayland snapshot tool
+    # swayidle
+    # kanshi # dynamic enabling / disabling inputs
+    # slurp # select region in wayland compositor - use with grim
+    # grim grab images
     # mako
     # wl-clipboard
     # gammastep
+
     libnotify
     # i3status
   ];
