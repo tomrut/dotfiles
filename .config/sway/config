@@ -1,5 +1,22 @@
+# Import environment variables for user systemd service manager
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
+# Update dbus environments with display variables
+exec hash dbus-update-activation-environment 2>/dev/null && \
+    dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec autotiling
 exec_always ~/bin/setup_wl_displays.sh
-include ~/.config/sway/outputs
+exec_always nwg-drawer -r -c 7 -is 90 -mb 10 -ml 50 -mr 50 -mt 10
+exec_always --no-startup-id foot --server
+# swayrd
+exec_always swayrd
+
+# cliphist
+exec wl-paste --type text --watch cliphist store
+exec wl-paste --type image --watch cliphist store
+
+# Sway Fader
+exec python3 ~/.config/sway/scripts/swayfader.py
 # Default config for sway
 #
 # Copy this to ~/.config/sway/config and edit it to your liking.
@@ -18,7 +35,11 @@ set $right l
 # Your preferred terminal emulator
 set $term foot
 # Your preferred application launcher
-set $menu wmenu-run
+# Application launcher
+set $launcher fuzzel
+
+# Application menu
+set $menu nwg-drawer
 
 # hide border when only one window
 default_border pixel 2
@@ -33,49 +54,37 @@ font pango:Meslo LGM Nerd Font 14
 #
 # Default wallpaper (more resolutions are available in /run/current-system/sw/share/backgrounds/sway/)
 output * bg /run/current-system/sw/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-#set $output1 DP-2
-set $output2 LVDS-1
+set $output1 DP-2
+set $output2 DP-3
+set $output3 LVDS-1
 output $output1 pos 0 0
 output $output2 pos 1920 0
+output $output3 pos 3840 0
 
-workspace "1" output $output1
-workspace "2" output $output2
-workspace "3" output $output1
-workspace "4" output $output2
-workspace "5" output $output1
-workspace "6" output $output2
-workspace "7" output $output1
-workspace "8" output $output2
-workspace "9" output $output1
-workspace "10" output $output2
-
-assign [app_id="firefox"] workspace 1
+assign [app_id="librewolf"] workspace 1
 
 for_window {
   [ app_id="org.keepassxc.KeePassXC" ] move to scratchpad, scratchpad show
 }
 
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
+for_window [app_id="yad"] floating enable
+for_window [app_id="blueman-manager"] floating enable,  resize set width 40 ppt height 30 ppt
+for_window [app_id="pavucontrol" ] floating enable, resize set width 50 ppt height 50 ppt
+for_window [app_id="galculator"] floating enable, move position cursor
+for_window [title="Save File"] floating enable
+for_window [title="waybar_battop"] floating enable, resize set width 60 ppt height 60 ppt
 
 ### Idle configuration
-#
-# Example configuration:
-#
 exec gammastep -l 50.000:19.900 &
 exec swayidle -w \
-          timeout 300 'swaylock -f -c 000000' \
+          timeout 300 'gtklock'  \
           timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
           timeout 1800 'systemctl suspend' \
-          before-sleep 'swaylock -f -c 000000' &
+          before-sleep 'gtklock -f -c 000000' &
 
 workspace 1
 exec swaymsg "workspace 1"
-exec firefox
+exec librewolf
 exec sleep 1
 
 workspace 2
@@ -88,12 +97,12 @@ exec foot neomutt
 # resumed. It will also lock your screen before your computer goes to sleep.
 
 ### Input configuration
-input "type:keyboard" {
-    xkb_layout pl
-    xkb_variant ,nodeadkeys
-    xkb_options grp:alt_shift_toggle
-}
-
+ input "type:keyboard" {
+     xkb_layout pl
+     xkb_variant ,nodeadkeys
+     xkb_options grp:alt_shift_toggle
+ }
+#
 #
 # Example configuration:
 #
@@ -115,10 +124,25 @@ input "type:keyboard" {
     bindsym $mod+Return exec $term
 
     # Kill focused window
-    bindsym $mod+Shift+q kill
+    bindsym $mod+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $mod+d exec $launcher
+
+    # Menu
+    bindsym $mod+Shift+d exec $menu
+
+    # Activities
+    bindsym $mod+Tab exec swayr switch-window
+
+    # Activities and workspaces
+    bindsym $mod+Shift+Tab exec swayr switch-workspace-or-window
+
+    # Switch to the last recently used window
+    bindsym Alt+Tab exec swayr switch-to-urgent-or-lru-window
+
+    # Open this file in a floating window
+    bindsym $mod+Shift+i exec $term -T sway_config -e vim ~/.config/sway/config
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -130,10 +154,9 @@ input "type:keyboard" {
     # Reload the configuration file
     bindsym $mod+Shift+c reload
 
-    bindsym Mod4+shift+g exec swaylock -c 000000
-
-    # Exit sway (logs you out of your Wayland session)
-    bindsym Mod4+shift+e exec swaynag  -t warning  -m 'What do you want to do?' -b 'Suspend' 'systemctl suspend' -b 'Poweroff' 'systemctl poweroff' -b 'Reboot' 'systemctl reboot'  -B 'Yes, exit sway' 'swaymsg exit'
+    # Lock screen
+    bindsym $mod+f1 exec gtklock
+    bindsym Ctrl+Alt+Delete exec $powermenu
 
 # Moving around:
 #
@@ -269,13 +292,13 @@ bindsym $mod+r mode "resize"
 # Read `man 5 sway-bar` for more information about this section.
  bar {
      position top
-
+     swaybar_command waybar
      # When the status_command prints a new line to stdout, swaybar updates.
      # The default just shows the current date and time.
      #status_command while ~/bin/bar_status.sh; do sleep 5; done
      status_command while i3status; do sleep 10; done
      hidden_state hide
-     mode hide
+     # mode hide
      separator_symbol |
      colors {
          statusline #ffffff
@@ -283,5 +306,33 @@ bindsym $mod+r mode "resize"
          inactive_workspace #32323200 #32323200 #5c5c5c
      }
  }
+
+
+# Apply gtk theming
+exec_always ~/.config/sway/scripts/import-gsettings
+
+# Set inner/outer gaps
+gaps inner 2
+gaps outer 2
+
+# Hide titlebar on windows:
+default_border pixel 2
+
+# Default Font
+font pango:JetBrainsMono 10
+
+# Thin borders:
+smart_borders on
+
+# Title format for windows
+for_window [shell="xdg_shell"] title_format "%title (%app_id)"
+for_window [shell="x_wayland"] title_format "%class - %title"
+
+## Window decoration
+# class                 border  backgr. text    indicator child_border
+client.focused          #81a1c1 #434c5e #81a1c1 #81a1c1   #81a1c1
+client.focused_inactive #88c0d0 #2e3440 #d8dee9 #4c566a   #4c566a
+client.unfocused        #88c0d0 #2e3440 #d8dee9 #4c566a   #4c566a
+
 #
 include /etc/sway/config.d/*

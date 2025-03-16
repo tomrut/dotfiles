@@ -5,6 +5,7 @@
 { config
 , pkgs
 , inputs
+, lib
 , ...
 }:
 
@@ -51,7 +52,7 @@
   };
 
   services.thermald.enable = true;
-
+  services.blueman.enable = true;
   services.tlp = {
     enable = true;
     settings = {
@@ -97,11 +98,21 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
   # Enable the Cinnamon Desktop Environment.
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.desktopManager.cinnamon.enable = true;
+  # services.xserver.displayManager.lightdm.enable = true;
+  # services.xserver.desktopManager.cinnamon.enable = true;
+
+
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+  };
+  programs.light.enable = true;
+  # programs.gtklock.enable = true;
+  security.pam.services.gtklock.text = lib.readFile "${pkgs.gtklock}/etc/pam.d/gtklock";
+
 
   # programs.sway.enable = true;
   # security.pam.services.swaylock = { };
@@ -162,26 +173,31 @@
   environment.systemPackages = with pkgs; [
     libreoffice-still
     cifs-utils
-    # gtklock
-    # gtklock-powerbar-module
-    # nwg-hello
-    # nwg-look
-    # nwg-drawer
-    # swayfx # sway with fancy effects
-    # swaybg
-    # swayr # window switcher
-    # swayimg # image viewer for sway
-    # swappy # wayland snapshot tool
-    # swayidle
+    gtklock
+    gtklock-powerbar-module
+    swaybg
+    swayr
+    fuzzel
+    swayimg # image viewer for sway
+    swappy # wayland snapshot tool
+    swayidle
+    waybar
+    autotiling
     # kanshi # dynamic enabling / disabling inputs
     # slurp # select region in wayland compositor - use with grim
     # grim grab images
-    # mako
-    # wl-clipboard
-    # gammastep
-
+    mako
+    wl-clipboard
+    gammastep
+    wdisplays
     libnotify
-    # i3status
+    yad
+    wofi
+    wofi-pass
+    wofi-emoji
+    batmon
+    bluez
+    bluetui
   ];
 
 
