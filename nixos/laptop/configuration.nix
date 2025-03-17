@@ -40,6 +40,9 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+
   fileSystems."/mnt/share" = {
     device = "//192.168.0.113/share";
     fsType = "cifs";
@@ -184,8 +187,8 @@
     waybar
     autotiling
     # kanshi # dynamic enabling / disabling inputs
-    # slurp # select region in wayland compositor - use with grim
-    # grim grab images
+    slurp # select region in wayland compositor - use with grim
+    grim
     mako
     wl-clipboard
     gammastep
@@ -198,6 +201,13 @@
     batmon
     bluez
     bluetui
+    pcmanfm
+    galculator
+    pavucontrol
+    calcurse
+    s-tui
+    dua
+    bottom
   ];
 
 
