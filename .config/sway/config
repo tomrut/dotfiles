@@ -15,12 +15,6 @@ exec_always swayrd
 exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
 
-# Sway Fader
-exec python3 ~/.config/sway/scripts/swayfader.py
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
 # Read `man 5 sway` for a complete reference.
 
 ### Variables
@@ -320,6 +314,7 @@ bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 bindsym $mod+c exec galculator
 bindsym $mod+b exec librewolf
 bindsym $mod+e exec pcmanfm
+bindsym $mod+p exec keepassxc
 
 # Snip a selection and pipe to swappy
 bindsym print exec grim -g "$(slurp)" - | swappy -f -

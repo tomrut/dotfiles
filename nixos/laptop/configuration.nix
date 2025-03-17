@@ -208,6 +208,7 @@
     s-tui
     dua
     bottom
+    jq
   ];
 
 
