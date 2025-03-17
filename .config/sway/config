@@ -97,7 +97,7 @@ exec swayidle -w \
           timeout 300 'gtklock'  \
           timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
           timeout 1800 'systemctl suspend' \
-          before-sleep 'gtklock -f -c 000000' &
+          before-sleep 'gtklock' &
 
 workspace 1
 exec swaymsg "workspace 1"
