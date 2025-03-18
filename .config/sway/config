@@ -27,6 +27,7 @@ set $term foot
 # Your preferred application launcher
 # Application launcher
 set $launcher fuzzel
+set $powermenu ~/.config/sway/scripts/powermenu.sh
 
 # hide border when only one window
 default_border pixel 2
