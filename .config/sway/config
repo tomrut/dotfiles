@@ -9,6 +9,7 @@ exec_always ~/bin/setup_wl_displays.sh
 exec_always --no-startup-id foot --server
 # swayrd
 exec_always swayrd
+exec_always ~/bin/display_notif.sh
 
 # Read `man 5 sway` for a complete reference.
 

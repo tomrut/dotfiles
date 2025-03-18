@@ -173,6 +173,7 @@
     cifs-utils
     gtklock
     gtklock-powerbar-module
+    gtklock-userinfo-module
     swaybg
     swayr
     fuzzel
