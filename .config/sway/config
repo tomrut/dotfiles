@@ -7,7 +7,6 @@ exec hash dbus-update-activation-environment 2>/dev/null && \
 exec autotiling
 exec_always ~/bin/setup_wl_displays.sh
 exec_always --no-startup-id foot --server
-# swayrd
 exec_always swayrd
 exec_always ~/bin/display_notif.sh
 
@@ -38,10 +37,10 @@ smart_gaps on
 titlebar_border_thickness 0
 
 font pango:Meslo LGM Nerd Font 14
-### Output configuration
-#
 # Default wallpaper (more resolutions are available in /run/current-system/sw/share/backgrounds/sway/)
 output * bg /run/current-system/sw/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+### Output configuration
+#
 set $output1 DP-2
 set $output2 DP-3
 set $output3 LVDS-1
@@ -164,6 +163,7 @@ bindsym $mod+Shift+c reload
 
 # Lock screen
 bindsym $mod+f1 exec gtklock
+bindsym Ctrl+Alt+l exec gtklock
 bindsym Ctrl+Alt+Delete exec $powermenu
 
 # Moving around:
