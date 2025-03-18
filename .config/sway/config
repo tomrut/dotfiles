@@ -6,14 +6,9 @@ exec hash dbus-update-activation-environment 2>/dev/null && \
     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec autotiling
 exec_always ~/bin/setup_wl_displays.sh
-exec_always nwg-drawer -r -c 7 -is 90 -mb 10 -ml 50 -mr 50 -mt 10
 exec_always --no-startup-id foot --server
 # swayrd
 exec_always swayrd
-
-# cliphist
-exec wl-paste --type text --watch cliphist store
-exec wl-paste --type image --watch cliphist store
 
 # Read `man 5 sway` for a complete reference.
 
@@ -31,9 +26,6 @@ set $term foot
 # Your preferred application launcher
 # Application launcher
 set $launcher fuzzel
-
-# Application menu
-set $menu nwg-drawer
 
 # hide border when only one window
 default_border pixel 2
@@ -145,9 +137,6 @@ bindsym $mod+q kill
 
 # Start your launcher
 bindsym $mod+d exec $launcher
-
-# Menu
-bindsym $mod+Shift+d exec $menu
 
 # Activities
 bindsym $mod+Tab exec swayr switch-window

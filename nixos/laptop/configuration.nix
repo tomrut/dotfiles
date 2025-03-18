@@ -202,6 +202,7 @@
     dua
     bottom
     jq
+    xdg-desktop-portal-wlr
   ];
 
 
