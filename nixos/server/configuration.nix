@@ -36,9 +36,10 @@
       flushBeforeStage2 = true;
       ssh = {
         enable = true;
-        port = 22;
+        port = 8022;
         authorizedKeys = [
           "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDgeAOxT4jXGtYtwyH3pcDOKWiHcC8yyN54fusHhekFyOL8bkqkKmyPm1Aim2RHu/o/K7y/foGYixX4RbbCzS7HoptsDXNKwkYuF3+6xfnvHIetAEcxsq1oK4NzI1ILrnGKWjb5X6ADmfrtrTVAvZDLDKFUFzSJ0vCwnCKaxS23ivWZe0jxt2Ibn57Gn/f2/2pe7QEBXXcteRRQ677/BtTFVsGNYx0/Ae4fMvoKV3RIOyt0ojY6oJR4F7u31uFmzSj2d9yfuaNOtSu28lCMljv7o7qFToRc0CcQzQfEbl9bW57nw35ajMTVNHApKnOBkRRehs+jpK0Zk/YldifP2PPfKzjFiDukgfhVm+Td9gMui2u31lan5QAJ0OSktbt89OsJ3YSAOybuXr3wxQttfsnZ3PaGnbnNXSsMyCmQjFenxwsJPexN88KJeRu77iG0cvjdExbIY5bNzx2LgMlGwYBYfUFME5BHfV4hxBJtSOSgSOyT8LOH+j7DheXNGxuKDc4fpIc0mjqlisPAHNdjI7WAIGL8IlQPY1V4sWtwswhtE5pKqj39G5zVSfoMFUPVXsvcE0DPiF0fBNY6UG41vQuIeybitRaSe8h9CHa8wUDwWx4qgQyxje6zYfcnALbzB3vmtncKMsAL5M7dMD/AAy2rYAGoItHngSTdeQdgFF6pSw== root@nixos"
+          "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCjlHMauu7sJNzEfR44bjpz98VCM7Pe9Ud+8x79ZjyN+q0JCgb4Qqr0Q67HFqZ6HwnwyWrSxGTP6GJCKOui/C427+F8ZNkHn+oAGZYi7vF1Ku+5F/sjtDroBK5pwAztmw3qWLJo7ztNxQeXHyksSDLwjMcLF/L0YuNgLOXxdboU0k0PnVCJPf+nyHvRKTC3zxlw8Nm151CATWZmTH2VzsriyUNgewEyPID5UIUpKyNmbrkQ8E9PGMgL/+t3N/IznRlzGETnWufksspfAFlEMUq9OsEV1I1QJ3Vtj1+GMgBuQdjWA5pKIaNJNgSs/BnzgDjj1MJw2fSd9QfLhPikopA1/W/AM+xtBwIjvRvIArLyQqvUHU5kjorAhQAqGwIiGwqd5ek8c0KpPL+EWk3jjJ86gohNl0lx7WDQ4O7tiS4o3f+GsW2mxMI33nAA4g8/FunoJq8RFyjuP58nOT7JeQlu/0k5SkPeuvikL7r+yIFarTv9HDYI2Lzlvyml2DCxmGTZjtPlKUttRnhkw6n2J+IvT2iityNmTwZiV61LiI5q6EAZWF0W/6Chy3p4e1/cB4NlkxzfaWFW/7KClJ+mEKerK2gpyGl58fO3YK0wKLDbcDL4ZAHTe/0NjH08wMAsjkhVGFkQLlj5aYwEtzM/eb2Nv2H/PIgRAixWNbpqFr+EKQ== tomek@nixos"
         ];
         hostKeys = [ "/etc/secrets/initrd/ssh_host_rsa_key" ];
       };
