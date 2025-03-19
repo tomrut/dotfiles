@@ -134,6 +134,7 @@
     cryptsetup
     mc
     htop
+    git
   ];
 
   boot.initrd.luks.reusePassphrases = true;
