@@ -8,6 +8,7 @@ exec autotiling
 exec_always ~/bin/setup_wl_displays.sh
 exec_always --no-startup-id foot --server
 exec_always swayrd
+exec $term -T sway_config -e ~/bin/make_backup.sh
 exec_always ~/bin/display_notif.sh
 
 # Read `man 5 sway` for a complete reference.
@@ -31,14 +32,14 @@ set $powermenu ~/.config/sway/scripts/powermenu.sh
 # hide border when only one window
 default_border pixel 2
 default_floating_border pixel 2
-hide_edge_borders --i3 smart
+#hide_edge_borders --i3 smart
 smart_borders on
 smart_gaps on
 titlebar_border_thickness 0
 
 font pango:Meslo LGM Nerd Font 14
 # Default wallpaper (more resolutions are available in /run/current-system/sw/share/backgrounds/sway/)
-output * bg /run/current-system/sw/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg /home/tomek/.config/sway/nix-wallpaper-simple-light-gray.png fill
 ### Output configuration
 #
 set $output1 DP-2
@@ -86,11 +87,17 @@ for_window [title="sway_config"] floating enable, resize set width 80 ppt height
 
 ### Idle configuration
 exec gammastep -l 50.000:19.900 &
-exec swayidle -w \
-          timeout 300 'gtklock'  \
-          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-          timeout 1800 'systemctl suspend' \
-          before-sleep 'gtklock' &
+# exec swayidle -w \
+#           timeout 300 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+#           timeout 600 'gtklock'  \
+#           timeout 1800 'systemctl suspend' \
+#           before-sleep 'gtklock' &
+
+# Idle configuration
+# exec swayidle idlehint 1
+exec_always swayidle -w before-sleep "gtklock -d" \
+            timeout 300 "output * power off"' resume 'swaymsg "output * power on" \
+            timeout 600 "gtklock"
 
 workspace 1
 exec swaymsg "workspace 1"
@@ -305,7 +312,7 @@ bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 bindsym $mod+c exec galculator
 bindsym $mod+b exec librewolf
 bindsym $mod+e exec pcmanfm
-bindsym $mod+p exec keepassxc
+bindsym $mod+p exec keepassxc && scratchpad show
 
 # Snip a selection and pipe to swappy
 bindsym print exec grim -g "$(slurp)" - | swappy -f -
@@ -342,8 +349,8 @@ for_window [shell="x_wayland"] title_format "%class - %title"
 
 ## Window decoration
 # class                 border  backgr. text    indicator child_border
-client.focused          #81a1c1 #434c5e #81a1c1 #81a1c1   #81a1c1
-client.focused_inactive #88c0d0 #2e3440 #d8dee9 #4c566a   #4c566a
+client.focused          #e21246 #434c5e #81a1c1 #81a1c1   #81a1c1
+client.focused_inactive #750823 #2e3440 #d8dee9 #4c566a   #4c566a
 client.unfocused        #88c0d0 #2e3440 #d8dee9 #4c566a   #4c566a
 
 #
