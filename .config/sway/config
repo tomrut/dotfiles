@@ -75,8 +75,6 @@ for_window [app_id="xsensors"] floating enable
 for_window [title="Save File"] floating enable
 for_window [title="waybar_btm"] floating enable, resize set width 50 ppt height 70 ppt
 for_window [title="waybar_nmtui"] floating enable
-for_window [title="waybar_garuda-update"] floating enable, resize set width 80 ppt height 80 ppt
-for_window [title="waybar_pacseek"] floating enable, resize set width 80 ppt height 80 ppt
 for_window [title="waybar_dua"] floating enable, resize set width 60 ppt height 80 ppt
 for_window [title="waybar_battop"] floating enable, resize set width 60 ppt height 60 ppt
 for_window [title="waybar_bluetui"] floating enable, resize set width 50 ppt height 70 ppt
@@ -87,16 +85,11 @@ for_window [title="sway_config"] floating enable, resize set width 80 ppt height
 
 ### Idle configuration
 exec gammastep -l 50.000:19.900 &
-# exec swayidle -w \
-#           timeout 300 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-#           timeout 600 'gtklock'  \
-#           timeout 1800 'systemctl suspend' \
-#           before-sleep 'gtklock' &
 
 # Idle configuration
 # exec swayidle idlehint 1
 exec_always swayidle -w before-sleep "gtklock -d" \
-            timeout 300 "output * power off"' resume 'swaymsg "output * power on" \
+            timeout 150 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
             timeout 600 "gtklock"
 
 workspace 1
