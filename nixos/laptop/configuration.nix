@@ -241,10 +241,11 @@
   system.autoUpgrade = {
     enable = true;
     dates = "daily";
+    operation = "boot";
     randomizedDelaySec = "10min";
     flags = [ "--no-write-lock-file" ];
     flake = "''";
-
+    persistent = true;
     allowReboot = false;
   };
 

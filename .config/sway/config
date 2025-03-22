@@ -87,10 +87,9 @@ for_window [title="sway_config"] floating enable, resize set width 80 ppt height
 exec gammastep -l 50.000:19.900 &
 
 # Idle configuration
-# exec swayidle idlehint 1
 exec_always swayidle -w before-sleep "gtklock -d" \
-            timeout 150 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-            timeout 600 "gtklock"
+            timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+            timeout 300 "gtklock"
 
 workspace 1
 exec swaymsg "workspace 1"
