@@ -204,6 +204,8 @@
     bottom
     jq
     xdg-desktop-portal-wlr
+    playerctl
+    cmus
   ];
 
 
