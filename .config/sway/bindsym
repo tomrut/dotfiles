@@ -23,7 +23,8 @@ bindsym $mod+Shift+Tab exec swayr switch-workspace-or-window
 bindsym Alt+Tab exec swayr switch-to-urgent-or-lru-window
 
 # Open this file in a floating window
-bindsym $mod+Shift+i exec $term -T sway_config -e vim ~/.config/sway/config
+bindsym $mod+Shift+i exec $term -T sway_config -e vim ~/.config/sway/config ~/.config/sway/bindsym
+
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
