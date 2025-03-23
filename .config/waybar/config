@@ -47,7 +47,7 @@
         "format": " {}",
         "return-type": "json",
         "tooltip": true,
-        "exec": "~/bin/check_updates.sh",
+        "exec": "~/.config/waybar/scripts/check_updates.sh",
         "interval": 3600,
     },
 
