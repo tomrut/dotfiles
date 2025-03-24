@@ -4,7 +4,7 @@
 # - heavily inspired by this post: https://blog.tjll.net/previewing-nixos-system-updates/
 nixos_current_system="/run/current-system"
 nixos_system="/nix/var/nix/profiles/system"
-pending_updates="uknown"
+pending_updates="unknown"
 if [ -d "$nixos_current_system" ] && [ -d "$nixos_system" ]; then
     nixos_current_system_hash="$(basename $(readlink -f "$nixos_current_system") | cut -d- -f1)"
     nixos_system_hash="$(basename $(readlink -f "$nixos_system") | cut -d- -f1)"
@@ -21,7 +21,7 @@ if [ -d "$nixos_current_system" ] && [ -d "$nixos_system" ]; then
             echo "$nvd_diff" > "$nvd_output_file"
         fi
         if [ -r "$nvd_output_file" ] ; then
-            pending_updates="$(cat "$nvd_output_file" | tail -n +3 | grep -E "^\[(U|D|C).\]" | sed -e 's/\\/\\\\/g' -e 's/&/\&amp;/g' -e 's/</\&lt;/g' -e 's/>/\&gt;/g')"
+          pending_updates=$(grep -E "^\[(U|D|C).\]" < "$nvd_output_file" | sed -e 's/\\/\\\\/g' )
         else
             exit 0
         fi
@@ -32,11 +32,14 @@ else
     exit 0
 fi
 # check if a reboot is required
-boot_required="unknown"
 if diff <(readlink /run/booted-system/{initrd,kernel,kernel-modules}) <(readlink /nix/var/nix/profiles/system/{initrd,kernel,kernel-modules}) >/dev/null 2>&1; then
-    reboot_required="👌"
+  if [ "$pending_updates" == "unknown" ]; then
+    reboot_required=" 👌 "
+  else
+    reboot_required="  "
+  fi
 else
-    reboot_required=""
+    reboot_required=" ❗ "
 fi
 
-echo "{\"text\": \"$reboot_required\", \"tooltip\":\"$pending_updates \"}"
+echo "{\"text\": \"$reboot_required\",\"tooltip\":$(echo -e $pending_updates|jq -Rsa . )}"
