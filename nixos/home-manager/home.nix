@@ -161,8 +161,8 @@
       gcm = "git commit -m $1";
       gp = "git push";
       gP = "git pull";
-      # swayTree = "swaymsg -t get_tree";
-      # swayOutputs = "swaymsg -t get_outputs";
+      swayTree = "swaymsg -t get_tree";
+      swayOutputs = "swaymsg -t get_outputs";
       bk = "~/bin/make_backup.sh";
       tmrs = "systemctl list-timers";
       reb = "sudo nixos-rebuild switch --no-write-lock-file";
@@ -235,41 +235,6 @@
       vscodevim.vim
     ];
   };
-
-  programs.zk = {
-    enable = true;
-    settings = {
-      note = {
-        language = "en";
-        default-title = "Untitled";
-        filename = "{{id}}-{{slug title}}";
-        extension = "md";
-        template = "default.md";
-        id-charset = "alphanum";
-        id-length = 4;
-        id-case = "lower";
-      };
-      extra = {
-        author = "tomrut";
-      };
-    };
-  };
-
-  # programs.emacs = {
-  #   enable = true;
-  # extraPackages = (
-  #   epkgs:
-  #   (with epkgs; [
-  #     org
-  #     org-superstar
-  #   ])
-  # );
-  #
-  # extraConfig = ''
-  #   (require 'org-superstar)
-  #   (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
-  # '';
-  # };
 
   home.shellAliases = {
     kal = "remind -n1 -c -@ ~/.reminders";
