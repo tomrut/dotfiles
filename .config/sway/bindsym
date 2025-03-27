@@ -195,7 +195,8 @@ bindsym $mod+c exec galculator
 bindsym $mod+b exec librewolf
 bindsym $mod+e exec pcmanfm
 bindsym $mod+p exec keepassxc && scratchpad show
-bindsym $mod+m exec $term -T cmus -e cmus
+bindsym $mod+m exec $term -T cmus -e cmus && scratchpad show
+bindsym $mod+n exec $term -T notes -e vim ~/org/inbox.md && scratchpad show
 
 # Snip a selection and pipe to swappy
 bindsym print exec grim -g "$(slurp)" - | swappy -f -
