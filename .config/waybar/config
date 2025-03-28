@@ -77,7 +77,7 @@
 
     "mpris": {
       "format": "{player_icon} {artist} {title}",
-      "format-paused": "{status_icon} {dynamic}",
+      "format-paused": "{player_icon} {artist} {title}",
       "player-icons": {
         "default": "▶",
         "cmus": "🎵"
