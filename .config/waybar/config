@@ -76,7 +76,13 @@
     ],
 
     "mpris": {
-      "format": "{player_icon} {artist} {title}",
+      "format": "{player_icon} {dynamic}",
+      "dynamic-order": ["title", "artist", "album"],
+      "dynamic-importance-order": ["title", "artist", "album"],
+      "dynamic-len": 48,
+      "album-len": 16,
+      "artist-len":14,
+      "title-len": 18,
       "format-paused": "{player_icon} {artist} {title}",
       "player-icons": {
         "default": "▶",
