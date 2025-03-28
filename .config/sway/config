@@ -46,8 +46,8 @@ assign [app_id="librewolf"] workspace 1
 
 for_window {
   [ app_id="org.keepassxc.KeePassXC" ] move to scratchpad, scratchpad show
-  [title='notes'] move to scratchpad, scratchpad show
-  [title='cmus'] move to scratchpad, scratchpad show
+  [ title='notes' ] move to scratchpad, scratchpad show
+  [ title='cmus' ] move to scratchpad, scratchpad show
 }
 
 for_window [class="Yad" instance="yad"] floating enable
@@ -84,7 +84,7 @@ for_window [title="notes"] floating enable, resize set width 80 ppt height 60 pp
 exec gammastep -l 50.000:19.900 &
 
 # Idle configuration
-exec_always swayidle -w before-sleep "gtklock -d" \
+exec swayidle -w before-sleep "gtklock -d" \
             timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
             timeout 300 "gtklock"
 
