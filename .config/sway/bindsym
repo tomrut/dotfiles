@@ -40,6 +40,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+f1 exec gtklock
 bindsym Ctrl+Alt+l exec gtklock
 bindsym Ctrl+Alt+Delete exec $powermenu
+bindsym XF86PowerOff exec $powermenu
 
 # Moving around:
 #

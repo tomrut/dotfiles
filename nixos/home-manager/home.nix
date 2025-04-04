@@ -219,6 +219,23 @@
 
   programs.bat.enable = true;
 
+
+  programs.emacs = {
+    enable = true;
+    extraPackages = (
+      epkgs:
+      (with epkgs; [
+        org
+        org-superstar
+      ])
+    );
+
+    extraConfig = ''
+      (require 'org-superstar)
+      (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
+    '';
+  };
+
   # Let Home Manager install and manage itself.
   programs.git = {
     enable = true;
