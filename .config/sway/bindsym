@@ -37,12 +37,11 @@ floating_modifier $mod normal
 bindsym $mod+Shift+c reload
 
 # Lock screen
-bindsym $mod+f1 exec gtklock
 bindsym Ctrl+Alt+l exec gtklock
 bindsym Ctrl+Alt+Delete exec $powermenu
-bindsym XF86PowerOff exec $powermenu
+# special blue key on thinkpad
+bindsym XF86Launch1 exec $powermenu
 
-# Moving around:
 #
 # Move your focus around
 bindsym $mod+$left focus left
@@ -178,9 +177,6 @@ bindsym Ctrl+$mod+p exec playerctl play-pause
 bindsym Ctrl+$mod+n exec playerctl next
 bindsym Ctrl+$mod+b exec playerctl previous
 
-# special blue key on thinkpad
-# bindsym XF86Launch1 exec
-
 # Special keys to adjust volume via PulseAudio
 bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
 bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
@@ -197,7 +193,7 @@ bindsym $mod+b exec librewolf
 bindsym $mod+e exec pcmanfm
 bindsym $mod+p exec keepassxc && scratchpad show
 bindsym $mod+m exec $term -T cmus -e cmus && scratchpad show
-bindsym $mod+n exec $term -T notes -e vim ~/org/inbox.md && scratchpad show
+bindsym $mod+n exec $term -T notes -e emacs -nw ~/org/inbox.org && scratchpad show
 
 # Snip a selection and pipe to swappy
 bindsym print exec grim -g "$(slurp)" - | swappy -f -

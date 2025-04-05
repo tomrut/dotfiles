@@ -85,8 +85,8 @@ exec gammastep -l 50.000:19.900 &
 
 # Idle configuration
 exec swayidle -w before-sleep "gtklock -d" \
-            timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-            timeout 300 "gtklock"
+            timeout 1800 "systemctl suspend" \
+            timeout 600 'swaymsg "output * power off" && gtklock -d' resume 'swaymsg "output * power on"'
 
 workspace 1
 exec swaymsg "workspace 1"

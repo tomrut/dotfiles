@@ -58,12 +58,6 @@
     criticalPowerAction = "PowerOff";
   };
 
-  services.logind.extraConfig = ''
-    HandlePowerKey=/home/tomek/.config/sway/scripts/powermenu.sh
-    IdleAction=suspend
-    IdleActionSec=30m
-  '';
-
   services.tlp = {
     enable = true;
     settings = {
