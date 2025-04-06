@@ -89,6 +89,7 @@
     pkgs.librewolf
     pkgs.feh
     pkgs.qutebrowser
+    pkgs.eza
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -166,6 +167,16 @@
       m = "neomutt";
       f = "fzf --preview 'bat --color=always {}'";
       rfv = "rfv";
+      ls = "eza --color=always --group-directories-first --icons";
+      l = "eza -bGF --header --git --color=always --group-directories-first --icons";
+      ll = "eza -la --icons --octal-permissions --group-directories-first";
+      llm = "eza -lbGd --header --git --sort=modified --color=always --group-directories-first --icons";
+      la = "eza --long --all --group --group-directories-first";
+      lx = "eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --color=always --group-directories-first --icons";
+
+      # specialty views
+      lt = "eza --tree --level=2 --color=always --group-directories-first --icons";
+      lld = "eza -a | grep -E '^\.'";
     };
     envExtra = ''
       export gpg_cmd=${pkgs.gnupg}/bin/gpg
@@ -229,6 +240,11 @@
     extraConfig = ''
       (require 'org-superstar)
       (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
+      (setq org-agenda-files (quote ("~/org")))
+      (global-set-key "\C-ca" 'org-agenda)
+      (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+      (global-set-key "\C-cl" 'org-store-link)
+     
     '';
   };
 
