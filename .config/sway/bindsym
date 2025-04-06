@@ -190,6 +190,7 @@ bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 # app fast run bindings
 bindsym $mod+c exec galculator
 bindsym $mod+b exec librewolf
+bindsym $mod+t exec qutebrowser
 bindsym $mod+e exec pcmanfm
 bindsym $mod+p exec keepassxc && scratchpad show
 bindsym $mod+m exec $term -T cmus -e cmus && scratchpad show

@@ -43,6 +43,7 @@ output $output2 pos 1920 0
 output $output3 pos 3840 0
 
 assign [app_id="librewolf"] workspace 1
+assign [app_id="qutebrowser"] workspace 1
 
 for_window {
   [ app_id="org.keepassxc.KeePassXC" ] move to scratchpad, scratchpad show
@@ -90,7 +91,7 @@ exec swayidle -w before-sleep "gtklock -d" \
 
 workspace 1
 exec swaymsg "workspace 1"
-exec librewolf
+exec qutebrowser
 exec sleep 1
 
 workspace 2
