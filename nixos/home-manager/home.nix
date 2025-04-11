@@ -90,6 +90,7 @@
     pkgs.feh
     pkgs.qutebrowser
     pkgs.eza
+    pkgs.wordbook
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -167,7 +168,6 @@
       m = "neomutt";
       f = "fzf --preview 'bat --color=always {}'";
       rfv = "rfv";
-      ls = "eza --color=always --group-directories-first --icons";
       l = "eza -bGF --header --git --color=always --group-directories-first --icons";
       ll = "eza -la --icons --octal-permissions --group-directories-first";
       llm = "eza -lbGd --header --git --sort=modified --color=always --group-directories-first --icons";
