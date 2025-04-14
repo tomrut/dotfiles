@@ -228,7 +228,7 @@
     cmus
     upower
     upower-notify
-
+    ranger
     # podman stuff
     dive # look into docker image layers
     podman-tui # status of containers in the terminal
