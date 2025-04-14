@@ -216,7 +216,6 @@
     wofi-pass
     wofi-emoji
     batmon
-    pcmanfm
     galculator
     pavucontrol
     calcurse
