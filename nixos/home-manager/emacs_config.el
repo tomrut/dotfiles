@@ -38,29 +38,32 @@
 )
 
 (setq org-capture-templates
-   (doct `(("Flashcard" :keys "f"
-	    :file "~/org/flashcards.org"
-	    :template "* %^{title} \n** %? *%\\1* .\n*** %^{title_pl} \n****  *%\\2* ."
-	    :children (("Expr"       :keys "1"   :headline "Expression")
-		       ("Job"        :keys "2"   :headline "Job")
-		       ("Animal"     :keys "3"   :headline "Animal")
-		       ("Plant"      :keys "4"   :headline "Plant")
-		       ("Place"      :keys "5"   :headline "Place")
-		       ("Adjective"  :keys "6"   :headline "Adjective")
-		       ("Verb"       :keys "7"   :headline "Verb")
-		       ("Noun     "  :keys "8"   :headline "Noun")
-		       ("General  "  :keys "9"   :headline "General")
-		       ("Food     "  :keys "f"   :headline "Food")
-		       ("Health   "  :keys "h"   :headline "Health")
-		       ("Other"      :keys "0"
-			:function ,(defun +org-capture-project-heading ()
-				     (if-let ((category (read-string "Category:" "")))
-					 (let ((headline (org-find-exact-headline-in-buffer category)))
-					   (goto-char (or headline (point-max)))
-					   (unless headline (insert "* " category))
-					   (org-capture-put :target-entry-p t))
-				       (user-error "No category selected")))
-			)
+      (doct `(
+	      ("Tasks", :keys "t", :file "~/org/inbox.org" :todo-state "TODO" :headline "zadania"
+	       :template "* %{todo-state} %? SCHEDULED: %^{Scheduled}t DEADLINE: %^{Deadline}t ")
+	      ("Flashcard" :keys "f"
+	       :file "~/org/flashcards.org"
+	       :template "* %^{title} \n** %? *%\\1* .\n*** %^{title_pl} \n****  *%\\2* ."
+	       :children (("Expr"       :keys "1"   :headline "Expression")
+			  ("Job"        :keys "2"   :headline "Job")
+			  ("Animal"     :keys "3"   :headline "Animal")
+			  ("Plant"      :keys "4"   :headline "Plant")
+			  ("Place"      :keys "5"   :headline "Place")
+			  ("Adjective"  :keys "6"   :headline "Adjective")
+			  ("Verb"       :keys "7"   :headline "Verb")
+			  ("Noun     "  :keys "8"   :headline "Noun")
+			  ("General  "  :keys "9"   :headline "General")
+			  ("Food     "  :keys "f"   :headline "Food")
+			  ("Health   "  :keys "h"   :headline "Health")
+			  ("Other"      :keys "0"
+			   :function ,(defun +org-capture-project-heading ()
+					(if-let ((category (read-string "Category:" "")))
+					    (let ((headline (org-find-exact-headline-in-buffer category)))
+					      (goto-char (or headline (point-max)))
+					      (unless headline (insert "* " category))
+					      (org-capture-put :target-entry-p t))
+					  (user-error "No category selected")))
+			   )
 
 		      )
 	    ))
