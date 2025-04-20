@@ -4,6 +4,8 @@
 (global-set-key "\C-ca" 'org-agenda)
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (global-set-key "\C-cl" 'org-store-link)
+(global-set-key (kbd "C-c c") #'org-capture)
+(global-set-key (kbd "C-c l") #'org-store-link)
 
 (use-package org-roam
   :ensure t
@@ -38,7 +40,7 @@
 (setq org-capture-templates
    (doct `(("Flashcard" :keys "f"
 	    :file "~/org/flashcards.org"
-	    :template "* %^{title} \n** %? \n*** %^{title_pl} \n**** "
+	    :template "* %^{title} \n** %? *%\\1* .\n*** %^{title_pl} \n****  *%\\2* ."
 	    :children (("Expr"       :keys "1"   :headline "Expression")
 		       ("Job"        :keys "2"   :headline "Job")
 		       ("Animal"     :keys "3"   :headline "Animal")
