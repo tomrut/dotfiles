@@ -235,46 +235,11 @@
         org
         org-superstar
         org-roam
+        doct
       ])
     );
 
-    extraConfig = ''
-            (require 'org-superstar)
-            (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
-            (setq org-agenda-files (quote ("~/org")))
-            (global-set-key "\C-ca" 'org-agenda)
-            (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
-            (global-set-key "\C-cl" 'org-store-link)
-            (use-package org-roam
-              :ensure t
-              :custom
-              (org-roam-directory "~/org/org-roam")
-              (org-roam-completion-everywhere t)
-              (org-roam-capture-templates
-               '(("d" "default" plain
-                  "%?"
-                  :if-new (file+head "%<%Y%m%d%H%M%S>-''${slug}.org" "#+title: ''${title}\n")
-                  :unnarrowed t)
-                 ("l" "programming language" plain
-                  "* Characteristics\n\n- Family: %?\n- Inspired by: \n\n* Reference:\n\n"
-                  :if-new (file+head "%<%Y%m%d%H%M%S>-''${slug}.org" "#+title: ''${title}\n")
-                  :unnarrowed t)
-                 ("b" "book notes" plain
-                  "\n* Source\n\nAuthor: %^{Author}\nTitle: ''${title}\nYear: %^{Year}\n\n* Summary\n\n%?"
-                  :if-new (file+head "%<%Y%m%d%H%M%S>-''${slug}.org" "#+title: ''${title}\n")
-                  :unnarrowed t)
-                 ))
-              :bind (("C-c n l" . org-roam-buffer-toggle)
-                     ("C-c n f" . org-roam-node-find)
-                     ("C-c n i" . org-roam-node-insert)
-            	       ("C-c n c" . org-roam-capture)
-            	       ("C-c n j" . org-roam-dailies-capture-today)
-              )
-              :config
-      	      (org-roam-db-autosync-mode)
-              (org-roam-setup)
-            )
-    '';
+    extraConfig = builtins.readFile ./emacs_config.el;
   };
 
   # Let Home Manager install and manage itself.
