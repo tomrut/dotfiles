@@ -91,6 +91,7 @@
     pkgs.qutebrowser
     pkgs.eza
     pkgs.wordbook
+    pkgs.shotwell
     (pkgs.aspellWithDicts (dicts: with dicts; [ en en-computers pl ]))
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
