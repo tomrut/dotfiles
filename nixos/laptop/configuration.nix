@@ -118,20 +118,20 @@
   };
 
   # Enable the X11 windowing system.
-  # services.xserver.enable = true;
+  services.xserver.enable = true;
 
   # Enable the Cinnamon Desktop Environment.
-  # services.xserver.displayManager.lightdm.enable = true;
-  # services.xserver.desktopManager.cinnamon.enable = true;
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.desktopManager.cinnamon.enable = true;
 
 
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-  };
-  programs.light.enable = true;
-  security.pam.services.gtklock.text = lib.readFile "${pkgs.gtklock}/etc/pam.d/gtklock";
-
+  # programs.sway = {
+  #   enable = true;
+  #   wrapperFeatures.gtk = true;
+  # };
+  # programs.light.enable = true;
+  # security.pam.services.gtklock.text = lib.readFile "${pkgs.gtklock}/etc/pam.d/gtklock";
+  #
 
   # programs.sway.enable = true;
   # security.pam.services.swaylock = { };
@@ -185,56 +185,55 @@
     "flakes"
   ];
 
-  nixpkgs.config.allowUnfree = false;
+  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     libreoffice-still
     cifs-utils
-    gtklock
-    gtklock-powerbar-module
-    gtklock-userinfo-module
-    swaybg
-    swayr
-    fuzzel
-    swayimg # image viewer for sway
-    swappy # wayland snapshot tool
-    swayidle
-    waybar
-    autotiling
-    # kanshi # dynamic enabling / disabling inputs
-    slurp # select region in wayland compositor - use with grim
-    grim
-    mako
-    wl-clipboard
-    gammastep
-    wdisplays
-    libnotify
-    yad
-    wofi
-    wofi-pass
-    wofi-emoji
-    batmon
-    galculator
-    pavucontrol
-    calcurse
-    s-tui
-    dua
-    bottom
-    jq
-    xdg-desktop-portal-wlr
-    playerctl
-    cmus
-    upower
-    upower-notify
-    ranger
-    # podman stuff
-    dive # look into docker image layers
-    podman-tui # status of containers in the terminal
-    docker-compose # start group of containers for dev
-    #podman-compose # start group of containers for dev
-
+    # gtklock
+    # gtklock-powerbar-module
+    # gtklock-userinfo-module
+    # swaybg
+    # swayr
+    # fuzzel
+    # swayimg # image viewer for sway
+    # swappy # wayland snapshot tool
+    # swayidle
+    # waybar
+    # autotiling
+    # # kanshi # dynamic enabling / disabling inputs
+    # slurp # select region in wayland compositor - use with grim
+    # grim
+    # mako
+    # wl-clipboard
+    # gammastep
+    # wdisplays
+    # libnotify
+    # yad
+    # wofi
+    # wofi-pass
+    # wofi-emoji
+    # batmon
+    # galculator
+    # pavucontrol
+    # calcurse
+    # s-tui
+    # dua
+    # bottom
+    # jq
+    # xdg-desktop-portal-wlr
+    # playerctl
+    # cmus
+    # upower
+    # upower-notify
+    # ranger
+    # # podman stuff
+    # dive # look into docker image layers
+    # podman-tui # status of containers in the terminal
+    # docker-compose # start group of containers for dev
+    # #podman-compose # start group of containers for dev
   ];
 
 
