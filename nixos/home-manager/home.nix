@@ -88,7 +88,6 @@
     pkgs.nvd
     pkgs.librewolf
     pkgs.feh
-    pkgs.qutebrowser
     pkgs.eza
     pkgs.wordbook
     pkgs.shotwell
