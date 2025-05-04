@@ -30,6 +30,23 @@
     };
   };
 
+  systemd.user.services = {
+    display_update_info = {
+      Unit = {
+        Description = "display update information";
+      };
+      Service = {
+        Type = "oneshot";
+        ExecStart = toString (
+          pkgs.writeShellScript "call_check_updates" ''
+            ${pkgs.bash}/bin/bash /home/tomek/bin/check_updates.sh
+          ''
+        );
+      };
+      Install.WantedBy = [ "default.target" ];
+    };
+  };
+
   systemd.user.timers = {
 
     mail_sync = {
@@ -38,6 +55,18 @@
         Unit = "mail_sync";
         OnBootSec = "10m";
         OnUnitActiveSec = "10m";
+      };
+      Install.WantedBy = [ "timers.target" ];
+    };
+
+  };
+
+  systemd.user.timers = {
+    display_update_info = {
+      Unit.Description = "timer to display update info";
+      Timer = {
+        Unit = "display_update_info";
+        OnBootSec = "25m";
       };
       Install.WantedBy = [ "timers.target" ];
     };
@@ -91,6 +120,8 @@
     pkgs.eza
     pkgs.wordbook
     pkgs.shotwell
+    pkgs.jq
+    pkgs.libnotify
     (pkgs.aspellWithDicts (dicts: with dicts; [ en en-computers pl ]))
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
