@@ -17,12 +17,12 @@
     , ...
     }:
     {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.nixos-laptop = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         system = "x86_64-linux";
         modules = [
           ./laptop/configuration.nix
-
+          # ./common/podman.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.extraSpecialArgs = { inherit inputs; };
@@ -39,6 +39,7 @@
         modules = [
           ./desktop/configuration.nix
           ./common/swaywm.nix
+          ./common/podman.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.extraSpecialArgs = { inherit inputs; };
