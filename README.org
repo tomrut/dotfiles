@@ -1,3 +1,4 @@
+
 #+title: Dot files and scripts used on Linux
 #+AUTHOR: tomrut
 #+OPTIONS: toc:3
@@ -14,6 +15,15 @@ There are three general nixos configurations sitting in the nixos directory.
 *** nixvim
 ** nixos-server - small nix server with samba and sshd for storing and sharing data
 
+* Nixos commands
+
+
+#+begin_src bash
+
+  sudo nixos-rebuild switch --no-write-lock-file --flake .#nixos-laptop
+    
+
+#+end_src
 
 * Scripts
 ** Playing youtube using ~yt-dlp~ + ~mpv~ player.
@@ -220,6 +230,28 @@ perl -MFile::Path -we '
     }'
 
 #+end_src
+* Draft stuff
+** [[https://stackoverflow.com/questions/53008063/how-to-alert-on-jvm-memory-usage-in-prometheus-with-micrometer-and-alertmanager/53073467#53073467][StackOverflowRegardingMemoryAlert]]
+
+#+begin_src text
+  sum(avg_over_time(jvm_memory_used_bytes{area="heap"}[1m]))by(application,instance)*100/sum(avg_over_time(jvm_memory_max_bytes{area="heap"}[5m]))by(application,instance)
+  
+    - name: jvm
+      rules:
+        - alert: jvm_heap_warning
+          expr: sum(avg_over_time(jvm_memory_used_bytes{area="heap"}[1m]))by(application,instance)*100/sum(avg_over_time(jvm_memory_max_bytes{area="heap"}[1m]))by(application,instance) >= 80
+            for: 1m
+            labels:
+              severity: warning
+            annotations:
+              summary: "JVM heap warning"
+    description: "JVM heap of instance `{{$labels.instance}}` from application `{{$labels.application}}` is above 80% for one minute. (current=`{{$value}}%`)"
+
+
+
+#+end_src
+** [[https://xeiaso.net/blog/prometheus-grafana-loki-nixos-2020-11-20/][prometheus-graphana_loki-nixos]]
+** [[https://www.baeldung.com/spring-boot-actuators][spring-boot-actuators]]
 * ReactJS
 ** Styled components - for attaching styles to specific components
 
