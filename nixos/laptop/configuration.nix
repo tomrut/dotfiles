@@ -81,23 +81,34 @@
     };
   };
 
+  services.prometheus = {
+    enable = true;
+    port = 9001;
+    configText = ''
+      scrape_configs:
+        - job_name: 'spring-boot-app'
+          metrics_path: '/actuator/prometheus'
+          static_configs:
+            - targets: ['localhost:8080']
+    '';
 
-  # services.gnome.gnome-keyring.enable = true;
+  };
 
 
   # Enable common container config files in /etc/containers
-  virtualisation.containers.enable = true;
-  virtualisation = {
-    podman = {
-      enable = true;
-
-      # Create a `docker` alias for podman, to use it as a drop-in replacement
-      dockerCompat = true;
-
-      # Required for containers under podman-compose to be able to talk to each other.
-      defaultNetwork.settings.dns_enabled = true;
-    };
-  };
+  # virtualisation.containers.enable = true;
+  # virtualisation = {
+  #   podman = {
+  #     enable = true;
+  #
+  #     # Create a `docker` alias for podman, to use it as a drop-in replacement
+  #     dockerCompat = true;
+  #
+  #     # Required for containers under podman-compose to be able to talk to each other.
+  #     defaultNetwork.settings.dns_enabled = true;
+  #   };
+  # };
+  #
 
   # Set your time zone.
   time.timeZone = "Europe/Warsaw";
@@ -125,16 +136,6 @@
   services.xserver.desktopManager.cinnamon.enable = true;
 
 
-  # programs.sway = {
-  #   enable = true;
-  #   wrapperFeatures.gtk = true;
-  # };
-  # programs.light.enable = true;
-  # security.pam.services.gtklock.text = lib.readFile "${pkgs.gtklock}/etc/pam.d/gtklock";
-  #
-
-  # programs.sway.enable = true;
-  # security.pam.services.swaylock = { };
   services.gnome.gnome-keyring.enable = true;
 
   #
@@ -192,43 +193,6 @@
   environment.systemPackages = with pkgs; [
     libreoffice-still
     cifs-utils
-    # gtklock
-    # gtklock-powerbar-module
-    # gtklock-userinfo-module
-    # swaybg
-    # swayr
-    # fuzzel
-    # swayimg # image viewer for sway
-    # swappy # wayland snapshot tool
-    # swayidle
-    # waybar
-    # autotiling
-    # # kanshi # dynamic enabling / disabling inputs
-    # slurp # select region in wayland compositor - use with grim
-    # grim
-    # mako
-    # wl-clipboard
-    # gammastep
-    # wdisplays
-    # libnotify
-    # yad
-    # wofi
-    # wofi-pass
-    # wofi-emoji
-    # batmon
-    # galculator
-    # pavucontrol
-    # calcurse
-    # s-tui
-    # dua
-    # bottom
-    # jq
-    # xdg-desktop-portal-wlr
-    # playerctl
-    # cmus
-    # upower
-    # upower-notify
-    # ranger
     # # podman stuff
     # dive # look into docker image layers
     # podman-tui # status of containers in the terminal

@@ -122,6 +122,7 @@
     pkgs.shotwell
     pkgs.jq
     pkgs.libnotify
+    pkgs.gnome-clocks
     (pkgs.aspellWithDicts (dicts: with dicts; [ en en-computers pl ]))
 
     # # It is sometimes useful to fine-tune packages, for example, by applying

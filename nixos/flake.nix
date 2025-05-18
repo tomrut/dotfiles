@@ -11,11 +11,10 @@
   };
 
   outputs =
-    inputs@{
-      nixpkgs,
-      home-manager,
-      nixvim,
-      ...
+    inputs@{ nixpkgs
+    , home-manager
+    , nixvim
+    , ...
     }:
     {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
@@ -39,7 +38,7 @@
         system = "x86_64-linux";
         modules = [
           ./desktop/configuration.nix
-
+          ./common/swaywm.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.extraSpecialArgs = { inherit inputs; };

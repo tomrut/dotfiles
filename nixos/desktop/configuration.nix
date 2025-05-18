@@ -83,6 +83,9 @@
       safe.directory = "/home/tomek/dotfiles";
     };
   };
+
+  environment.shells = with pkgs; [ zsh ];
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tomek = {
     isNormalUser = true;
@@ -93,6 +96,7 @@
     ];
     packages = with pkgs; [
     ];
+    shell = pkgs.zsh;
   };
 
   # List packages installed in system profile. To search, run:
