@@ -23,6 +23,7 @@
         modules = [
           ./laptop/configuration.nix
           # ./common/podman.nix
+          #./common/monitoring.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.extraSpecialArgs = { inherit inputs; };

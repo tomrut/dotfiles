@@ -81,19 +81,6 @@
     };
   };
 
-  services.prometheus = {
-    enable = true;
-    port = 9001;
-    configText = ''
-      scrape_configs:
-        - job_name: 'spring-boot-app'
-          metrics_path: '/actuator/prometheus'
-          static_configs:
-            - targets: ['localhost:8080']
-    '';
-
-  };
-
 
   # Set your time zone.
   time.timeZone = "Europe/Warsaw";
