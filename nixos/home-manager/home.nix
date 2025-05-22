@@ -47,6 +47,24 @@
     };
   };
 
+
+  systemd.user.services = {
+    display_notifications = {
+      Unit = {
+        Description = "display notifications";
+      };
+      Service = {
+        Type = "oneshot";
+        ExecStart = toString (
+          pkgs.writeShellScript "display_notifications" ''
+            ${pkgs.bash}/bin/bash /home/tomek/bin/display_notif.sh
+          ''
+        );
+      };
+      Install.WantedBy = [ "default.target" ];
+    };
+  };
+
   systemd.user.timers = {
 
     mail_sync = {
@@ -55,6 +73,20 @@
         Unit = "mail_sync";
         OnBootSec = "10m";
         OnUnitActiveSec = "10m";
+      };
+      Install.WantedBy = [ "timers.target" ];
+    };
+
+  };
+
+  systemd.user.timers = {
+
+    display_notifications = {
+      Unit.Description = "timer for display notifications";
+      Timer = {
+        Unit = "display_notifications";
+        OnBootSec = "1m";
+        OnUnitActiveSec = "3h";
       };
       Install.WantedBy = [ "timers.target" ];
     };
