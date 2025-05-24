@@ -51,36 +51,36 @@
       [ "${automount_opts},credentials=/etc/nixos/smb-secrets,uid=1001,gid=100" ];
   };
 
-  services.thermald.enable = true;
-  services.upower = {
-    enable = true;
-    timeCritical = 900;
-    criticalPowerAction = "PowerOff";
-  };
+  # services.thermald.enable = true;
+  # services.upower = {
+  #   enable = true;
+  #   timeCritical = 900;
+  #   criticalPowerAction = "PowerOff";
+  # };
 
-  services.tlp = {
-    enable = true;
-    settings = {
-      CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-
-      CPU_MIN_PERF_ON_AC = 0;
-      CPU_MAX_PERF_ON_AC = 100;
-      CPU_MIN_PERF_ON_BAT = 0;
-      CPU_MAX_PERF_ON_BAT = 20;
-
-      #Optional helps save long term battery health
-      START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
-      STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
-
-      START_CHARGE_THRESH_BAT1 = 40; # 40 and bellow it starts to charge
-      STOP_CHARGE_THRESH_BAT1 = 80; # 80 and above it stops charging
-    };
-  };
-
+  # services.tlp = {
+  #   enable = true;
+  #   settings = {
+  #     CPU_SCALING_GOVERNOR_ON_AC = "performance";
+  #     CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+  #
+  #     CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+  #     CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+  #
+  #     CPU_MIN_PERF_ON_AC = 0;
+  #     CPU_MAX_PERF_ON_AC = 100;
+  #     CPU_MIN_PERF_ON_BAT = 0;
+  #     CPU_MAX_PERF_ON_BAT = 20;
+  #
+  #     #Optional helps save long term battery health
+  #     START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
+  #     STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+  #
+  #     START_CHARGE_THRESH_BAT1 = 40; # 40 and bellow it starts to charge
+  #     STOP_CHARGE_THRESH_BAT1 = 80; # 80 and above it stops charging
+  #   };
+  # };
+  #
 
   # Set your time zone.
   time.timeZone = "Europe/Warsaw";

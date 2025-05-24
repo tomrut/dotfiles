@@ -120,7 +120,7 @@
     pkgs.ripgrep
     pkgs.gcc
     pkgs.mc
-    pkgs.nodejs_23
+    pkgs.nodejs_24
     pkgs.yt-dlp
     pkgs.keepassxc
     pkgs.ripgrep
