@@ -128,6 +128,10 @@
     pkgs.ripgrep
     pkgs.material-design-icons
     pkgs.nerd-fonts.fira-code
+    pkgs.nerd-fonts.fira-mono
+    pkgs.nerd-fonts.symbols-only
+    pkgs.nerd-fonts.monaspace
+    pkgs.nerd-fonts.jetbrains-mono
     pkgs.unzip
     pkgs.mpg123
     pkgs.cargo
