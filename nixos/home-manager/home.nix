@@ -114,6 +114,8 @@
   home.stateVersion = "23.11"; # Please read the comment before changing.
   # The home.packages option allows you to install Nix packages into your
   # environment.
+
+
   home.packages = [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
@@ -125,7 +127,7 @@
     pkgs.keepassxc
     pkgs.ripgrep
     pkgs.material-design-icons
-    pkgs.fira-code-nerdfont
+    pkgs.nerd-fonts.fira-code
     pkgs.unzip
     pkgs.mpg123
     pkgs.cargo
@@ -319,10 +321,10 @@
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
-    extensions = with pkgs.vscode-extensions; [
-      dracula-theme.theme-dracula
-      vscodevim.vim
-    ];
+    # extensions = with pkgs.vscode-extensions; [
+    #   dracula-theme.theme-dracula
+    #   vscodevim.vim
+    # ];
   };
 
   home.shellAliases = {
