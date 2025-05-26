@@ -22,6 +22,7 @@
         system = "x86_64-linux";
         modules = [
           ./laptop/configuration.nix
+          ./common/swaywm.nix
           # ./common/podman.nix
           #./common/monitoring.nix
           home-manager.nixosModules.home-manager

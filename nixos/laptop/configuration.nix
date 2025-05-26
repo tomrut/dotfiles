@@ -101,14 +101,6 @@
     LC_TIME = "pl_PL.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the Cinnamon Desktop Environment.
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.desktopManager.cinnamon.enable = true;
-
-
   services.gnome.gnome-keyring.enable = true;
 
   #
