@@ -43,6 +43,6 @@ else
 fi
 
 # pending_updates=$(echo -e $pending_updates|sed 's/^[ \t]*//;s/[ \t]*$//'|jq -Rsa . )
-notify-send -u ${reboot_required} -t 120000 -w "Update status: ${reboot_required}" "${pending_updates} "
+notify-send -u ${reboot_required} "Update status: ${reboot_required}" "${pending_updates} "
 
-# echo "{\"text\": \"$reboot_required\",\"tooltip\":$pending_updates}"
+echo "{\"text\": \"$reboot_required\",\"tooltip\":$pending_updates}"
