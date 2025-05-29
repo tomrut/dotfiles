@@ -37,7 +37,7 @@ floating_modifier $mod normal
 bindsym $mod+Shift+c reload
 
 # Lock screen
-bindsym Ctrl+Alt+l exec gtklock
+bindsym Ctrl+Alt+l exec swaylock -f -c 000000
 bindsym Ctrl+Alt+Delete exec $powermenu
 # special blue key on thinkpad
 bindsym XF86Launch1 exec $powermenu

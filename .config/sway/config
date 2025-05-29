@@ -80,9 +80,9 @@ for_window [class="Emacs"] move to scratchpad, scratchpad show, floating enable,
 exec gammastep -l 50.000:19.900 &
 
 # Idle configuration
-exec swayidle -w before-sleep "gtklock -d" \
+exec swayidle -w before-sleep "swaylock -f -c 000000" \
             timeout 1800 "systemctl suspend" \
-            timeout 600 'swaymsg "output * power off" && gtklock -d' resume 'swaymsg "output * power on"'
+            timeout 600 'swaymsg "output * power off" && swaylock -f -c 000000' resume 'swaymsg "output * power on"'
 
 workspace 1
 exec swaymsg "workspace 1"

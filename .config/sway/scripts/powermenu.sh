@@ -14,7 +14,7 @@ case "$choice" in
         systemctl suspend
         ;;
     "󰌾   Lock")
-      gtklock
+        swaylock -f -c 000000 
         ;;
     "󰍃   Logout")
         swaymsg exit

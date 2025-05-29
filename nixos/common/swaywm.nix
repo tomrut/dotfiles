@@ -11,15 +11,11 @@
     wrapperFeatures.gtk = true;
   };
   programs.light.enable = true;
-  security.pam.services.gtklock.text = lib.readFile "${pkgs.gtklock}/etc/pam.d/gtklock";
-
   security.pam.services.swaylock = { };
 
   environment.systemPackages = with pkgs; [
-    gtklock
-    gtklock-powerbar-module
-    gtklock-userinfo-module
     swaybg
+    swaylock
     swayr
     fuzzel
     swayimg # image viewer for sway
