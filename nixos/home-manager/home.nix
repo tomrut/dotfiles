@@ -39,6 +39,12 @@
         Type = "oneshot";
         ExecStart = toString (
           pkgs.writeShellScript "call_check_updates" ''
+            export PATH="''${PATH}:${pkgs.coreboot-utils}/bin"
+            export WAYLAND_DISPLAY=wayland-1
+            export XDG_SESSION_TYPE=wayland
+            #eval `${pkgs.dbus}/bin/dbus-launch --sh-syntax`
+            ${pkgs.dbus}/bin/dbus-update-activation-environment
+            export DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS
             ${pkgs.bash}/bin/bash /home/tomek/bin/check_updates.sh
           ''
         );

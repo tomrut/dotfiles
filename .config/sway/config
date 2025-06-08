@@ -5,7 +5,7 @@ exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \
     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec emacs --daemon
-exec autotiling
+exec autotiling -l 2
 exec_always ~/bin/setup_wl_displays.sh
 exec_always --no-startup-id foot --server
 exec_always swayrd
@@ -30,6 +30,7 @@ default_floating_border pixel 2
 smart_borders on
 smart_gaps on
 titlebar_border_thickness 0
+
 
 font pango:Meslo LGM Nerd Font 14
 # Default wallpaper (more resolutions are available in /run/current-system/sw/share/backgrounds/sway/)

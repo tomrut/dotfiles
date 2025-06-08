@@ -72,7 +72,7 @@
         "battery",
         "group/settings",
         "clock",
-        "group/power",
+        "custom/power",
     ],
 
     "mpris": {
@@ -232,44 +232,9 @@
         },
     },
 
-    "group/power": {
-        "orientation": "inherit",
-        "drawer": {
-            "transition-duration": 500,
-            "children-class": "power-drawer",
-            "transition-left-to-right": true,
-        },
-        "modules": [
-            "custom/power",
-            "custom/reboot",
-            "custom/log-off",
-            "custom/suspend",
-            "custom/lock",
-        ]
-    },
     "custom/power": {
         "format":"⏻",
-        "on-click": "systemctl poweroff",
-        "tooltip-format": "Shutdown"
-    },
-    "custom/reboot": {
-        "format":"",
-        "on-click": "systemctl reboot",
-        "tooltip-format": "Reboot"
-    },
-    "custom/log-off": {
-        "format":"󰍃",
-        "on-click": "swaymsg exit",
-        "tooltip-format": "Log out"
-    },
-    "custom/suspend": {
-        "format":"󰤄",
-        "on-click": "systemctl suspend",
-        "tooltip-format": "Suspend"
-    },
-    "custom/lock": {
-        "format":"󰌾",
-        "on-click": "gtklock",
-        "tooltip-format": "Lock"
+        "on-click": "~/.config/sway/scripts/powermenu.sh",
+        "tooltip-format": "Power menu"
     },
 }
