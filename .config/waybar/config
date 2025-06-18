@@ -147,10 +147,10 @@
     "wireplumber": {
         "format": "{icon} {volume}%",
         "format-muted": "󰝟 muted",
-        "on-click": "pavucontrol",
-        "on-click-right": "pamixer --toggle-mute",
+        "on-click": "footclient -T mixer -e pulsemixer",
+        "on-click-right": "pulsemixer --toggle-mute",
         "format-icons": ["󰕿", "󰖀", "󰕾"],
-        "tooltip-format": "L󰍽: pavucontrol\nR󰍽: Toggle mute\nNode: {node_name}",
+      "tooltip-format": "L󰍽:pulsemixer \nR󰍽: Toggle mute\nNode: {node_name}",
     },
 
     "battery": {
@@ -235,6 +235,6 @@
     "custom/power": {
         "format":"⏻",
         "on-click": "~/.config/sway/scripts/powermenu.sh",
-        "tooltip-format": "Power menu"
+        "tooltip-format": "Powermenu"
     },
 }

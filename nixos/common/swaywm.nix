@@ -37,7 +37,6 @@
     wofi-emoji
     batmon
     galculator
-    pavucontrol
     calcurse
     s-tui
     dua
@@ -49,6 +48,7 @@
     upower
     upower-notify
     ranger
+    pulsemixer
   ];
 
 }
