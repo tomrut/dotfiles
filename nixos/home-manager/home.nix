@@ -39,14 +39,9 @@
         Type = "oneshot";
         ExecStart = toString (
           pkgs.writeShellScript "call_check_updates" ''
-            export PATH="''${PATH}:${pkgs.coreboot-utils}/bin"
-            export WAYLAND_DISPLAY=wayland-1
-            export XDG_SESSION_TYPE=wayland
-            #eval `${pkgs.dbus}/bin/dbus-launch --sh-syntax`
-            ${pkgs.dbus}/bin/dbus-update-activation-environment
-            export DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS
+            export PATH="''${PATH}:${pkgs.coreutils-full}/bin:${pkgs.libnotify}/bin"
             ${pkgs.bash}/bin/bash /home/tomek/bin/check_updates.sh
-          ''
+            ''
         );
       };
       Install.WantedBy = [ "default.target" ];
@@ -63,6 +58,7 @@
         Type = "oneshot";
         ExecStart = toString (
           pkgs.writeShellScript "display_notifications" ''
+            export PATH="''${PATH}:${pkgs.remind}/bin:${pkgs.libnotify}/bin"
             ${pkgs.bash}/bin/bash /home/tomek/bin/display_notif.sh
           ''
         );
