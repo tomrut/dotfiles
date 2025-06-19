@@ -101,6 +101,19 @@
         "force user" = "samba";
         "force group" = "users";
       };
+
+
+      tjr = {
+        "path" = "/home/tjr";
+        "browseable" = "yes";
+        "read only" = "no";
+        "guest ok" = "no";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+        "force user" = "tjr";
+        "force group" = "users";
+      };
+
     };
   };
 
@@ -120,6 +133,12 @@
   };
 
   users.users.samba = {
+    isNormalUser = true;
+    extraGroups = [ ]; # Enable ‘sudo’ for the user.
+    packages = with pkgs; [ ];
+  };
+
+  users.users.tjr = {
     isNormalUser = true;
     extraGroups = [ ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [ ];
