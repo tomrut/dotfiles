@@ -40,6 +40,8 @@
         ExecStart = toString (
           pkgs.writeShellScript "call_check_updates" ''
             export PATH="''${PATH}:${pkgs.coreutils-full}/bin:${pkgs.libnotify}/bin"
+            ${pkgs.systemd}/bin/systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK DBUS_SESSION_BUS_ADDRESS
+            # ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK DBUS_SESSION_BUS_ADDRESS
             ${pkgs.bash}/bin/bash /home/tomek/bin/check_updates.sh
             ''
         );
@@ -59,6 +61,8 @@
         ExecStart = toString (
           pkgs.writeShellScript "display_notifications" ''
             export PATH="''${PATH}:${pkgs.remind}/bin:${pkgs.libnotify}/bin"
+            ${pkgs.systemd}/bin/systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK DBUS_SESSION_BUS_ADDRESS
+            # ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK DBUS_SESSION_BUS_ADDRESS
             ${pkgs.bash}/bin/bash /home/tomek/bin/display_notif.sh
           ''
         );
