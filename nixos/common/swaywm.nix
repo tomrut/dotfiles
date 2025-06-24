@@ -6,6 +6,18 @@
 }:
 
 {
+
+  services.displayManager = {
+    sddm = {
+      enable = true;
+      wayland.enable = true;
+      theme = "catppuccin-mocha";
+      package = pkgs.kdePackages.sddm;
+    };
+    defaultSession = "sway";
+  };
+
+
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
@@ -49,6 +61,7 @@
     upower-notify
     ranger
     pulsemixer
+    catppuccin-sddm
   ];
 
 }
