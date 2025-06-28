@@ -113,6 +113,21 @@ bar {
    position top
    status_command i3status
    mode hide
+
+   font pango:Roboto 11
+   height 25
+   tray_output none
+
+   colors {
+     background #17212b
+     statusline #ffffff
+     separator  #666666
+     active_workspace   #2c3e50 #2c3e50 #1abc9c
+     focused_workspace  #2c3e50 #2c3e50 #1abc9c
+     inactive_workspace #2c3e50 #2c3e50 #ecf0f1
+     urgent_workspace   #e74c3c #e74c3c #ecf0f1
+  }
+
 }
 
 
