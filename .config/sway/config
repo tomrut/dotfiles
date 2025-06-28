@@ -110,7 +110,9 @@ input "type:keyboard" {
 
 # Bar
 bar {
-   swaybar_command waybar
+   position top
+   status_command i3status
+   mode hide
 }
 
 

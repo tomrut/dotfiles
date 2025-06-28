@@ -33,7 +33,6 @@
     swayimg # image viewer for sway
     swappy # wayland snapshot tool
     swayidle
-    waybar
     autotiling
     # kanshi # dynamic enabling / disabling inputs
     slurp # select region in wayland compositor - use with grim
@@ -43,16 +42,10 @@
     gammastep
     wdisplays
     libnotify
-    yad
     wofi
     wofi-pass
     wofi-emoji
-    batmon
     galculator
-    calcurse
-    s-tui
-    dua
-    bottom
     jq
     xdg-desktop-portal-wlr
     playerctl
@@ -62,6 +55,7 @@
     ranger
     pulsemixer
     catppuccin-sddm
+    i3status
   ];
 
 }
