@@ -81,8 +81,8 @@ exec swayidle -w before-sleep "swaylock -f -c 000000" \
 
 workspace 1
 exec swaymsg "workspace 1"
-exec librewolf
-exec sleep 1
+# exec librewolf
+# exec sleep 1
 
 workspace 2
 exec swaymsg "workspace 2"

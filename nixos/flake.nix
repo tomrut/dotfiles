@@ -30,7 +30,7 @@
             home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.tomek = import ./home-manager/home.nix;
+            home-manager.users.tomek = import ./home-manager/home-laptop.nix;
           }
         ];
       };
@@ -47,7 +47,7 @@
             home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.tomek = import ./home-manager/home.nix;
+            home-manager.users.tomek = import ./home-manager/home-desktop.nix;
           }
         ];
       };
