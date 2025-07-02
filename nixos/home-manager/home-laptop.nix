@@ -22,7 +22,6 @@
         Type = "oneshot";
         ExecStart = toString (
           pkgs.writeShellScript "make_backup_script" ''
-            export gpg_cmd=${pkgs.gnupg}/bin/gpg
             export PATH="''${PATH}:${pkgs.coreutils-full}/bin:${pkgs.rsync}/bin:${pkgs.openssh}/bin:${pkgs.libnotify}/bin"
             ${pkgs.systemd}/bin/systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK DBUS_SESSION_BUS_ADDRESS
             ${pkgs.foot}/bin/foot -T sway_config -e ${pkgs.bash}/bin/bash /home/tomek/bin/make_backup.sh
@@ -41,6 +40,39 @@
         Unit = "make_backup";
         OnBootSec = "15m";
         OnCalendar = "daily";
+      };
+      Install.WantedBy = [ "timers.target" ];
+    };
+
+  };
+
+  systemd.user.services = {
+    monitor_server = {
+      Unit = {
+        Description = "monitor server service";
+      };
+      Service = {
+        Type = "oneshot";
+        ExecStart = toString (
+          pkgs.writeShellScript "monitor_server_script" ''
+            export PATH="''${PATH}:${pkgs.coreutils-full}/bin:${pkgs.rsync}/bin:${pkgs.openssh}/bin:${pkgs.libnotify}/bin"
+            ${pkgs.systemd}/bin/systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK DBUS_SESSION_BUS_ADDRESS
+            ${pkgs.bash}/bin/bash /home/tomek/bin/detect_server_up.sh
+          ''
+        );
+      };
+      Install.WantedBy = [ "default.target" ];
+    };
+  };
+
+  systemd.user.timers = {
+
+    monitor_server = {
+      Unit.Description = "timer for monitoring server service";
+      Timer = {
+        Unit = "monitor_server";
+        OnBootSec = "2m";
+        OnUnitActiveSec = "10m";
       };
       Install.WantedBy = [ "timers.target" ];
     };
