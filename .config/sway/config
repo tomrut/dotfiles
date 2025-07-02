@@ -113,8 +113,9 @@ bar {
    position top
    status_command i3status
    mode hide
+   separator_symbol " // "
 
-   font pango:Roboto 11
+   font pango:Roboto 12
    height 25
    tray_output none
 
