@@ -12,6 +12,41 @@
   home.homeDirectory = "/home/tomek";
 
 
+  systemd.user.services = {
+
+    make_backup = {
+      Unit = {
+        Description = "make backup service";
+      };
+      Service = {
+        Type = "oneshot";
+        ExecStart = toString (
+          pkgs.writeShellScript "make_backup_script" ''
+            export gpg_cmd=${pkgs.gnupg}/bin/gpg
+            export PATH="''${PATH}:${pkgs.coreutils-full}/bin:${pkgs.rsync}/bin:${pkgs.openssh}/bin:${pkgs.libnotify}/bin"
+            ${pkgs.systemd}/bin/systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK DBUS_SESSION_BUS_ADDRESS
+            ${pkgs.foot}/bin/foot -T sway_config -e ${pkgs.bash}/bin/bash /home/tomek/bin/make_backup.sh
+          ''
+        );
+      };
+      Install.WantedBy = [ "default.target" ];
+    };
+  };
+
+  systemd.user.timers = {
+
+    make_backup = {
+      Unit.Description = "timer for make_backup service";
+      Timer = {
+        Unit = "make_backup";
+        OnBootSec = "15m";
+        OnCalendar = "daily";
+      };
+      Install.WantedBy = [ "timers.target" ];
+    };
+
+  };
+
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.

@@ -8,7 +8,7 @@ exec autotiling -l 2
 exec_always ~/bin/setup_wl_displays.sh
 exec_always --no-startup-id foot --server
 exec_always swayrd
-exec $term -T sway_config -e ~/bin/make_backup.sh
+# exec $term -T sway_config -e ~/bin/make_backup.sh
 
 # Read `man 5 sway` for a complete reference.
 
