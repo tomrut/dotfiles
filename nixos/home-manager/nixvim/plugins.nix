@@ -71,6 +71,14 @@
             "isort"
             "black"
           ];
+          html = [
+            "prettierd"
+            "prettier"
+          ];
+          css = [
+            "prettierd"
+            "prettier"
+          ];
           rust = [ "rustfmt" ];
           sh = [ "shfmt" ];
           nix = [ "nixpkgs-fmt" ];
