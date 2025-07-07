@@ -6,7 +6,6 @@
     ./nixvim
   ];
 
-
   home.packages = [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
@@ -48,12 +47,22 @@
     pkgs.librewolf
     pkgs.feh
     pkgs.eza
-    pkgs.wordbook
     pkgs.shotwell
     pkgs.jq
     pkgs.libnotify
     pkgs.gnome-clocks
-    (pkgs.aspellWithDicts (dicts: with dicts; [ en en-computers pl ]))
+    pkgs.black
+    pkgs.isort
+    pkgs.rustfmt
+    pkgs.stylua
+    pkgs.prettierd
+    (pkgs.aspellWithDicts (
+      dicts: with dicts; [
+        en
+        en-computers
+        pl
+      ]
+    ))
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -189,7 +198,6 @@
   };
 
   programs.bat.enable = true;
-
 
   programs.emacs = {
     enable = true;

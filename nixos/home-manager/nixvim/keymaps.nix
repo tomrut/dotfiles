@@ -81,7 +81,7 @@
       {
         mode = "n";
         key = "<F12>";
-        action = "<cmd>silent !firefox %<cr>";
+        action = "<cmd>silent !librewolf %<cr>";
         options = {
           desc = "Lazygit";
           silent = true;
@@ -90,7 +90,7 @@
       {
         mode = "i";
         key = "<F12>";
-        action = "<Esc>:w<cr>:silent !firefox %<cr>i";
+        action = "<Esc>:w<cr>:silent !librewolf %<cr>i";
         options = {
           desc = "Lazygit";
           silent = true;

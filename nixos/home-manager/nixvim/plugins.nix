@@ -1,4 +1,12 @@
 {
+  config,
+  pkgs,
+  lib,
+  vimUtils,
+  ...
+}:
+
+{
   programs.nixvim.plugins = {
 
     bufferline.enable = true;
@@ -8,7 +16,6 @@
       autoEnableSources = true;
 
       settings = {
-
 
         mapping = {
           "<C-d>" = "cmp.mapping.scroll_docs(-4)";
@@ -47,13 +54,17 @@
 
       settings = {
         formatters_by_ft = {
-          "_" = [ "trim_whitespace" ];
-          javascript = [
-            [
-              "prettierd"
-              "prettier"
-            ]
+          "_" = [
+            "squeeze_blanks"
+            "trim_whitespace"
+            "trim_newlines"
           ];
+          javascript = {
+            __unkeyed-1 = "prettierd";
+            __unkeyed-2 = "prettier";
+            timeout_ms = 2000;
+            stop_after_first = true;
+          };
           json = [ "jq" ];
           lua = [ "stylua" ];
           python = [
@@ -62,29 +73,35 @@
           ];
           rust = [ "rustfmt" ];
           sh = [ "shfmt" ];
-          terraform = [ "terraform_fmt" ];
+          nix = [ "nixpkgs-fmt" ];
         };
 
         format_on_save = ''
-          function(bufnr)
-          local ignore_filetypes = { "helm" }
-          if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
-          return
-          end
-
-          -- Disable with a global or buffer-local variable
-          if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-          return
-          end
-
-          -- Disable autoformat for files in a certain path
-          local bufname = vim.api.nvim_buf_get_name(bufnr)
-          if bufname:match("/node_modules/") then
-          return
-          end
-          return { timeout_ms = 1000, lsp_fallback = true }
-          end
+          {
+                     timeout_ms = 500,
+                     lsp_format = "fallback",
+                   }
         '';
+        formatters = {
+          shellcheck = {
+            command = lib.getExe pkgs.shellcheck;
+          };
+          shfmt = {
+            command = lib.getExe pkgs.shfmt;
+          };
+          shellharden = {
+            command = lib.getExe pkgs.shellharden;
+          };
+          squeeze_blanks = {
+            command = lib.getExe' pkgs.coreutils "cat";
+          };
+          nixpkgs-fmt = {
+            command = lib.getExe pkgs.nixfmt-rfc-style;
+          };
+          prettier = {
+            command = lib.getExe pkgs.nodePackages.prettier;
+          };
+        };
       };
     };
 
@@ -94,11 +111,21 @@
       enable = true;
       settings = {
         signs = {
-          add = { text = "+"; };
-          change = { text = "~"; };
-          delete = { text = "_"; };
-          topdelete = { text = "‾"; };
-          changedelete = { text = "~"; };
+          add = {
+            text = "+";
+          };
+          change = {
+            text = "~";
+          };
+          delete = {
+            text = "_";
+          };
+          topdelete = {
+            text = "‾";
+          };
+          changedelete = {
+            text = "~";
+          };
         };
       };
     };
@@ -166,7 +193,7 @@
 
     luasnip = {
       enable = true;
-      fromVscode = [{ }];
+      fromVscode = [ { } ];
     };
 
     navbuddy = {
