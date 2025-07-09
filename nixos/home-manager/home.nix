@@ -50,7 +50,6 @@
     pkgs.shotwell
     pkgs.jq
     pkgs.libnotify
-    pkgs.gnome-clocks
     pkgs.black
     pkgs.isort
     pkgs.rustfmt
