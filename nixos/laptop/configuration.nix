@@ -2,11 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config
-, pkgs
-, inputs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
 }:
 
 {
@@ -81,7 +82,6 @@
       STOP_CHARGE_THRESH_BAT1 = 80; # 80 and above it stops charging
     };
   };
-
 
   # Set your time zone.
   time.timeZone = "Europe/Warsaw";
@@ -158,8 +158,8 @@
   environment.systemPackages = with pkgs; [
     libreoffice-still
     cifs-utils
+    mpv
   ];
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
