@@ -8,7 +8,6 @@ exec autotiling -l 2
 exec_always ~/bin/setup_wl_displays.sh
 exec_always --no-startup-id foot --server
 exec_always swayrd
-# exec $term -T sway_config -e ~/bin/make_backup.sh
 
 # Read `man 5 sway` for a complete reference.
 
@@ -28,7 +27,6 @@ default_floating_border pixel 2
 smart_borders on
 smart_gaps on
 titlebar_border_thickness 0
-
 
 font pango:Meslo LGM Nerd Font 14
 # Default wallpaper (more resolutions are available in /run/current-system/sw/share/backgrounds/sway/)
@@ -81,7 +79,7 @@ exec swayidle -w before-sleep "swaylock -f -c 000000" \
 
 workspace 1
 exec swaymsg "workspace 1"
-# exec librewolf
+exec librewolf
 # exec sleep 1
 
 workspace 2
@@ -125,7 +123,6 @@ bar {
   }
 
 }
-
 
 # Apply gtk theming
 exec_always ~/.config/sway/scripts/import-gsettings
