@@ -1,8 +1,9 @@
-{ config
-, pkgs
-, inputs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
 }:
 
 {
@@ -17,6 +18,16 @@
     defaultSession = "sway";
   };
 
+  programs.foot = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = {
+      main = {
+        font = "FreeMono:size=13";
+        pad = "4x0";
+      };
+    };
+  };
 
   programs.sway = {
     enable = true;
