@@ -100,6 +100,7 @@
 
   services.udev.packages = [ pkgs.yubikey-personalization ];
   services.pcscd.enable = true;
+  services.gnome.gnome-keyring.enable = true;
   programs.gnupg.agent = {
     enable = true;
     pinentryPackage = pkgs.pinentry-gnome3;
