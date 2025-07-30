@@ -46,12 +46,28 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  boot.kernelParams = [ "i915.force_probe=0166" ];
+  boot.kernelParams = [
+    "i915.force_probe=0166"
+    "i915.modeset=1"
+    "i915.enable_rc6=1"
+    "i915.enable_psr=1"
+    "i915.enable_fbc=1"
+  ];
+
+  nixpkgs.config.packageOverrides = pkgs: {
+    intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
+  };
 
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
+      intel-media-driver # LIBVA_DRIVER_NAME=iHD
       intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+      libvdpau-va-gl
     ];
+  };
+
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "iHD";
   };
 }
