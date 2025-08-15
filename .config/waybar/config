@@ -18,6 +18,8 @@
         "all-outputs": true,
         "format": "{icon}",
         "format-icons": {
+            "1": "1",
+            "2": "2",
             "3": "3",
             "4": "4",
             "5": "5",
@@ -52,11 +54,12 @@
     },
 
     "network": {
-        "format-disabled": " Disabled",
+        "interface": "enp0s25",
         "format-wifi": " {bandwidthDownBits:>} 󰶡 {bandwidthUpBits:>} 󰶣",
         "tooltip-format-wifi": "ESSID: {essid}",
-        "format-ethernet": "󰈀 {bandwidthDownBits:>} 󰶡 {bandwidthUpBits:>} 󰶣",
+        "format": "󰈀 {bandwidthDownBits:>} 󰶡 {bandwidthUpBits:>} 󰶣",
         "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
         "format-disconnected": " Disconnected",
         "on-click": "footclient -T waybar_nmtui -e nmtui",
         "interval": 2
