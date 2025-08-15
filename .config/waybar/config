@@ -98,22 +98,16 @@
 
     "group/resources": {
         "orientation": "inherit",
-        "drawer": {
-            "transition-duration": 500,
-            "children-class": "resources-drawer",
-            "transition-left-to-right": true,
-            "click-to-reveal": true,
-        },
         "modules": [
             "cpu",
             "temperature",
-            "disk",
         ]
     },
 
     "cpu": {
         "interval": 5,
         "format": "  {usage}%",
+        "on-click": "footclient -T waybar_s-tui -e htop",
         "states": {
             "warning": 70,
             "critical": 90,
@@ -125,18 +119,19 @@
         "format-critical": " {temperatureC}°C",
         "format": " {temperatureC}°C",
         "tooltip-format": "  󰍽: s-tui\n {temperatureC}° Celsius\n{temperatureF}° Fahrenheit\n{temperatureK}° Kelvin",
-        "on-click": "footclient -T waybar_s-tui -e s-tui"
+        "on-click": "footclient -T waybar_s-tui -e htop"
     },
 
     "disk": {
         "interval": 600,
         "format": "󰋊 {percentage_used}%",
         "path": "/",
-        "tooltip-format": "    󰍽: dua\nTotal: {total}\n Used: {used} ({percentage_used}%)\n Free: {free} ({percentage_free}%)",
+        "tooltip-format": " 󰍽:Total: {total}\n Used: {used} ({percentage_used}%)\n Free: {free} ({percentage_free}%)",
     },
 
     "memory": {
         "interval": 5,
+        "on-click": "footclient -T waybar_s-tui -e htop",
         "format": "  {}%",
         "states": {
             "warning": 70,
