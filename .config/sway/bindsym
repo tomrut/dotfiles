@@ -43,6 +43,9 @@ bindsym Ctrl+Alt+Delete exec $powermenu
 # special blue key on thinkpad
 bindsym XF86Launch1 exec $powermenu
 
+# umount drive
+bindsym $mod+u exec umount /media/$(ls /media | wofi --prompt "Select drive to umount" --dmenu)
+
 #
 # Move your focus around
 bindsym $mod+$left focus left
