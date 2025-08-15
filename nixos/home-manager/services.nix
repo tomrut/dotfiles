@@ -34,13 +34,12 @@
             # ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK DBUS_SESSION_BUS_ADDRESS
             ${pkgs.systemd}/bin/systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK DBUS_SESSION_BUS_ADDRESS
             ${pkgs.bash}/bin/bash /home/tomek/bin/check_updates.sh
-            ''
+          ''
         );
       };
       Install.WantedBy = [ "default.target" ];
     };
   };
-
 
   systemd.user.services = {
     display_notifications = {
@@ -95,9 +94,23 @@
       Unit.Description = "timer to display update info";
       Timer = {
         Unit = "display_update_info";
+        OnCalendar = "daily";
         OnBootSec = "25m";
+        Persistent = "true";
       };
       Install.WantedBy = [ "timers.target" ];
+    };
+  };
+
+  services.udiskie = {
+    enable = true;
+    settings = {
+      # workaround for
+      # https://github.com/nix-community/home-manager/issues/632
+      program_options = {
+        # replace with your favorite file manager
+        file_manager = "${pkgs.foot}/bin/foot -T ranger -e ${pkgs.ranger}/bin/ranger";
+      };
     };
   };
 }

@@ -11,7 +11,6 @@
   home.username = "tomek";
   home.homeDirectory = "/home/tomek";
 
-
   systemd.user.services = {
 
     make_backup = {
@@ -40,6 +39,7 @@
         Unit = "make_backup";
         OnBootSec = "15m";
         OnCalendar = "daily";
+        Persistant = "true";
       };
       Install.WantedBy = [ "timers.target" ];
     };

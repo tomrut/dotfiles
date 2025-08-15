@@ -11,10 +11,11 @@
   };
 
   outputs =
-    inputs@{ nixpkgs
-    , home-manager
-    , nixvim
-    , ...
+    inputs@{
+      nixpkgs,
+      home-manager,
+      nixvim,
+      ...
     }:
     {
       nixosConfigurations.nixos-laptop = nixpkgs.lib.nixosSystem {
@@ -23,6 +24,7 @@
         modules = [
           ./laptop/configuration.nix
           ./common/swaywm.nix
+          ./common/mounting.nix
           # ./common/podman.nix
           #./common/monitoring.nix
           home-manager.nixosModules.home-manager
@@ -42,6 +44,7 @@
           ./desktop/configuration.nix
           ./common/swaywm.nix
           ./common/podman.nix
+          ./common/mounting.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.extraSpecialArgs = { inherit inputs; };

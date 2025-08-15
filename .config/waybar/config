@@ -32,7 +32,7 @@
     },
 
     "sway/window": {
-        "format": "{}",
+        "format": "{title}",
         //"all-outputs": true, // Active window shows only on active display when commented
         "max-length": 120,
         "on-click": "swayr merge-config ~/.config/swayr/waybar_config.toml; swayr switch-workspace-or-window; swayr reload-config",
