@@ -106,9 +106,10 @@ input "2:7:SynPS/2_Synaptics_TouchPad" {
 # Bar
 bar {
    position top
-   status_command i3status
+   swaybar_command waybar
+   hidden_state hide
    mode hide
-   separator_symbol " // "
+   modifier Mod4
    font pango:Roboto 12
    height 30
    tray_output *

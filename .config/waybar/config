@@ -4,7 +4,7 @@
     //"height": 30, // Uncomment to set a custom height
     //"output": "DP-1", // Uncomment to specify a display
     //"width": 1850, // Uncomment to set a custom width
-
+    "ipc": true,
 // Configuration - modules-left
 
     "modules-left": [
@@ -129,14 +129,12 @@
         "interval": 600,
         "format": "󰋊 {percentage_used}%",
         "path": "/",
-        "on-click": "footclient -T waybar_dua -e dua i /",
         "tooltip-format": "    󰍽: dua\nTotal: {total}\n Used: {used} ({percentage_used}%)\n Free: {free} ({percentage_free}%)",
     },
 
     "memory": {
         "interval": 5,
         "format": "  {}%",
-        "on-click": "footclient -T waybar_btm -e btm",
         "states": {
             "warning": 70,
             "critical": 90
@@ -212,9 +210,6 @@
 
     "clock": {
         "format": "󰅐 {:%OI:%M %p}",
-        "on-click": "footclient -T waybar_calcurse -e calcurse",
-        // Uncomment to enable right-click calcurse-caldav sync (you need to set it up in calcurse config)
-        //"on-click-right": "notify-send \"Running calcurse-caldav...\" \"$(calcurse-caldav)\"",
         "tooltip-format": " {:%A %m/%d}\n\n<tt><small>{calendar}</small></tt>",
         "calendar": {
             "on-scroll": 1,

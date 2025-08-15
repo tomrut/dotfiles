@@ -66,7 +66,8 @@
     ranger
     pulsemixer
     catppuccin-sddm
-    i3status
+    waybar
+    batmon
   ];
 
 }

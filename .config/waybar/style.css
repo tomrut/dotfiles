@@ -44,11 +44,13 @@ nord15 #b48ead - (180,142,173)
 
 /* The whole bar */
 #waybar {
-  color: #eceff4;
-  background-color: rgba(46, 52, 64, 0.6);
+  color: rgba(236, 239, 244, 1);
+  background-color: rgba(46, 52, 64, 1);
   border-radius: 0px;
   font-family: JetBrainsMonoNerdFont;
   font-size: 13px;
+  transition-property: background-color;
+  transition-duration: 0.5s;
 }
 
 *:hover {
@@ -56,11 +58,11 @@ nord15 #b48ead - (180,142,173)
   transition: background 0.3s;
 }
 
-.modules-left>widget:first-child>* {
+.modules-left > widget:first-child > * {
   margin-left: 15px;
 }
 
-.modules-right>widget:last-child>* {
+.modules-right > widget:last-child > * {
   margin-right: 15px;
 }
 
@@ -101,7 +103,7 @@ tooltip label {
   background: rgba(129, 161, 193, 0.4);
   border-radius: 4px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-  padding: .1rem 1rem;
+  padding: 0.1rem 1rem;
   margin: 1px 1px;
 }
 
@@ -151,6 +153,7 @@ tooltip label {
 }
 
 #workspaces button {
+  color: rgba(236, 239, 244, 1);
   border-radius: 5px;
   padding: 0px 6px;
   margin-right: 2px;
@@ -163,16 +166,16 @@ tooltip label {
 
 #cpu:hover,
 #custom-settings:hover {
-  background-image: url('chevron-right.svg');
+  background-image: url("chevron-right.svg");
   background-repeat: no-repeat;
   background-position: right center;
 }
 
-#window {
-  border-style: hidden;
-  margin-top: 1px;
-}
-
+/* #window { */
+/*   border-style: hidden; */
+/*   margin-top: 1px; */
+/* } */
+/**/
 #privacy {
   color: #ebcb8b;
   background: rgba(235, 203, 139, 0.1);
@@ -180,7 +183,7 @@ tooltip label {
 
 #privacy:hover {
   color: #ebcb8b;
-  background: rgba(235, 203, 139, 0.3);
+  background: rgba(235, 203, 139, 1);
 }
 
 #wireplumber.muted,
