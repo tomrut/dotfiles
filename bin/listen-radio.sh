@@ -7,6 +7,7 @@ mpg123 "$1" 2>&1 |
   while read -r title; do
     if [[ -n "$title" && "$title" != "$last" ]]; then
       notify-send "Now Playing" "$title"
+      echo "Playing $title"
       last="$title"
     fi
   done

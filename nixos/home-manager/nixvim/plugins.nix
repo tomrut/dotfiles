@@ -174,12 +174,14 @@
         nushell.enable = false;
         pylsp.enable = true;
         pylyzer.enable = false;
-        ruff_lsp.enable = false;
         tailwindcss.enable = true;
         terraformls.enable = false;
         ts_ls.enable = true;
-        veryl_ls.enable = false;
-        zls.enable = false;
+        rust_analyzer = {
+          enable = true;
+          installCargo = false;
+          installRustc = false;
+        };
 
         helm_ls = {
           enable = true;
