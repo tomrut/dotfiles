@@ -3,6 +3,7 @@
     ./opts.nix
     ./keymaps.nix
     ./plugins.nix
+    ./debugging.nix
   ];
 
   programs.nixvim = {
@@ -16,4 +17,3 @@
 
   };
 }
-

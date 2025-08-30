@@ -177,11 +177,6 @@
         tailwindcss.enable = true;
         terraformls.enable = false;
         ts_ls.enable = true;
-        rust_analyzer = {
-          enable = true;
-          installCargo = false;
-          installRustc = false;
-        };
 
         helm_ls = {
           enable = true;
@@ -259,6 +254,10 @@
     };
 
     rainbow-delimiters.enable = true;
+
+    rustaceanvim = {
+      enable = true;
+    };
 
     telescope = {
       enable = true;
