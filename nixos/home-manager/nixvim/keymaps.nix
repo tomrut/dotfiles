@@ -343,7 +343,7 @@
       {
         mode = "n";
         key = "<leader>ea";
-        action = ''<cmd>lua require("harpoon.mark").add_file()<CR>'';
+        action = ''<cmd>lua require("harpoon"):list():add()<CR>'';
         options = {
           desc = "Harpoon Add";
           silent = true;
@@ -370,7 +370,7 @@
       {
         mode = "n";
         key = "<leader>en";
-        action = ''<cmd>lua require("harpoon.ui").nav_next()<CR>'';
+        action = ''<cmd>lua require("harpoon"):list():next()<CR>'';
         options = {
           desc = "Harpoon Next Mark";
           silent = true;
@@ -379,7 +379,7 @@
       {
         mode = "n";
         key = "<leader>ep";
-        action = ''<cmd>lua require("harpoon.ui").nav_prev()<CR>'';
+        action = ''<cmd>lua require("harpoon"):list():prev()<CR>'';
         options = {
           desc = "Harpoon Previous Mark";
           silent = true;
@@ -388,7 +388,7 @@
       {
         mode = "n";
         key = "<leader>es";
-        action = ''<cmd>lua require("harpoon.ui").nav_file(1)<CR>'';
+        action = ''<cmd>lua require("harpoon"):list():select(1)<CR>'';
         options = {
           desc = "Harpoon Mark 1";
           silent = true;
@@ -397,7 +397,7 @@
       {
         mode = "n";
         key = "<leader>ed";
-        action = ''<cmd>lua require("harpoon.ui").nav_file(2)<CR>'';
+        action = ''<cmd>lua require("harpoon"):list():select(2)<CR>'';
         options = {
           desc = "Harpoon Mark 2";
           silent = true;
@@ -406,7 +406,7 @@
       {
         mode = "n";
         key = "<leader>ef";
-        action = ''<cmd>lua require("harpoon.ui").nav_file(3)<CR>'';
+        action = ''<cmd>lua require("harpoon"):list():select(3)<CR>'';
         options = {
           desc = "Harpoon Mark 3";
           silent = true;
@@ -415,7 +415,7 @@
       {
         mode = "n";
         key = "<leader>eg";
-        action = ''<cmd>lua require("harpoon.ui").nav_file(4)<CR>'';
+        action = ''<cmd>lua require("harpoon"):list().select(4)<CR>'';
         options = {
           desc = "Harpoon Mark 4";
           silent = true;
@@ -424,7 +424,12 @@
       {
         mode = "n";
         key = "<leader>em";
-        action = ''<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>'';
+        action.__raw = ''
+          function()
+            local harpoon = require("harpoon")
+            harpoon.ui:toggle_quick_menu(harpoon:list())
+          end
+        '';
         options = {
           desc = "Harpoon Menu";
           silent = true;
