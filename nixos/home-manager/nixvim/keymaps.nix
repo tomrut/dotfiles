@@ -319,6 +319,14 @@
       }
       {
         mode = "n";
+        key = "<leader>td";
+        action = "<cmd>lua vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text })<CR>";
+        options = {
+          desc = "[T]oggle display diagnostic";
+        };
+      }
+      {
+        mode = "n";
         key = "<leader>tD";
         action.__raw = ''
           function()
@@ -514,6 +522,15 @@
           silent = true;
         };
       }
+      {
+        mode = "n";
+        key = "<leader>ld";
+        action = "<cmd>lua vim.diagnostic.open_float()<cr>";
+        options = {
+          desc = "Open diagnostic float";
+          silent = true;
+        };
+      }
 
       # search
       {
@@ -570,6 +587,8 @@
           silent = true;
         };
       }
+
+      # debug
 
       {
         mode = "n";
@@ -751,6 +770,32 @@
         action = "<CMD>lua require('dap.ext.vscode').load_launchjs()<CR><CMD>Telescope dap configurations<CR>";
         options = {
           desc = "Debug Configurations";
+        };
+      }
+
+      # rust
+      {
+        mode = "n";
+        key = "<leader>rr";
+        action = "<CMD>RustRun<CR>";
+        options = {
+          desc = "Rust run";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>rR";
+        action = "<CMD>RustLsp run<CR>";
+        options = {
+          desc = "Rust run";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>re";
+        action = "<CMD>RustLsp explainError<CR>";
+        options = {
+          desc = "Rust explain error";
         };
       }
 
