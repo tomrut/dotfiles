@@ -113,6 +113,7 @@
       };
     };
 
+    crates.enable = true;
     friendly-snippets.enable = true;
 
     gitsigns = {
