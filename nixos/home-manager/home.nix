@@ -20,7 +20,6 @@ in
     pkgs.nodejs_24
     pkgs.yt-dlp
     pkgs.keepassxc
-    pkgs.ripgrep
     pkgs.material-design-icons
     pkgs.nerd-fonts.fira-code
     pkgs.nerd-fonts.fira-mono
