@@ -39,10 +39,11 @@ bindsym $mod+Shift+c reload
 
 # Lock screen
 bindsym Ctrl+Alt+l exec swaylock -f -c 000000
+# functional lock key
+bindcode 160 exec swaylock -f -c 000000
 bindsym Ctrl+Alt+Delete exec $powermenu
 # special blue key on thinkpad
 bindsym XF86Launch1 exec $powermenu
-
 # umount drive
 bindsym $mod+u exec umount /run/media/tomek/$(ls /run/media/tomek | wofi --prompt "Select drive to umount" --dmenu)
 
@@ -128,7 +129,9 @@ bindsym $mod+space focus mode_toggle
 # Move focus to the parent container
 bindsym $mod+a focus parent
 bindsym $mod+Backspace output LVDS-1 toggle
+bindsym XF86Display output LVDS-1 toggle
 
+bindsym XF86Webcam exec shotwell
 #
 # Scratchpad:
 #
