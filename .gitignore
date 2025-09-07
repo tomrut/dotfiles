@@ -1,5 +1,6 @@
 .config/nixos/webdav.env
 .config/nixos/smb-secrets
+.config/nixos/tjr-secrets
 .config/nixos-server/webdav.env
 nixos/smb-secrets
 .config/sway/outputs

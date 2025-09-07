@@ -41,7 +41,7 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  fileSystems."/mnt/share" = {
+  fileSystems."/mnt/share/smb" = {
     device = "//192.168.0.113/share";
     fsType = "cifs";
     options =
@@ -50,6 +50,17 @@
 
       in
       [ "${automount_opts},credentials=/etc/nixos/smb-secrets,uid=1001,gid=100" ];
+  };
+
+  fileSystems."/mnt/share/tjr" = {
+    device = "//192.168.0.113/tjr";
+    fsType = "cifs";
+    options =
+      let
+        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,user,users";
+
+      in
+      [ "${automount_opts},credentials=/etc/nixos/tjr-secrets,uid=1001,gid=100" ];
   };
 
   services.thermald.enable = true;
