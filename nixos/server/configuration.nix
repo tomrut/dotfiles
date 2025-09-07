@@ -93,6 +93,7 @@
 
       share = {
         "path" = "/mnt/Shares/share";
+        "valid users" = "samba";
         "browseable" = "yes";
         "read only" = "yes";
         "guest ok" = "no";
@@ -104,7 +105,8 @@
 
 
       tjr = {
-        "path" = "/home/tjr";
+        "path" = "/home/tjr/share";
+        "valid users" = "tjr";
         "browseable" = "yes";
         "read only" = "no";
         "guest ok" = "no";
