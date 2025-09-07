@@ -140,7 +140,9 @@ in
       swayOutputs = "swaymsg -t get_outputs";
       bk = "~/bin/make_backup.sh";
       tmrs = "systemctl list-timers";
-      reb = "sudo nixos-rebuild switch --no-write-lock-file";
+      nreb = "sudo nixos-rebuild switch --no-write-lock-file";
+      ncg = "sudo nix-collect-garbage -d";
+      nhg = "home-manager generations";
       nvdiff = "nvd diff $(ls -d1v /nix/var/nix/profiles/system-*-link|tail -n 2)";
       m = "neomutt";
       f = "fzf --preview 'bat --color=always {}'";
