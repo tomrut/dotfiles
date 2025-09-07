@@ -1,4 +1,3 @@
-
 #+title: Dot files and scripts used on Linux
 #+AUTHOR: tomrut
 #+OPTIONS: toc:3
@@ -7,22 +6,22 @@
 * Nixos configuration
 There are three general nixos configurations sitting in the nixos directory.
 ** laptop
-*** SwayWM window manager configuration
-**** status-bar command - bin/bar_status.sh is used
+** common - shared modules
+*** sway
+*** mounting
+*** podman
+*** monitoring
 ** desktop
-*** Cinammon 
 ** home-manager - the common part used by laptop and desktop
 *** nixvim
+*** home-laptop
+*** home-desktop
+*** home
 ** nixos-server - small nix server with samba and sshd for storing and sharing data
 
 * Nixos commands
-
-
 #+begin_src bash
-
   sudo nixos-rebuild switch --no-write-lock-file --flake .#nixos-laptop
-    
-
 #+end_src
 
 * Scripts
@@ -77,67 +76,6 @@ musicDir=~/Music
 fzfSelectedDir="$(find $musicDir -type d|fzf)"
 cd "$fzfSelectedDir"
 find ./ -iname '*.mp3' -type f -print | mpg123 --list -
-
-#+end_src
-*** Open console and execute backup script
-#+begin_src bash
-
-#!/bin/bash
-export DISPLAY=:0.0
-gnome-terminal --tab --title="backup" -- $HOME/bin/synchronize_disk.sh
-
-#+end_src
-*** Crontab scripts
-#+begin_src bash
-*/10 * * * * $HOME/bin/mbsync -a
-49 16 * * * $HOME/bin/backup.sh
-#+end_src
-*** Backup script
-#+begin_src bash
-#!/bin/bash
-BACKUP_ROOT_DIR=/run/media/$USER/data
-BACKUP_MARKER_FILE=$HOME/last_backup.marker
-BACKUP_LOG_FILE=$HOME/backups.log
-BACKUP_DAYS=7
-
-function log {
-	echo "`date` - $1" >> $BACKUP_LOG_FILE
-}
-
-if [ ! -f "$BACKUP_MARKER_FILE" ]; then
-	log "Creating new backup marker file $BACKUP_LOG_FILE"
-	touch $BACKUP_MARKER_FILE
-fi
-
-if [[ $(find "$BACKUP_MARKER_FILE" -mtime +$BACKUP_DAYS -print) ]]; then
-	log "File $BACKUP_MARKER_FILE exists and is older than $BACKUP_DAYS days"
-else
- 	log "Backup was done less than $BACKUP_DAYS days ago"
- 	exit 0
-fi
-
-
-until [ -f "$BACKUP_ROOT_DIR/$USER/bin/synchronize_disk.sh" ]; do
-	read -p "Mount the backup drive and hit enter"
-done
-
-
-function synch {
-
-    if [ -f "$BACKUP_ROOT_DIR/$USER/bin/synchronize_disk.sh" ]; then
-       echo "Copying $1 directory"
-       echo "cp -Ru $HOME/$1 $BACKUP_ROOT_DIR/$2"
-       cp -Ru $HOME/$1 $BACKUP_ROOT_DIR/$2 >> $BACKUP_LOG_FILE
-    fi
-
-}
-notify-send "Backup started"
-synch bin $USER
-synch dev $USER
-synch "Bibl*" $USER
-synch ".[^.]*" $USER
-touch $BACKUP_MARKER_FILE
-notify-send "Backup finished"
 
 #+end_src
 
@@ -202,15 +140,7 @@ strict graph {
 
 #+RESULTS:
 [[file:test-dot.png]]
-
-* Typescript
-** Script 1
-#+begin_src js :hlines no
-
-#+end_src
-
 * Linux
-
 ** Useful Commands
 #+begin_src bash
 
@@ -230,29 +160,3 @@ perl -MFile::Path -we '
     }'
 
 #+end_src
-* Draft stuff
-** [[https://stackoverflow.com/questions/53008063/how-to-alert-on-jvm-memory-usage-in-prometheus-with-micrometer-and-alertmanager/53073467#53073467][StackOverflowRegardingMemoryAlert]]
-
-#+begin_src text
-  sum(avg_over_time(jvm_memory_used_bytes{area="heap"}[1m]))by(application,instance)*100/sum(avg_over_time(jvm_memory_max_bytes{area="heap"}[5m]))by(application,instance)
-  
-    - name: jvm
-      rules:
-        - alert: jvm_heap_warning
-          expr: sum(avg_over_time(jvm_memory_used_bytes{area="heap"}[1m]))by(application,instance)*100/sum(avg_over_time(jvm_memory_max_bytes{area="heap"}[1m]))by(application,instance) >= 80
-            for: 1m
-            labels:
-              severity: warning
-            annotations:
-              summary: "JVM heap warning"
-    description: "JVM heap of instance `{{$labels.instance}}` from application `{{$labels.application}}` is above 80% for one minute. (current=`{{$value}}%`)"
-
-
-
-#+end_src
-** [[https://xeiaso.net/blog/prometheus-grafana-loki-nixos-2020-11-20/][prometheus-graphana_loki-nixos]]
-** [[https://www.baeldung.com/spring-boot-actuators][spring-boot-actuators]]
-* ReactJS
-** Styled components - for attaching styles to specific components
-
-
