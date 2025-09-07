@@ -95,7 +95,9 @@ input "type:keyboard" {
 
 input "2:7:SynPS/2_Synaptics_TouchPad" {
     dwt enabled
+    dwtp enabled
     tap enabled
+    tap_button_map lrm
     # natural_scroll enabled
     middle_emulation enabled
 }
