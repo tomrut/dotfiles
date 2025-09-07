@@ -4,3 +4,4 @@
 .config/nixos-server/webdav.env
 nixos/smb-secrets
 .config/sway/outputs
+nixos/tjr-secrets
