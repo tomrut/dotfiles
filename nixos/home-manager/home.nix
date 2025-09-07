@@ -124,6 +124,7 @@ in
     enableCompletion = true;
     autocd = true;
     shellAliases = {
+      aa = "eval $(alias| wofi --dmenu | awk -F '[=]' '{print $1}')";
       mci = "mvn clean install -DskipTests";
       mcit = "mvn clean install";
       mcp = "mvn clean package -DskipTests";
