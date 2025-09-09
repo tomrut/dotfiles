@@ -56,6 +56,7 @@
     "network": {
         "interface": "enp0s25",
         "format-wifi": " {bandwidthDownBits:>} 󰶡 {bandwidthUpBits:>} 󰶣",
+        "format-ethernet": "  Wired",
         "tooltip-format-wifi": "ESSID: {essid}",
         "format": "󰈀 {bandwidthDownBits:>} 󰶡 {bandwidthUpBits:>} 󰶣",
         "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}",
