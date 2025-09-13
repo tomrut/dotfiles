@@ -129,7 +129,7 @@ bindsym $mod+space focus mode_toggle
 # Move focus to the parent container
 bindsym $mod+a focus parent
 bindsym $mod+Backspace output LVDS-1 toggle
-bindsym --locked XF86Display output LVDS-1 toggle
+bindsym --locked XF86Display output LVDS-1 power toggle
 
 bindsym XF86Webcam exec shotwell
 #
