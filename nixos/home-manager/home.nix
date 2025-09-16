@@ -157,6 +157,15 @@ in
       # specialty views
       lt = "eza --tree --level=2 --color=always --group-directories-first --icons";
       lld = "eza -a | grep -E '^\.'";
+
+      # battery charging
+      chargeOnceBat0 = "sudo tlp chargeonce BAT0";
+      chargeOnceBat1 = "sudo tlp chargeonce BAT1";
+      chargeOnceAll = "chargeOnceBat0; chargeOnceBat1";
+      chargeFullBat0 = "sudo tlp fullcharge BAT0";
+      chargeFullBat1 = "sudo tlp fullcharge BAT1";
+      chargeFullAll = "chargeFullBat0; chargeFullBat1";
+
     };
     envExtra = ''
       export gpg_cmd=${pkgs.gnupg}/bin/gpg
