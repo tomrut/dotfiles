@@ -215,36 +215,12 @@ in
 
   programs.bat.enable = true;
 
-  programs.emacs = {
-    enable = true;
-    extraPackages = (
-      epkgs:
-      (with epkgs; [
-        org
-        org-superstar
-        org-roam
-        doct
-      ])
-    );
-
-    extraConfig = builtins.readFile ./emacs_config.el;
-  };
-
   # Let Home Manager install and manage itself.
   programs.git = {
     enable = true;
     userName = "tomrut";
     userEmail = "tomrut@localhost";
 
-  };
-
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscodium;
-    # extensions = with pkgs.vscode-extensions; [
-    #   dracula-theme.theme-dracula
-    #   vscodevim.vim
-    # ];
   };
 
   home.shellAliases = {
