@@ -199,7 +199,7 @@ bindsym $mod+b exec librewolf
 bindsym $mod+e exec $term -T ranger -e ranger
 bindsym $mod+p exec keepassxc && scratchpad show
 bindsym $mod+m exec $term -T cmus -e cmus && scratchpad show
-bindsym $mod+n exec emacsclient --create-frame ~/org/inbox.org && scratchpad show
+bindsym $mod+n exec $term -T notes -e vim ~/docs/notes/index.md && scratchpad show
 
 # Snip a selection and pipe to swappy
 bindsym print exec grim -g "$(slurp)" - | swappy -f -
