@@ -49,11 +49,3 @@ perl -MFile::Path -we '
         rename $file, $new or die "$file -> $new: $!\n";
     }'
 ``
-
-## Multimedia files conversion
-### mp4 to mp3
-#### [[file:bin/mp4intomp3.sh][mp4intomp3]] - it uses ~avconv~ for doing conversion
-#### [[file:bin/mp42mp3.sh][mp42mp3.sh]] - it uses ~ffmpeg~
-#### [[file:bin/mp4tomp3.sh][mp4tomp3]] - it uses ~fmpeg~ and ~lame~
-## 3gp to mp3
-## [[file:bin/3gp2mp3.sh][3gp2mp3.sh]] - it uses ~avconv~ converter
