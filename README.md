@@ -27,7 +27,6 @@ There are three nixos configurations + common modules
 [[nvim quick reference][ https://neovim.io/doc/user/quickref.html]]
 
 | Shortcut | What does                                                       |
-|----------+-----------------------------------------------------------------|
 | CTRL-]   | jump to the tag under cursor - e.g. JSX component can be opened |
 | CTRL-O   | go to Nth older position in jump list - go back in history      |
 | CTRL-I   | go to Nth newer position in jump list - go next in history      |
