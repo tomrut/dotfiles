@@ -19,7 +19,9 @@ in
     pkgs.mc
     pkgs.nodejs_24
     pkgs.yt-dlp
+    pkgs.mpv
     pkgs.keepassxc
+    pkgs.libreoffice-still
     pkgs.material-design-icons
     pkgs.nerd-fonts.fira-code
     pkgs.nerd-fonts.fira-mono
