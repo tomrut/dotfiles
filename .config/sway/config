@@ -41,7 +41,7 @@ output $output2 pos 1920 0
 output $output3 pos 3840 0
 
 assign [app_id="librewolf"] workspace 1
-assign [app_id="libreoffice"] workspace 4
+assign [app_id="libreoffice-writer"] workspace 4
 assign [app_id="org.gnome.Shotwell"] workspace 5
 assign [title="ranger"] workspace 6
 for_window [app_id="org.keepassxc.KeePassXC" ] move to scratchpad, scratchpad show
@@ -71,7 +71,7 @@ for_window [title="sway_config"] floating enable, resize set width 80 ppt height
 for_window [title="cmus"] move to scratchpad, scratchpad show, floating enable, resize set width 80 ppt height 60 ppt
 for_window [title="notes"] move to scratchpad, scratchpad show, floating enable, resize set width 80 ppt height 60 ppt
 for_window [app_id="librewolf"] workspace 1
-for_window [app_id="libreoffce"] workspace 4
+for_window [app_id="libreoffice-writer"] workspace 4
 for_window [app_id="org.gnome.Shotwell"] workspace 5
 for_window [title="ranger"] workspace 6
 
