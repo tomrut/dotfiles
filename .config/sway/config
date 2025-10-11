@@ -41,6 +41,7 @@ output $output2 pos 1920 0
 output $output3 pos 3840 0
 
 assign [app_id="librewolf"] workspace 1
+assign [title="neomutt"] workspace 2
 assign [app_id="libreoffice-writer"] workspace 4
 assign [app_id="org.gnome.Shotwell"] workspace 5
 assign [title="ranger"] workspace 6
@@ -71,6 +72,7 @@ for_window [title="sway_config"] floating enable, resize set width 80 ppt height
 for_window [title="cmus"] move to scratchpad, scratchpad show, floating enable, resize set width 80 ppt height 60 ppt
 for_window [title="notes"] move to scratchpad, scratchpad show, floating enable, resize set width 80 ppt height 60 ppt
 for_window [app_id="librewolf"] workspace 1
+for_window [title="neomutt"] workspace 2
 for_window [app_id="libreoffice-writer"] workspace 4
 for_window [app_id="org.gnome.Shotwell"] workspace 5
 for_window [title="ranger"] workspace 6
@@ -83,14 +85,9 @@ exec swayidle -w before-sleep "swaylock -f -c 000000" \
             timeout 1800 "systemctl suspend" \
             timeout 600 'swaymsg "output * power off" && swaylock -f -c 000000' resume 'swaymsg "output * power on"'
 
-workspace 1
-exec swaymsg "workspace 1"
 exec librewolf
-# exec sleep 1
-
-workspace 2
-exec swaymsg "workspace 2"
-exec foot neomutt
+exec foot -T neomutt -e neomutt
+exec swaymsg "workspace 1"
 
 ### Input configuration
 input "type:keyboard" {
