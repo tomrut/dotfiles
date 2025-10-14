@@ -8,15 +8,17 @@
 
 {
 
-  services.displayManager = {
-    sddm = {
-      enable = true;
-      wayland.enable = true;
-      theme = "catppuccin-mocha";
-      package = pkgs.kdePackages.sddm;
-    };
-    defaultSession = "sway";
-  };
+  # services.displayManager = {
+  #   sddm = {
+  #     enable = true;
+  #     wayland.enable = true;
+  #     theme = "catppuccin-mocha";
+  #     package = pkgs.kdePackages.sddm;
+  #   };
+  #   defaultSession = "sway";
+  # };
+
+  services.dbus.enable = true;
 
   programs.foot = {
     enable = true;
@@ -65,7 +67,7 @@
     upower-notify
     ranger
     pulsemixer
-    catppuccin-sddm
+    # catppuccin-sddm
     waybar
     batmon
   ];
