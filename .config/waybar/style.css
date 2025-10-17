@@ -179,10 +179,10 @@ tooltip label {
   margin-left: 2px;
 }
 
-/* #workspaces button.focused { */
-/*   border: 0.9px solid #eceff4; */
-/* } */
-/**/
+#workspaces button.focused {
+  border: 0.9px solid #eceff4;
+}
+
 #cpu:hover,
 #custom-settings:hover {
   background-image: url("chevron-right.svg");
