@@ -13,6 +13,12 @@
         "sway/window"
     ],
 
+    "custom/launcher": {
+      "format": "",
+      "tooltip": false,
+      "on-click": "fuzzel -a top-left"
+    },
+
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,

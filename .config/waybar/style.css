@@ -107,6 +107,7 @@ tooltip label {
   margin: 1px 1px;
 }
 
+#workspaces button:hover,
 #window:hover,
 #network:hover,
 #privacy:hover,
@@ -143,6 +144,24 @@ tooltip label {
   box-shadow: none;
 }
 
+#custom-launcher {
+  font-size: 14px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 0 5px 0 9px;
+  font-family: NotoSans Nerd Font Mono;
+}
+
+#custom-launcher:hover,
+#custom-launcher:active {
+  background-color: red;
+  color: #292828;
+}
+#custom-launcher.focused {
+  background-color: #ffffff;
+  color: #292828;
+}
+
 #custom-launcher,
 #custom-power {
   padding-right: 1.1rem;
@@ -160,10 +179,10 @@ tooltip label {
   margin-left: 2px;
 }
 
-#workspaces button.focused {
-  border: 0.9px solid #eceff4;
-}
-
+/* #workspaces button.focused { */
+/*   border: 0.9px solid #eceff4; */
+/* } */
+/**/
 #cpu:hover,
 #custom-settings:hover {
   background-image: url("chevron-right.svg");

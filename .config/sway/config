@@ -19,7 +19,7 @@ exec_always swayrd
 set $term foot
 # Your preferred application launcher
 # Application launcher
-set $launcher fuzzel
+set $launcher fuzzel --no-exit-on-keyboard-focus-loss
 set $powermenu ~/.config/sway/scripts/powermenu.sh
 
 # hide border when only one window
