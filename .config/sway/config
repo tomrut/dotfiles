@@ -5,7 +5,6 @@ exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSO
 # Import environment variables for user systemd service manager
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK DBUS_SESSION_BUS_ADDRESS
 
-exec emacs --daemon
 exec autotiling -l 2
 exec_always ~/bin/setup_wl_displays.sh
 exec_always --no-startup-id foot --server
