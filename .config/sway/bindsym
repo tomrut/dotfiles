@@ -25,7 +25,7 @@ bindsym $mod+Shift+Tab exec swayr switch-workspace-or-window
 bindsym Alt+Tab exec swayr switch-to-urgent-or-lru-window
 
 # Open this file in a floating window
-bindsym $mod+Shift+i exec $term -T sway_config -e vim ~/.config/sway/config ~/.config/sway/bindsym
+bindsym $mod+Shift+i exec $term -T sway_config -D ~/.config/sway -e vim config bindsym
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -197,9 +197,9 @@ bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 bindsym $mod+c exec galculator
 bindsym $mod+b exec librewolf
 bindsym $mod+e exec $term -T ranger -e ranger
-bindsym $mod+p exec keepassxc && scratchpad show
-bindsym $mod+m exec $term -T cmus -e cmus && scratchpad show
-bindsym $mod+n exec $term -T notes -e vim ~/docs/notes/index.md && scratchpad show
+bindsym $mod+p exec keepassxc
+bindsym $mod+m exec $term -T cmus -e cmus
+bindsym $mod+n exec $term -T notes -D ~/docs/notes vim index.md
 
 # Snip a selection and pipe to swappy
 bindsym print exec grim -g "$(slurp)" - | swappy -f -
