@@ -146,6 +146,7 @@ in
       nreb = "sudo nixos-rebuild switch --no-write-lock-file";
       ncg = "sudo nix-collect-garbage -d";
       nhg = "home-manager generations";
+      nin = "nix-store --query --requisites /run/current-system | cut -d- -f2- | sort | uniq";
       nvdiff = "nvd diff $(ls -d1v /nix/var/nix/profiles/system-*-link|tail -n 2)";
       m = "neomutt";
       f = "fzf --preview 'bat --color=always {}'";
