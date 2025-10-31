@@ -40,11 +40,11 @@ if [ "$pending_updates" != "no updates available" ]; then
     subtitle=", reboot normal 👌 "
     priority="normal"
   else
-    subtitle=", reboot critical   "
+    subtitle=", reboot critical  "
     priority="critical"
   fi
 fi
 
 notify-send -u ${priority} "System updated ${subtitle}" "${pending_updates} "
 
-echo "{\"text\": \"System updated $subtitle\",\"tooltip\":$pending_updates}"
+echo "{\"text\": \"System updated $subtitle\",\"tooltip\":\"$pending_updates\"}"

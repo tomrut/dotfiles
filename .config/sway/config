@@ -9,6 +9,7 @@ exec autotiling -l 2
 exec_always ~/bin/setup_wl_displays.sh
 exec_always --no-startup-id foot --server
 exec_always swayrd
+exec gammastep -l 50.000:19.900 &
 
 # Read `man 5 sway` for a complete reference.
 
@@ -79,9 +80,6 @@ for_window [title="work"] workspace 3
 for_window [app_id="libreoffice-writer"] workspace 4
 for_window [app_id="org.gnome.Shotwell"] workspace 5
 for_window [title="ranger"] workspace 6
-
-### Idle configuration
-exec gammastep -l 50.000:19.900 &
 
 # Idle configuration
 exec swayidle -w before-sleep "swaylock -f -c 000000" \
