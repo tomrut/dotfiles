@@ -36,6 +36,7 @@
       };
     };
     dap-lldb.enable = true;
+    dap-python.enable = true;
   };
 
   # Allow DAP UI to automatically open and close when possible
