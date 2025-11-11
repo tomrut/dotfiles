@@ -34,6 +34,7 @@ in
     pkgs.remind
     pkgs.gnupg
     pkgs.jdk21
+    pkgs.python3
     pkgs.maven
     pkgs.jetbrains.idea-community
     pkgs.nodePackages.pnpm

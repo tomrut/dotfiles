@@ -153,6 +153,39 @@
       };
     };
 
+    iron = {
+      enable = true;
+      settings = {
+        highlight = {
+          italic = true;
+        };
+        keymaps = {
+          send_line = "<space>sl";
+          send_motion = "<space>sc";
+          visual_send = "<space>sc";
+        };
+        repl_definition = {
+          python = {
+            command = [
+              "python3"
+            ];
+            format = {
+              __raw = "require('iron.fts.common').bracketed_paste_python";
+            };
+          };
+          sh = {
+            command = [
+              "zsh"
+            ];
+          };
+        };
+        repl_open_cmd = {
+          __raw = "require(\"iron.view\").bottom(40)";
+        };
+        scratch_repl = true;
+      };
+    };
+
     lsp = {
       enable = true;
       inlayHints = true;
@@ -175,6 +208,8 @@
         nushell.enable = false;
         pylsp.enable = true;
         pylyzer.enable = false;
+        pyright.enable = false;
+
         tailwindcss.enable = true;
         terraformls.enable = false;
         ts_ls.enable = true;
