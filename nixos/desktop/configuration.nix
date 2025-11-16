@@ -71,6 +71,30 @@
     };
   };
 
+  services.grafana = {
+    enable = false;
+    domain = "localdomain";
+    port = 2342;
+    addr = "127.0.0.1";
+  };
+
+  services.prometheus = {
+    enable = false;
+    scrapeConfigs = [
+      {
+        job_name = "prometheus_metrics";
+        metrics_path = "/actuator/prometheus";
+        static_configs = [
+          {
+            targets = [
+              "localhost:8080"
+            ];
+          }
+        ];
+      }
+    ];
+  };
+
   programs.zsh.enable = true;
   environment.shells = with pkgs; [ zsh ];
 
