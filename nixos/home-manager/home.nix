@@ -6,7 +6,7 @@ let
 in
 {
   imports = [
-    inputs.nixvim.homeManagerModules.nixvim
+    inputs.nixvim.homeModules.nixvim
     ./nixvim
   ];
 
@@ -41,7 +41,7 @@ in
     pkgs.anki
     pkgs.neomutt
     pkgs.isync
-    pkgs.pinentry
+    pkgs.pinentry-curses
     pkgs.notify-desktop
     pkgs.flameshot
     pkgs.lazygit
@@ -222,8 +222,8 @@ in
   # Let Home Manager install and manage itself.
   programs.git = {
     enable = true;
-    userName = "tomrut";
-    userEmail = "tomrut@localhost";
+    user.name = "tomrut";
+    user.email = "tomrut@localhost";
 
   };
 

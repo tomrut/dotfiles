@@ -248,7 +248,11 @@
 
     navbuddy = {
       enable = true;
-      lsp.autoAttach = true;
+      settings = {
+        lsp = {
+          auto_attach = true;
+        };
+      };
     };
 
     nvim-autopairs.enable = true;
@@ -258,7 +262,9 @@
       enable = true;
 
       openOnSetupFile = true;
-      autoReloadOnWrite = true;
+      settings = {
+        auto_reload_on_write = true;
+      };
     };
 
     octo = {
