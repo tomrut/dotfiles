@@ -72,14 +72,14 @@
   };
 
   services.grafana = {
-    enable = false;
+    enable = true;
     domain = "localdomain";
     port = 2342;
     addr = "127.0.0.1";
   };
 
   services.prometheus = {
-    enable = false;
+    enable = true;
     scrapeConfigs = [
       {
         job_name = "prometheus_metrics";
