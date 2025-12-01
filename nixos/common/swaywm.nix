@@ -12,7 +12,7 @@
     sddm = {
       enable = true;
       wayland.enable = true;
-      theme = "catppuccin-mocha";
+      theme = "catppuccin-mocha-mauve";
       package = pkgs.kdePackages.sddm;
     };
     defaultSession = "sway";
