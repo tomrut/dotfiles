@@ -222,9 +222,10 @@ in
   # Let Home Manager install and manage itself.
   programs.git = {
     enable = true;
-    user.name = "tomrut";
-    user.email = "tomrut@localhost";
-
+    settings = {
+      user.name = "tomrut";
+      user.email = "tomrut@localhost";
+    };
   };
 
   home.shellAliases = {
