@@ -155,7 +155,7 @@
     dates = "daily";
     randomizedDelaySec = "10min";
     flags = [ "--no-write-lock-file" ];
-    flake = "/home/tomek/dotfiles/nixos/flake.nix#nixos-desktop";
+    flake = "/etc/nixos/flake.nix#nixos-desktop";
     allowReboot = true;
   };
 
