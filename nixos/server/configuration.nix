@@ -72,6 +72,8 @@
       PermitRootLogin = "prohibit-password";
     };
   };
+  
+  services.journald.extraConfig = "SystemMaxUse=100M";
 
   services.samba = {
     enable = true;
