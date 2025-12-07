@@ -71,6 +71,8 @@
     };
   };
 
+  services.journald.extraConfig = "SystemMaxUse=100M";
+
   services.grafana = {
     enable = false;
     settings = {

@@ -94,6 +94,8 @@
     };
   };
 
+  services.journald.extraConfig = "SystemMaxUse=100M";
+
   # Set your time zone.
   time.timeZone = "Europe/Warsaw";
 
