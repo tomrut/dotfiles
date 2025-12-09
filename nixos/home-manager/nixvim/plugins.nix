@@ -255,13 +255,6 @@
       };
     };
 
-    neotest = {
-      enable = true;
-      adapters = {
-        jest.enable = true;
-      };
-    };
-
     nvim-autopairs.enable = true;
     nvim-surround.enable = true;
 
