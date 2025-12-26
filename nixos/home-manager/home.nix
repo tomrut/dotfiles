@@ -36,7 +36,7 @@ in
     pkgs.jdk21
     pkgs.python3
     pkgs.maven
-    pkgs.jetbrains.idea-community
+    pkgs.jetbrains.idea-oss
     pkgs.nodePackages.pnpm
     pkgs.anki
     pkgs.neomutt
