@@ -264,6 +264,7 @@
       openOnSetupFile = true;
       settings = {
         auto_reload_on_write = true;
+        update_focused_file.enable = true;
       };
     };
 
