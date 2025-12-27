@@ -71,6 +71,10 @@
             "isort"
             "black"
           ];
+          typescriptreact = [
+            "prettierd"
+            "prettier"
+          ];
           html = [
             "prettierd"
             "prettier"
