@@ -55,7 +55,7 @@
         Type = "oneshot";
         ExecStart = toString (
           pkgs.writeShellScript "monitor_server_script" ''
-            export PATH="''${PATH}:${pkgs.coreutils-full}/bin:${pkgs.rsync}/bin:${pkgs.openssh}/bin:${pkgs.libnotify}/bin"
+            export PATH="''${PATH}:${pkgs.coreutils-full}/bin:${pkgs.rsync}/bin:${pkgs.openssh}/bin:${pkgs.gnupg}/bin:${pkgs.libnotify}/bin"
             ${pkgs.systemd}/bin/systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK DBUS_SESSION_BUS_ADDRESS
             ${pkgs.bash}/bin/bash /home/tomek/bin/detect_server_up.sh
           ''
