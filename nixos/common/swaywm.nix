@@ -8,32 +8,15 @@
 
 {
 
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session.command = ''
-        ${pkgs.tuigreet}/bin/tuigreet \
-          --time \
-          --asterisks \
-          --user-menu \
-          --cmd sway
-      '';
+  services.displayManager = {
+    sddm = {
+      enable = true;
+      wayland.enable = true;
+      theme = "catppuccin-mocha-mauve";
+      package = pkgs.kdePackages.sddm;
     };
+    defaultSession = "sway";
   };
-
-  environment.etc."greetd/environments".text = ''
-    sway
-  '';
-
-  # services.displayManager = {
-  #   sddm = {
-  #     enable = true;
-  #     wayland.enable = true;
-  #     theme = "catppuccin-mocha-mauve";
-  #     package = pkgs.kdePackages.sddm;
-  #   };
-  #   defaultSession = "sway";
-  # };
 
   programs.foot = {
     enable = true;
