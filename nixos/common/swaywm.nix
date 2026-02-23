@@ -62,7 +62,6 @@
     swaybg
     swaylock
     swayr
-    fuzzel
     swayimg # image viewer for sway
     swappy # wayland snapshot tool
     swayidle

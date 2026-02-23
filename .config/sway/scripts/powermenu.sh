@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 options="⏻   PowerOff\n   Reboot\n󰤄   Sleep\n󰌾   Lock\n󰍃   Logout"
 
-choice=$(echo -e "$options" | fuzzel -w 15 -l 6 -a top-right --dmenu --prompt="Select Option: ")
+chosen=$(echo -e $options | wmenu -p "Power:" -i)
 
 case "$choice" in
 "⏻   PowerOff")

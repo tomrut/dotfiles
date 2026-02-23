@@ -16,7 +16,7 @@
     "custom/launcher": {
       "format": "",
       "tooltip": false,
-      "on-click": "fuzzel -a top-left"
+      "on-click": "wmenu-run"
     },
 
     "sway/workspaces": {
