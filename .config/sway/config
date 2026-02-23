@@ -19,7 +19,7 @@ exec gammastep -l 50.000:19.900 &
 set $term foot
 # Your preferred application launcher
 # Application launcher
-set $launcher wmenu-run
+set $launcher wofi --show drun
 set $powermenu ~/.config/sway/scripts/powermenu.sh
 
 # hide border when only one window

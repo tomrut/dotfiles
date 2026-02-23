@@ -1,25 +1,13 @@
 #!/usr/bin/env bash
-options="⏻   PowerOff\n   Reboot\n󰤄   Sleep\n󰌾   Lock\n󰍃   Logout"
+options="Shutdown\nReboot\nLock\nSleep\nLogout"
 
+# -i makes it case-insensitive, -p adds a prompt
 chosen=$(echo -e $options | wmenu -p "Power:" -i)
 
-case "$choice" in
-"⏻   PowerOff")
-  systemctl poweroff
-  ;;
-"   Reboot")
-  systemctl reboot
-  ;;
-"󰤄   Sleep")
-  systemctl suspend
-  ;;
-"󰌾   Lock")
-  swaylock -f -c 000000
-  ;;
-"󰍃   Logout")
-  swaymsg exit
-  ;;
-*)
-  echo "No valid option selected."
-  ;;
+case "$chosen" in
+"Shutdown") systemctl poweroff ;;
+"Reboot") systemctl reboot ;;
+"Lock") swaylock -f -c 000000 ;;
+"Sleep") systemctl suspend ;;
+"Logout") swaymsg exit ;;
 esac
