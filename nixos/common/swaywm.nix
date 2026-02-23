@@ -75,8 +75,6 @@
     wdisplays
     libnotify
     wofi
-    wofi-pass
-    wofi-emoji
     galculator
     jq
     xdg-desktop-portal-wlr
@@ -86,7 +84,6 @@
     upower-notify
     ranger
     pulsemixer
-    catppuccin-sddm
     waybar
     batmon
   ];
