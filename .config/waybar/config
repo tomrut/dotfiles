@@ -16,7 +16,7 @@
     "custom/launcher": {
       "format": "",
       "tooltip": false,
-      "on-click": "wmenu-run"
+      "on-click": "wofi -j -x 0 -y 0 --show drun"
     },
 
     "sway/workspaces": {
