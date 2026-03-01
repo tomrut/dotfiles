@@ -8,37 +8,15 @@
 
 {
 
-  # services.displayManager = {
-  #   sddm = {
-  #     enable = true;
-  #     wayland.enable = true;
-  #     theme = "catppuccin-mocha-mauve";
-  #     package = pkgs.kdePackages.sddm;
-  #   };
-  #   defaultSession = "sway";
-  # };
-
-  services.greetd = {
-    enable = true;
-    settings = {
-      initial_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd sway --remember --remember-user-session";
-        user = "tomek";
-      };
-      default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd sway --remember --remember-user-session";
-        user = "greeter";
-      };
+  services.displayManager = {
+    sddm = {
+      enable = true;
+      wayland.enable = true;
+      theme = "catppuccin-mocha-mauve";
+      package = pkgs.kdePackages.sddm;
     };
+    defaultSession = "sway";
   };
-
-  # services.getty = {
-  #   autologinUser = "tomek";
-  #   autologinOnce = true;
-  # };
-  # environment.loginShellInit = ''
-  #   [[ "$(tty)" == /dev/tty1 ]] && sway
-  # '';
 
   programs.foot = {
     enable = true;
@@ -86,6 +64,7 @@
     pulsemixer
     waybar
     batmon
+    catppuccin-sddm
   ];
 
 }
