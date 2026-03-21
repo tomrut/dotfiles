@@ -263,6 +263,35 @@
       };
     };
 
+    # neotest = {
+    #   enable = true;
+    #
+    #   adapters = {
+    #     jest = {
+    #       enable = true;
+    #       settings = {
+    #         jestCommand = "npm test --";
+    #         jestArguments = config.lib.nixvim.mkRaw ''
+    #           function(defaultArguments, context)
+    #             return defaultArguments
+    #           end'';
+    #
+    #         discovery = {
+    #           enabled = false;
+    #         };
+    #
+    #         # jestConfigFile = "jest.config.ts";
+    #         cwd = config.lib.nixvim.mkRaw ''
+    #           function(path)
+    #             return vim.fn.getcwd()
+    #           end'';
+    #         # isTestFile = config.lib.nixvim.mkRaw ''require("neotest-jest.jest-util").defaultIsTestFile'';
+    #       };
+    #
+    #     };
+    #   };
+    # };
+
     nvim-autopairs.enable = true;
     nvim-surround.enable = true;
 
