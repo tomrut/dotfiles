@@ -352,7 +352,7 @@
       {
         mode = "n";
         key = "<leader>eh";
-        action = ''<cmd>Telescope harpoon marks<CR>'';
+        action = "<cmd>Telescope harpoon marks<CR>";
         options = {
           desc = "Harpoon Telescope Marks";
           silent = true;
@@ -361,7 +361,7 @@
       {
         mode = "n";
         key = "<leader>eh";
-        action = ''<cmd>Telescope harpoon marks<CR>'';
+        action = "<cmd>Telescope harpoon marks<CR>";
         options = {
           desc = "Harpoon Telescope Marks";
           silent = true;
@@ -801,6 +801,22 @@
         action = "<CMD>RustLsp explainError<CR>";
         options = {
           desc = "Rust explain error";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>rt";
+        action = "<CMD>TestNearest<CR>";
+        options = {
+          desc = "Run TestNearest";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>rT";
+        action = "<CMD>TestFile<CR>";
+        options = {
+          desc = "Run TestFile";
         };
       }
 
