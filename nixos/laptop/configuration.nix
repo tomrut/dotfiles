@@ -211,7 +211,7 @@
     operation = "boot";
     randomizedDelaySec = "10min";
     flags = [ "--no-write-lock-file" ];
-    flake = "/etc/nixos/flake.nix#nixos-laptop";
+    flake = "/etc/nixos#nixos-laptop";
     persistent = true;
     allowReboot = false;
   };
