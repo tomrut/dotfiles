@@ -9,8 +9,7 @@
 
     "modules-left": [
         "custom/launcher",
-        "sway/workspaces",
-        "sway/window"
+        "sway/workspaces"
     ],
 
     "custom/launcher": {
@@ -35,13 +34,6 @@
             "9": "9",
             "10": "10"
         }
-    },
-
-    "sway/window": {
-        "format": "{title}",
-        //"all-outputs": true, // Active window shows only on active display when commented
-        "max-length": 120,
-        "on-click": "swayr merge-config ~/.config/swayr/waybar_config.toml; swayr switch-workspace-or-window; swayr reload-config",
     },
 
 // Configuration - modules-center

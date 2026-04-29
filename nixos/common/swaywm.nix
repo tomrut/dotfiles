@@ -39,11 +39,9 @@
   environment.systemPackages = with pkgs; [
     swaybg
     swaylock
-    swayr
     swayimg # image viewer for sway
     swappy # wayland snapshot tool
     swayidle
-    autotiling
     # kanshi # dynamic enabling / disabling inputs
     slurp # select region in wayland compositor - use with grim
     grim
