@@ -16,13 +16,7 @@ bindsym $mod+w bar mode toggle
 # Start your launcher
 bindsym $mod+d exec $launcher
 # Activities
-bindsym $mod+Tab exec swayr switch-window
-
-# Activities and workspaces
-bindsym $mod+Shift+Tab exec swayr switch-workspace-or-window
-
-# Switch to the last recently used window
-bindsym Alt+Tab exec swayr switch-to-urgent-or-lru-window
+bindsym Alt+Tab workspace next
 
 # Open this file in a floating window
 bindsym $mod+Shift+i exec $term -T sway_config -D ~/.config/sway -e vim config bindsym
