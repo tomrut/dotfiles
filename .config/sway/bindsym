@@ -16,7 +16,10 @@ bindsym $mod+w bar mode toggle
 # Start your launcher
 bindsym $mod+d exec $launcher
 # Activities
-bindsym Alt+Tab workspace next
+bindsym Alt+Tab workspace back_and_forth
+
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
 
 # Open this file in a floating window
 bindsym $mod+Shift+i exec $term -T sway_config -D ~/.config/sway -e vim config bindsym
