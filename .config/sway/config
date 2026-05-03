@@ -8,6 +8,7 @@ exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK DBUS_S
 exec_always ~/bin/setup_wl_displays.sh
 exec_always --no-startup-id foot --server
 exec gammastep -l 50.000:19.900 &
+exec swayrd
 
 # Read `man 5 sway` for a complete reference.
 

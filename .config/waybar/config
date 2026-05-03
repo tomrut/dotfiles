@@ -9,13 +9,21 @@
 
     "modules-left": [
         "custom/launcher",
-        "sway/workspaces"
+        "sway/workspaces",
+         "sway/window"
     ],
 
     "custom/launcher": {
       "format": "",
       "tooltip": false,
       "on-click": "wofi -j -x 0 -y 0 --show drun"
+    },
+
+    "sway/window": {
+      "format": "{title}",
+      //"all-outputs": true, // Active window shows only on active display when commented
+      "max-length": 120,
+      "on-click": "swayr merge-config ~/.config/swayr/waybar_config.toml; swayr switch-workspace-or-window; swayr reload-config",
     },
 
     "sway/workspaces": {

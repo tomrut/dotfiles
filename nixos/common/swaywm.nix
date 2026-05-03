@@ -42,6 +42,7 @@
     swayimg # image viewer for sway
     swappy # wayland snapshot tool
     swayidle
+    swayr
     # kanshi # dynamic enabling / disabling inputs
     slurp # select region in wayland compositor - use with grim
     grim
