@@ -18,10 +18,8 @@ bindsym $mod+d exec $launcher
 # Activities
 bindsym Alt+Tab workspace back_and_forth
 
-#bindsym $mod+Tab workspace next
-bindsym $mod+Tab exec swayr switch-window
-#bindsym $mod+Shift+Tab workspace prev
-bindsym $mod+Shift+Tab exec swayr switch-workspace-or-window
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
 
 # Open this file in a floating window
 bindsym $mod+Shift+i exec $term -T sway_config -D ~/.config/sway -e vim config bindsym
