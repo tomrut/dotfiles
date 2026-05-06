@@ -46,21 +46,18 @@
     slurp # select region in wayland compositor - use with grim
     grim
     mako
-    wl-clipboard
     gammastep
     wdisplays
     libnotify
     wofi
     galculator
     jq
-    xdg-desktop-portal-wlr
     playerctl
     cmus
     upower
     upower-notify
     ranger
     pulsemixer
-    waybar
     batmon
     catppuccin-sddm
   ];

@@ -112,7 +112,8 @@ input "2:7:SynPS/2_Synaptics_TouchPad" {
 # Bar
 bar {
    position top
-   swaybar_command waybar
+   swaybar_command swaybar
+   status_command while ~/bin/bar_status.sh; do sleep 15; done
    hidden_state hide
    mode hide
    modifier Mod4
