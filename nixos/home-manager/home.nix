@@ -98,6 +98,8 @@ in
     #   org.gradle.daemon.idletimeout=3600000
     # '';
     "bin/codelldb".source = codelldb_path;
+
+    "SDKS/OpenJDK21".source = "${pkgs.jdk21}";
   };
 
   # Home Manager can also manage your environment variables through

@@ -60,6 +60,7 @@
     pulsemixer
     batmon
     catppuccin-sddm
+    xdg-desktop-portal-wlr
   ];
 
 }
