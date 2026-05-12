@@ -16,6 +16,8 @@ bindsym $mod+w bar mode toggle
 # Start your launcher
 bindsym $mod+d exec $launcher
 bindsym $mod+t exec foot -T htop -e htop
+bindsym $mod+x exec check_updates.sh
+
 # Activities
 bindsym Alt+Tab workspace back_and_forth
 #bindsym Alt+Tab exec ~/bin/switch_window.sh
