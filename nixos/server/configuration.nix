@@ -15,7 +15,7 @@
     grub = {
       enable = true;
       device = "/dev/sda";
-      configurationLimit = 10;
+      configurationLimit = 3;
       enableCryptodisk = true;
     };
     timeout = 4;
@@ -72,7 +72,7 @@
       PermitRootLogin = "prohibit-password";
     };
   };
-  
+
   services.journald.extraConfig = "SystemMaxUse=100M";
 
   services.samba = {
@@ -250,7 +250,7 @@
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.11"; # Did you read the comment?
 
-  boot.loader.systemd-boot.configurationLimit = 10;
+  boot.loader.systemd-boot.configurationLimit = 3;
   system.copySystemConfiguration = true;
 
   system.autoUpgrade = {
