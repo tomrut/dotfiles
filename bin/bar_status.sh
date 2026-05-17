@@ -33,4 +33,4 @@ cpu_util=$(vmstat 1 2 | tail -1 | awk '{print 100 - $15""}')
 sound_volume=$(pulsemixer --get-volume | awk '{print $2}')
 # sound_volume=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d : -f 2)
 
-echo "❙ 💎${cpu_util}% ❙  $mem_rounded% ❙ ⚡${cpu_temp} ❙ 🎧${sound_volume}% ❙ ${bat0} ❙ ${bat1} ❙ ${date} ❙"
+echo "❙ 💎${cpu_util}% ❙  $mem_rounded% ❙ 🌡${cpu_temp} ❙ 🎧${sound_volume}% ❙ ${bat0} ❙ ${bat1} ❙ ${date} ❙"
