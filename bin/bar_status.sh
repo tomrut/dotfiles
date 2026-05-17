@@ -4,24 +4,28 @@ date=$(date +%d\ %B\ %Y\ ❙\ \ \ %H:%M)
 
 battery() {
   local bat_no=$1
-  prct=$(cat "/sys/class/power_supply/BAT${bat_no}/capacity")
-  chrg=$(cat "/sys/class/power_supply/BAT${bat_no}/status")
-  icon=" "
-  case $chrg in
-  "Charging")
-    icon="󰂄"
-    ;;
-  "Not charging")
-    icon="󰠑"
-    ;;
-  "Unknown")
-    icon=""
-    ;;
-  "Full")
-    icon="⚡"
-    ;;
-  esac
-  echo "${icon}  ${prct}% ${chrg} "
+  if [ -f "/sys/class/power_supply/BAT${bat_no}/status" ]; then
+    prct=$(cat "/sys/class/power_supply/BAT${bat_no}/capacity")
+    chrg=$(cat "/sys/class/power_supply/BAT${bat_no}/status")
+    icon=" "
+    case $chrg in
+    "Charging")
+      icon="󰂄"
+      ;;
+    "Not charging")
+      icon="󰠑"
+      ;;
+    "Unknown")
+      icon=""
+      ;;
+    "Full")
+      icon="⚡"
+      ;;
+    esac
+    echo " ${icon}  ${prct}% ${chrg} ❙"
+  else
+    echo ""
+  fi
 }
 
 bat0=$(battery 0)
@@ -33,4 +37,4 @@ cpu_util=$(vmstat 1 2 | tail -1 | awk '{print 100 - $15""}')
 sound_volume=$(pulsemixer --get-volume | awk '{print $2}')
 # sound_volume=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d : -f 2)
 
-echo "❙ 💎${cpu_util}% ❙  $mem_rounded% ❙ 🌡${cpu_temp} ❙ 🎧${sound_volume}% ❙ ${bat0} ❙ ${bat1} ❙ ${date} ❙"
+echo "❙ 💎${cpu_util}% ❙  $mem_rounded% ❙ 🌡${cpu_temp} ❙ 🎧${sound_volume}% ❙${bat0}${bat1} ${date} ❙"
