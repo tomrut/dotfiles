@@ -28,6 +28,13 @@ battery() {
   fi
 }
 
+act_brightness=""
+if [ -e "/sys/class/backlight/intel_backlight/actual_brightness" ]; then
+  cur_brightness=$(cat /sys/class/backlight/intel_backlight/actual_brightness)
+  max_brightness=$(cat /sys/class/backlight/intel_backlight/max_brightness)
+  act_brightness="❙ 💡 $(echo $((100 * cur_brightness / $max_brightness)))% "
+fi
+
 bat0=$(battery 0)
 bat1=$(battery 1)
 cpu_temp="$(awk '{x += $1} END{ printf "%.0f", x / NR / 1000}' /sys/class/thermal/thermal_zone*/temp)°C"
@@ -37,4 +44,4 @@ cpu_util=$(vmstat 1 2 | tail -1 | awk '{print 100 - $15""}')
 sound_volume=$(pulsemixer --get-volume | awk '{print $2}')
 # sound_volume=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d : -f 2)
 
-echo "❙ 💎${cpu_util}% ❙  $mem_rounded% ❙ 🌡${cpu_temp} ❙ 🎧${sound_volume}% ❙${bat0}${bat1} ${date} ❙"
+echo "❙ 💎${cpu_util}% ❙  $mem_rounded% ❙ 🌡 ${cpu_temp} $act_brightness ❙ 🎧${sound_volume}% ❙${bat0}${bat1} ${date} ❙"
