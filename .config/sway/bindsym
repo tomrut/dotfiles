@@ -11,7 +11,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+q kill
 
 # toggle
-bindsym $mod+w bar mode toggle
+bindsym $mod+b bar mode toggle
 
 # Start your launcher
 bindsym $mod+d exec $launcher
@@ -197,7 +197,7 @@ bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 # app fast run bindings
 bindsym $mod+c exec galculator
 # bindsym $mod+b exec librewolf
-bindsym $mod+b exec firefox
+bindsym $mod+w exec firefox
 bindsym $mod+s exec codium
 bindsym $mod+e exec $term -T ranger -e ranger
 bindsym $mod+p exec keepassxc
