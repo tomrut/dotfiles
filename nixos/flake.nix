@@ -23,7 +23,7 @@
         system = "x86_64-linux";
         modules = [
           ./laptop/configuration.nix
-          ./common/swaywm.nix
+          #./common/swaywm.nix
           ./common/mounting.nix
           # ./common/podman.nix
           #./common/monitoring.nix
