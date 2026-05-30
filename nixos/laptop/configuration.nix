@@ -36,7 +36,6 @@
   boot.initrd.luks.devices."luks-7219f85c-a0e5-4085-a00d-da8871b69144".keyFile =
     "/boot/crypto_keyfile.bin";
   networking.hostName = "nixos-laptop"; # Define your hostname.
-  security.pam.enableEcryptfs = true;
 
   # Enable networking
   networking.networkmanager.enable = true;

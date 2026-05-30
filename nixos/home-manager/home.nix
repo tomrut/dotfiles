@@ -5,10 +5,11 @@ let
   codelldb_path = "${codelldb_ext}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
 in
 {
-  imports = [
-    inputs.nixvim.homeModules.nixvim
-    ./nixvim
-  ];
+
+#  imports = [
+#    inputs.nixvim.homeModules.nixvim
+#      ./nixvim
+#  ];
 
   home.packages = [
     # # Adds the 'hello' command to your environment. It prints a friendly
@@ -49,6 +50,7 @@ in
     pkgs.yubioath-flutter
     pkgs.nixfmt-rfc-style
     pkgs.nvd
+    pkgs.neovim
     # pkgs.librewolf
     pkgs.feh
     pkgs.eza
@@ -120,6 +122,10 @@ in
       export EDITOR="nvim";
     '';
   };
+
+  programs.neovim.plugins = [
+    pkgs.vimPlugins.nvim-treesitter.withAllGrammars
+  ];
 
   programs.firefox = {
     enable = true;

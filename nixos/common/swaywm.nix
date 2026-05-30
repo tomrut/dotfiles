@@ -32,7 +32,6 @@
     enable = true;
     wrapperFeatures.gtk = true;
   };
-  programs.light.enable = true;
   security.pam.services.swaylock = { };
 
   environment.systemPackages = with pkgs; [
@@ -60,6 +59,7 @@
     batmon
     catppuccin-sddm
     xdg-desktop-portal-wlr
+    brightnessctl
   ];
 
 }

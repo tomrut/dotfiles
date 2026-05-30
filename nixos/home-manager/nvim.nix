@@ -20,7 +20,6 @@
       vimAlias = true;
       vimdiffAlias = true;
       extraPackages = with pkgs; [
-        tree-sitter
         typescript-language-server
         emmet-ls
         nixd
@@ -38,18 +37,6 @@
           config = toLuaFile ./nvim/plugin/lsp.lua;
         }
 
-        (nvim-treesitter.withPlugins (p: [
-          p.tree-sitter-nix
-          p.tree-sitter-bash
-          p.tree-sitter-javascript
-          p.tree-sitter-typescript
-          p.tree-sitter-lua
-          p.tree-sitter-json
-          p.tree-sitter-css
-          p.tree-sitter-html
-          p.tree-sitter-java
-          p.tree-sitter-markdown
-        ]))
         telescope-nvim
         telescope-project-nvim
         lsp-zero-nvim
