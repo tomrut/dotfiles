@@ -43,8 +43,8 @@
         system = "x86_64-linux";
         modules = [
           ./desktop/configuration.nix
-          # ./common/swaywm.nix
-          ./common/plasma.nix
+          ./common/swaywm.nix
+          #./common/plasma.nix
           #./common/podman.nix
           ./common/mounting.nix
           home-manager.nixosModules.home-manager
