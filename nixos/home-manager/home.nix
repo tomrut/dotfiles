@@ -14,7 +14,6 @@ in
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     pkgs.ripgrep
-    pkgs.tree-sitter
     pkgs.gcc
     pkgs.mc
     pkgs.nodejs_24
@@ -37,7 +36,7 @@ in
     pkgs.python3
     pkgs.maven
     pkgs.jetbrains.idea-oss
-    pkgs.nodePackages.pnpm
+    pkgs.pnpm
     pkgs.anki
     pkgs.neomutt
     pkgs.isync

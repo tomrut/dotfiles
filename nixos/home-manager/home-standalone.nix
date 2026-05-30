@@ -51,7 +51,7 @@
     pkgs.jdk21
     pkgs.maven
     pkgs.jetbrains.idea-community
-    pkgs.nodePackages.pnpm
+    pkgs.pnpm
     pkgs.neofetch
     pkgs.anki
     pkgs.neomutt

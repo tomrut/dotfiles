@@ -112,10 +112,10 @@
             command = lib.getExe' pkgs.coreutils "cat";
           };
           nixpkgs-fmt = {
-            command = lib.getExe pkgs.nixfmt-rfc-style;
+            command = lib.getExe pkgs.nixfmt;
           };
           prettier = {
-            command = lib.getExe pkgs.nodePackages.prettier;
+            command = lib.getExe pkgs.prettier;
           };
         };
       };

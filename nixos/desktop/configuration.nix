@@ -15,7 +15,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos-desktop"; # Define your hostname.
-  networking.wireless.enable = false; # Enables wireless support via wpa_supplicant.
+  # networking.wireless.enable = false; # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";

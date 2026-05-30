@@ -121,17 +121,6 @@
   # Configure console keymap
   console.keyMap = "pl2";
 
-  services = {
-    desktopManager.plasma6.enable = true;
-    displayManager.sddm.enable = true;
-    displayManager.sddm.wayland.enable = true;
-  };
-
-  environment.plasma6.excludePackages = with pkgs; [
-    kdePackages.discover
-    kdePackages.kate
-  ];
-
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;

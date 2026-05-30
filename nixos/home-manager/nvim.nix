@@ -21,12 +21,12 @@
       vimdiffAlias = true;
       extraPackages = with pkgs; [
         tree-sitter
-        nodePackages.typescript-language-server
+        typescript-language-server
         emmet-ls
         nixd
         vscode-langservers-extracted
         tailwindcss-language-server
-        nodePackages.typescript-language-server
+        typescript-language-server
       ];
 
       extraLuaPackages = ps: [ ps.jsregexp ];
@@ -64,7 +64,7 @@
         cmp_luasnip
         cmp-buffer
         cmp-path
-        nvim-tree-lua
+        # nvim-tree-lua
         luasnip
         friendly-snippets
         nvim-web-devicons

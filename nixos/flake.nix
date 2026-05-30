@@ -1,11 +1,11 @@
 {
   description = "NixOS flake";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
-    nixvim.url = "github:nix-community/nixvim/nixos-26.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixvim.url = "github:nix-community/nixvim/nixos-25.11";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-26.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -24,6 +24,7 @@
         modules = [
           ./laptop/configuration.nix
           #./common/swaywm.nix
+          ./common/plasma.nix
           ./common/mounting.nix
           # ./common/podman.nix
           #./common/monitoring.nix
@@ -42,8 +43,9 @@
         system = "x86_64-linux";
         modules = [
           ./desktop/configuration.nix
-          ./common/swaywm.nix
-          ./common/podman.nix
+          # ./common/swaywm.nix
+          ./common/plasma.nix
+          #./common/podman.nix
           ./common/mounting.nix
           home-manager.nixosModules.home-manager
           {
