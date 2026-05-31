@@ -171,6 +171,7 @@
   environment.systemPackages = with pkgs; [
     cifs-utils
     calibre
+    nmap
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
