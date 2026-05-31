@@ -30,6 +30,19 @@
       "r8169"
       "kvm_amd"
     ];
+    systemd =
+      let
+        askPass = pkgs.writeShellScriptBin "systemctl-askpass" ''
+        ${pkgs.systemd}/bin/systemctl default
+        '';
+      in
+      {
+        enable = true;
+        initrdBin = with pkgs; [ keyutils ];
+        storePaths = [ "${askPass}/bin/systemctl-askpass" ];
+        users.root.shell = "${askPass}/bin/systemctl-askpass";
+      };
+
     network = {
       enable = true;
       udhcpc.enable = false;
@@ -44,10 +57,10 @@
         hostKeys = [ "/etc/secrets/initrd/ssh_host_rsa_key" ];
       };
 
-      postCommands = ''
-        # Automatically ask for the password on SSH login
-        echo 'cryptsetup-askpass || echo "Unlock was successful; exiting SSH session" && exit 1' >> /root/.profile
-      '';
+      #postCommands = ''
+      #  # Automatically ask for the password on SSH login
+      #  echo 'cryptsetup-askpass || echo "Unlock was successful; exiting SSH session" && exit 1' >> /root/.profile
+      #'';
 
     };
   };
@@ -151,7 +164,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim
-    nixfmt-rfc-style
+    nixfmt
     nvd
     cryptsetup
     mc
@@ -159,7 +172,7 @@
     git
   ];
 
-  boot.initrd.luks.reusePassphrases = true;
+  #boot.initrd.luks.reusePassphrases = true;
   boot.initrd.luks.devices = {
     system = {
       device = "/dev/disk/by-id/ata-SK_hynix_SC401_SATA_256GB_MI93T009511203I0U-part2";
