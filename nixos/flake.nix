@@ -22,6 +22,7 @@
         specialArgs = { inherit inputs; };
         system = "x86_64-linux";
         modules = [
+
           ./laptop/configuration.nix
           ./common/swaywm.nix
           #./common/plasma.nix

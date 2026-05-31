@@ -6,14 +6,12 @@ let
 in
 {
 
-#  imports = [
-#    inputs.nixvim.homeModules.nixvim
-#      ./nixvim
-#  ];
+  #  imports = [
+  #    inputs.nixvim.homeModules.nixvim
+  #      ./nixvim
+  #  ];
 
   home.packages = [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
     pkgs.ripgrep
     pkgs.gcc
     pkgs.mc
@@ -33,24 +31,30 @@ in
     pkgs.cargo
     pkgs.remind
     pkgs.gnupg
+
+    # dev languages
     pkgs.jdk21
     pkgs.python3
     pkgs.maven
     pkgs.jetbrains.idea-oss
+    pkgs.neovim
     pkgs.pnpm
+    pkgs.lazygit
+
+    pkgs.rustc
+    pkgs.vscode-extensions.vadimcn.vscode-lldb
+
     pkgs.anki
     pkgs.neomutt
     pkgs.isync
     pkgs.pinentry-curses
     pkgs.notify-desktop
     pkgs.flameshot
-    pkgs.lazygit
     pkgs.fd
     pkgs.home-manager
     pkgs.yubioath-flutter
-    pkgs.nixfmt-rfc-style
+    pkgs.nixfmt
     pkgs.nvd
-    pkgs.neovim
     # pkgs.librewolf
     pkgs.feh
     pkgs.eza
@@ -69,8 +73,13 @@ in
         pl
       ]
     ))
-    pkgs.rustc
-    pkgs.vscode-extensions.vadimcn.vscode-lldb
+
+    # necessary for lazynvim
+    pkgs.lua5_1
+    pkgs.luarocks-nix
+    pkgs.ast-grep
+    pkgs.wget
+
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -123,10 +132,6 @@ in
     '';
   };
 
-  programs.neovim.plugins = [
-    pkgs.vimPlugins.nvim-treesitter.withAllGrammars
-  ];
-
   programs.firefox = {
     enable = true;
     package = pkgs.firefox;
@@ -167,6 +172,9 @@ in
       gcm = "git commit -m $1";
       gp = "git push";
       gP = "git pull";
+      vim = "nvim";
+      vi = "nvim";
+      v = "nvim";
       swayTree = "swaymsg -t get_tree";
       swayOutputs = "swaymsg -t get_outputs";
       bk = "~/bin/make_backup.sh";
@@ -204,9 +212,9 @@ in
       rfv() (
         RELOAD='reload:rg --column --color=always --smart-case {q} || :'
         OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
-                  vim {1} +{2}     # No selection. Open the current line in Vim.
+                  nvim {1} +{2}     # No selection. Open the current line in Vim.
                 else
-                  vim +cw -q {+f}  # Build quickfix list for the selected items.
+                  nvim +cw -q {+f}  # Build quickfix list for the selected items.
                 fi'
         fzf --disabled --ansi --multi \
             --bind "start:$RELOAD" --bind "change:$RELOAD" \
