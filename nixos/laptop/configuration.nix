@@ -172,6 +172,7 @@
     cifs-utils
     calibre
     nmap
+    waybar
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -184,6 +185,8 @@
     pinentryPackage = pkgs.pinentry-gnome3;
     enableSSHSupport = true;
   };
+
+  programs.mangowc.enable = true;
 
   # List services that you want to enable:
 
