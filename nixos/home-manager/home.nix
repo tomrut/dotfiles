@@ -6,10 +6,10 @@ let
 in
 {
 
-  #  imports = [
-  #    inputs.nixvim.homeModules.nixvim
-  #      ./nixvim
-  #  ];
+#  imports = [
+#    inputs.nixvim.homeModules.nixvim
+#      ./nixvim
+#  ];
 
   home.packages = [
     pkgs.ripgrep
@@ -75,10 +75,10 @@ in
     ))
 
     # necessary for lazynvim
-    pkgs.lua5_1
-    pkgs.luarocks-nix
-    pkgs.ast-grep
-    pkgs.wget
+  #  pkgs.lua5_1
+  #  pkgs.luarocks-nix
+  #  pkgs.ast-grep
+  #  pkgs.wget
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -92,6 +92,10 @@ in
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+  ];
+
+  programs.neovim.plugins = [
+    pkgs.vimPlugins.nvim-treesitter.withAllGrammars
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
