@@ -186,7 +186,8 @@
     enableSSHSupport = true;
   };
 
-  programs.mangowc.enable = true;
+  #programs.mangowc.enable = true;
+  #programs.river-classic.enable = true;
 
   # List services that you want to enable:
 
