@@ -25,6 +25,7 @@
 
           ./laptop/configuration.nix
           ./common/swaywm.nix
+          ./common/stub-ld.nix
           #./common/plasma.nix
           ./common/mounting.nix
           # ./common/podman.nix
@@ -45,6 +46,7 @@
         modules = [
           ./desktop/configuration.nix
           ./common/swaywm.nix
+          ./common/stub-ld.nix
           #./common/plasma.nix
           #./common/podman.nix
           ./common/mounting.nix
