@@ -172,7 +172,6 @@
     cifs-utils
     calibre
     nmap
-    waybar
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -186,7 +185,6 @@
     enableSSHSupport = true;
   };
 
-  #programs.mangowc.enable = true;
   #programs.river-classic.enable = true;
 
   # List services that you want to enable:

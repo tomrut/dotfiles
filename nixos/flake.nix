@@ -26,6 +26,7 @@
           ./laptop/configuration.nix
           ./common/swaywm.nix
           ./common/stub-ld.nix
+          ./common/mango.nix
           #./common/plasma.nix
           ./common/mounting.nix
           # ./common/podman.nix
