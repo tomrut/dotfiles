@@ -285,12 +285,43 @@ in
     enable = true;
   };
 
-  programs.vscode = {
+  programs.zed-editor = {
     enable = true;
-    package = pkgs.vscodium;
-    profiles.default.extensions = with pkgs.vscode-extensions; [
-      dracula-theme.theme-dracula
-      firefox-devtools.vscode-firefox-debug
-    ];
+    userSettings = {
+      project_panel = {
+        dock = "left";
+      };
+
+      base_keymap = "JetBrains";
+      ui_font_size = 16;
+      buffer_font_size = 15;
+      max_tabs = 6;
+
+      theme = {
+        mode = "system";
+        light = "Ayu Light";
+        dark = "Ayu Dark";
+      };
+
+      telemetry = {
+        # Send debug info like crash reports.
+        diagnostics = false;
+        # Send anonymized usage data like what languages you're using Zed with.
+        metrics = false;
+        # Allow sending requests to Anthropic models that cannot be offered with
+        # Zero Data Retention
+        anthropic_retention = false;
+      };
+    };
+
   };
+
+  # programs.vscode = {
+  #   enable = true;
+  #   package = pkgs.vscodium;
+  #   profiles.default.extensions = with pkgs.vscode-extensions; [
+  #     dracula-theme.theme-dracula
+  #     firefox-devtools.vscode-firefox-debug
+  #   ];
+  # };
 }
