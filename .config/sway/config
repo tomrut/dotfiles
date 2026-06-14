@@ -33,8 +33,10 @@ font pango:Meslo LGM Nerd Font 14
 output * bg /home/tomek/.config/sway/nix-wallpaper-simple-light-gray.png fill
 ### Output configuration
 #
-set $output1 DP-2
-set $output2 DP-3
+#set $output1 DP-2
+set $output1 "Dell Inc. DELL P2419HC 3X3LDZ2"
+#set $output2 DP-3
+set $output2 "Eizo Nanao Corporation EV2450 66847099"
 set $output3 LVDS-1
 output $output1 pos 0 0
 output $output2 pos 1920 0
