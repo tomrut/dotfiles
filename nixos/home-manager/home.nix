@@ -1,8 +1,8 @@
 { pkgs, inputs, ... }:
 
 let
-  codelldb_ext = pkgs.vscode-extensions.vadimcn.vscode-lldb;
-  codelldb_path = "${codelldb_ext}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+  # codelldb_ext = pkgs.vscode-extensions.vadimcn.vscode-lldb;
+  # codelldb_path = "${codelldb_ext}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
 in
 {
 
@@ -13,8 +13,8 @@ in
 
   home.packages = [
     pkgs.ripgrep
-    pkgs.gcc
-    pkgs.mc
+    # pkgs.gcc
+    # pkgs.mc
     pkgs.nodejs_24
     pkgs.yt-dlp
     pkgs.mpv
@@ -22,9 +22,9 @@ in
     pkgs.libreoffice-still
     pkgs.material-design-icons
     pkgs.nerd-fonts.fira-code
-    pkgs.nerd-fonts.fira-mono
-    pkgs.nerd-fonts.symbols-only
-    pkgs.nerd-fonts.monaspace
+    # pkgs.nerd-fonts.fira-mono
+    # pkgs.nerd-fonts.symbols-only
+    # pkgs.nerd-fonts.monaspace
     pkgs.nerd-fonts.jetbrains-mono
     pkgs.unzip
     pkgs.mpg123
@@ -36,13 +36,13 @@ in
     pkgs.jdk21
     pkgs.python3
     pkgs.maven
-    pkgs.jetbrains.idea-oss
+    # pkgs.jetbrains.idea-oss
     pkgs.neovim
     pkgs.pnpm
     pkgs.lazygit
 
     pkgs.rustc
-    pkgs.vscode-extensions.vadimcn.vscode-lldb
+    # pkgs.vscode-extensions.vadimcn.vscode-lldb
 
     pkgs.anki
     pkgs.neomutt
@@ -57,27 +57,28 @@ in
     pkgs.nvd
     # pkgs.librewolf
     pkgs.feh
-    pkgs.eza
+    # pkgs.eza
     pkgs.shotwell
     pkgs.jq
     pkgs.libnotify
-    pkgs.black
-    pkgs.isort
-    pkgs.rustfmt
-    pkgs.stylua
-    pkgs.prettierd
-    (pkgs.aspellWithDicts (
-      dicts: with dicts; [
-        en
-        en-computers
-        pl
-      ]
-    ))
-
+    # probably most of the packages below were for neovim
+    # pkgs.black
+    # pkgs.isort
+    # pkgs.rustfmt
+    # pkgs.stylua
+    # pkgs.prettierd
+    # (pkgs.aspellWithDicts (
+    #   dicts: with dicts; [
+    #     en
+    #     en-computers
+    #     pl
+    #   ]
+    # ))
+    #
     # necessary for lazynvim
-    pkgs.lua5_1
-    pkgs.luarocks-nix
-    pkgs.ast-grep
+    # pkgs.lua5_1
+    # pkgs.luarocks-nix
+    # pkgs.ast-grep
     pkgs.wget
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
@@ -94,9 +95,9 @@ in
     # '')
   ];
 
-  programs.neovim.plugins = [
-    pkgs.vimPlugins.nvim-treesitter.withAllGrammars
-  ];
+  # programs.neovim.plugins = [
+  #   pkgs.vimPlugins.nvim-treesitter.withAllGrammars
+  # ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -111,7 +112,7 @@ in
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
-    "bin/codelldb".source = codelldb_path;
+    # "bin/codelldb".source = codelldb_path;
 
     "SDKS/OpenJDK21".source = "${pkgs.jdk21}";
   };
@@ -191,15 +192,15 @@ in
       m = "neomutt";
       f = "fzf --preview 'bat --color=always {}'";
       rfv = "rfv";
-      l = "eza -bGF --header --git --color=always --group-directories-first --icons";
-      ll = "eza -la --icons --octal-permissions --group-directories-first";
-      llm = "eza -lbGd --header --git --sort=modified --color=always --group-directories-first --icons";
-      la = "eza --long --all --group --group-directories-first";
-      lx = "eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --color=always --group-directories-first --icons";
+      # l = "eza -bGF --header --git --color=always --group-directories-first --icons";
+      # ll = "eza -la --icons --octal-permissions --group-directories-first";
+      # llm = "eza -lbGd --header --git --sort=modified --color=always --group-directories-first --icons";
+      # la = "eza --long --all --group --group-directories-first";
+      # lx = "eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --color=always --group-directories-first --icons";
 
       # specialty views
-      lt = "eza --tree --level=2 --color=always --group-directories-first --icons";
-      lld = "eza -a | grep -E '^\.'";
+      # lt = "eza --tree --level=2 --color=always --group-directories-first --icons";
+      # lld = "eza -a | grep -E '^\.'";
 
       # battery charging
       chargeOnceBat0 = "sudo tlp chargeonce BAT0";
