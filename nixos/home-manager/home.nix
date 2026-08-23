@@ -133,7 +133,8 @@ in
   programs.bash = {
     enable = true;
     bashrcExtra = ''
-      export EDITOR="nvim";
+      export EDITOR="nvim"
+
     '';
   };
 
@@ -212,6 +213,13 @@ in
 
     };
     envExtra = ''
+      
+      if [[ $(($(date +%-j) % 2)) == 1 ]]; then
+        export current_drive=1
+      else
+        export current_drive=2
+      fi
+
       export gpg_cmd=${pkgs.gnupg}/bin/gpg
 
       rfv() (
