@@ -37,7 +37,6 @@ in
     pkgs.python3
     pkgs.maven
     # pkgs.jetbrains.idea-oss
-    pkgs.neovim
     pkgs.pnpm
     pkgs.lazygit
 
@@ -95,9 +94,13 @@ in
     # '')
   ];
 
-  # programs.neovim.plugins = [
-  #   pkgs.vimPlugins.nvim-treesitter.withAllGrammars
-  # ];
+  programs.neovim = {
+    enable = true;
+    plugins = [
+      pkgs.vimPlugins.vimwiki
+      #   pkgs.vimPlugins.nvim-treesitter.withAllGrammars
+    ];
+  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -213,7 +216,7 @@ in
 
     };
     envExtra = ''
-      
+
       if [[ $(($(date +%-j) % 2)) == 1 ]]; then
         export current_drive=1
       else
