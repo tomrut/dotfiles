@@ -98,6 +98,9 @@ in
     enable = true;
     plugins = [
       pkgs.vimPlugins.vimwiki
+      pkgs.vimPlugins.vim-nix
+      pkgs.vimPlugins.nvim-treesitter-parsers.nix
+      pkgs.vimPlugins.nvim-tree-lua
       # pkgs.vimPlugins.markdown-nvim
       # pkgs.vimPlugins.nvim-treesitter-parsers.markdown
       #   pkgs.vimPlugins.nvim-treesitter.withAllGrammars
@@ -109,6 +112,43 @@ in
     let g:vimwiki_list = [{'path': '~/docs/notes/',
                       \ 'syntax': 'markdown', 'ext': 'md'}]
 
+    '';
+    withPython3 = false;
+    withRuby = false;
+    initLua = ''
+       vim.g.loaded_netrw = 1
+       vim.g.loaded_netrwPlugin = 1
+
+       -- optionally enable 24-bit colour
+       vim.opt.termguicolors = true
+
+       -- empty setup using defaults
+       require("nvim-tree").setup()
+
+       -- OR setup with a config
+
+       ---@type nvim_tree.config
+       local config = {
+         sort = {
+           sorter = "case_sensitive",
+         },
+         view = {
+           width = 30,
+         },
+         renderer = {
+           group_empty = true,
+         },
+         filters = {
+           dotfiles = true,
+         },
+      }
+      require("nvim-tree").setup(config)
+      vim.g.mapleader = " "
+      vim.keymap.set("n", "<C-q>", vim.cmd.quit)
+      vim.keymap.set("n", "<C-s>", vim.cmd.w)
+      vim.keymap.set("i", "<C-s>", '<Esc>:w<CR>i')
+      vim.keymap.set("i", "<C-\\>", '<Esc>:NvimTreeToggle<CR>i')
+      vim.keymap.set("n", "<C-\\>", vim.cmd.NvimTreeToggle)
     '';
   };
 
@@ -169,6 +209,7 @@ in
         "privacy.trackingprotection.socialtracking.enabled" = true;
       };
     };
+    configPath = ".mozilla/firefox";
   };
 
   programs.htop.enable = true;
