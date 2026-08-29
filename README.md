@@ -49,6 +49,6 @@ perl -MFile::Path -we '
     }'
 
  # enables fstrim for luks
- sudo cryptsetup refresh --allow-discards --persistent luks-7219f85c-a0e5-4085-a00d-da8871b69144
-
+ # this introduce some security risk - see man a for details
+sudo cryptsetup refresh --allow-discards --persistent luks-7219f85c-a0e5-4085-a00d-da8871b69144
 ``

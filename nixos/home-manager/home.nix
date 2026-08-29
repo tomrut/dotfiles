@@ -98,8 +98,18 @@ in
     enable = true;
     plugins = [
       pkgs.vimPlugins.vimwiki
+      # pkgs.vimPlugins.markdown-nvim
+      # pkgs.vimPlugins.nvim-treesitter-parsers.markdown
       #   pkgs.vimPlugins.nvim-treesitter.withAllGrammars
     ];
+    extraConfig = ''
+    set nocompatible
+    filetype plugin on
+    syntax on
+    let g:vimwiki_list = [{'path': '~/docs/notes/',
+                      \ 'syntax': 'markdown', 'ext': 'md'}]
+
+    '';
   };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
