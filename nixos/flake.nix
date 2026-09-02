@@ -2,6 +2,7 @@
   description = "NixOS flake";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixvim.url = "github:nix-community/nixvim/nixos-25.11";
 
     home-manager = {
@@ -13,14 +14,25 @@
   outputs =
     inputs@{
       nixpkgs,
+      nixpkgs-unstable,
       home-manager,
       nixvim,
       ...
     }:
-    {
+
+    let
+      system = "x86_64-linux";
+      lib = nixpkgs.lib;
+      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+
+    in {
       nixosConfigurations.nixos-laptop = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-        system = "x86_64-linux";
+        inherit system;
+        specialArgs = { 
+          inherit inputs; 
+          inherit nixpkgs-unstable; 
+        };
         modules = [
 
           ./laptop/configuration.nix
@@ -33,7 +45,7 @@
           #./common/monitoring.nix
           home-manager.nixosModules.home-manager
           {
-            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.extraSpecialArgs = { inherit inputs; inherit pkgs-unstable; };
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.tomek = import ./home-manager/home-laptop.nix;
@@ -53,7 +65,11 @@
           ./common/mounting.nix
           home-manager.nixosModules.home-manager
           {
-            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.extraSpecialArgs = { 
+              inherit inputs;
+              inherit pkgs-unstable;
+            };
+
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.tomek = import ./home-manager/home-desktop.nix;

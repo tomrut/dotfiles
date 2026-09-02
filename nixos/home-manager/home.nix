@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, pkgs-unstable, inputs, ... }:
 
 let
   # codelldb_ext = pkgs.vscode-extensions.vadimcn.vscode-lldb;
@@ -105,6 +105,7 @@ in
       # pkgs.vimPlugins.nvim-treesitter-parsers.markdown
       #   pkgs.vimPlugins.nvim-treesitter.withAllGrammars
     ];
+    coc.enable = true;
     extraConfig = ''
     set nocompatible
     filetype plugin on
@@ -149,6 +150,18 @@ in
       vim.keymap.set("i", "<C-s>", '<Esc>:w<CR>i')
       vim.keymap.set("i", "<C-\\>", '<Esc>:NvimTreeToggle<CR>i')
       vim.keymap.set("n", "<C-\\>", vim.cmd.NvimTreeToggle)
+
+      function _G.check_back_space()
+        local col = vim.fn.col('.') - 1
+        return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+      end
+       
+      local opts = { silent = true, expr = true, replace_keycodes = false }
+      local keyset = vim.keymap.set
+       
+      keyset("i", "<TAB>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
+      keyset("i", "<S-TAB>", 'coc#pum#visible() ? coc#pum#prev(1) : "<C-h>"', opts)
+      keyset("i", "<CR>", 'coc#pum#visible() ? coc#pum#confirm() : "<C-g>u<CR><c-r>=coc#on_enter()<CR>"', opts)
     '';
   };
 
@@ -316,7 +329,8 @@ in
     '';
     fileWidgetOptions = [
       "--preview 'head {}'"
-    ];
+    ]; 
+
   };
 
   programs.bat.enable = true;
@@ -350,6 +364,7 @@ in
 
   programs.zed-editor = {
     enable = true;
+    package = pkgs-unstable.zed-editor;
     userSettings = {
       project_panel = {
         dock = "left";
