@@ -37,7 +37,7 @@
 
           ./laptop/configuration.nix
           ./common/swaywm.nix
-          ./common/stub-ld.nix
+          #./common/stub-ld.nix
           #./common/mango.nix
           #./common/plasma.nix
           ./common/mounting.nix
@@ -59,7 +59,7 @@
         modules = [
           ./desktop/configuration.nix
           ./common/swaywm.nix
-          ./common/stub-ld.nix
+          #./common/stub-ld.nix
           #./common/plasma.nix
           #./common/podman.nix
           ./common/mounting.nix
