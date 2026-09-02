@@ -26,12 +26,13 @@
       pkgs = nixpkgs.legacyPackages.${system};
       pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
 
-    in {
+    in
+    {
       nixosConfigurations.nixos-laptop = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { 
-          inherit inputs; 
-          inherit nixpkgs-unstable; 
+        specialArgs = {
+          inherit inputs;
+          inherit nixpkgs-unstable;
         };
         modules = [
 
@@ -45,7 +46,10 @@
           #./common/monitoring.nix
           home-manager.nixosModules.home-manager
           {
-            home-manager.extraSpecialArgs = { inherit inputs; inherit pkgs-unstable; };
+            home-manager.extraSpecialArgs = {
+              inherit inputs;
+              inherit pkgs-unstable;
+            };
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.tomek = import ./home-manager/home-laptop.nix;
@@ -65,7 +69,7 @@
           ./common/mounting.nix
           home-manager.nixosModules.home-manager
           {
-            home-manager.extraSpecialArgs = { 
+            home-manager.extraSpecialArgs = {
               inherit inputs;
               inherit pkgs-unstable;
             };

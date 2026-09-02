@@ -1,4 +1,9 @@
-{ pkgs, pkgs-unstable, inputs, ... }:
+{
+  pkgs,
+  pkgs-unstable,
+  inputs,
+  ...
+}:
 
 let
   # codelldb_ext = pkgs.vscode-extensions.vadimcn.vscode-lldb;
@@ -109,11 +114,11 @@ in
     ];
     coc.enable = true;
     extraConfig = ''
-    set nocompatible
-    filetype plugin on
-    syntax on
-    let g:vimwiki_list = [{'path': '~/docs/notes/',
-                      \ 'syntax': 'markdown', 'ext': 'md'}]
+      set nocompatible
+      filetype plugin on
+      syntax on
+      let g:vimwiki_list = [{'path': '~/docs/notes/',
+                        \ 'syntax': 'markdown', 'ext': 'md'}]
 
     '';
     withPython3 = false;
@@ -331,7 +336,7 @@ in
     '';
     fileWidgetOptions = [
       "--preview 'head {}'"
-    ]; 
+    ];
 
   };
 
