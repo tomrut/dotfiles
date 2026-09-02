@@ -48,6 +48,7 @@ assign [title="work"] workspace 3
 assign [app_id="libreoffice-writer"] workspace 4
 assign [app_id="org.gnome.Shotwell"] workspace 5
 assign [title="ranger"] workspace 6
+assign [app_id="dev.zed.Zed"] workspace 4
 for_window [app_id="org.keepassxc.KeePassXC" ] move to scratchpad, scratchpad show
 for_window [title="mixer" ] floating enable, resize set width 50 ppt height 50 ppt
 for_window [title="launch-terminal"] floating enable, resize set width 60 ppt height 80 ppt
@@ -78,6 +79,7 @@ for_window [app_id="firefox"] workspace 1
 for_window [title="neomutt"] workspace 2
 for_window [title="work"] workspace 3
 for_window [app_id="libreoffice-writer"] workspace 4
+for_window [app_id="dev.zed.Zed"] workspace 4
 for_window [app_id="org.gnome.Shotwell"] workspace 5
 for_window [title="ranger"] workspace 6
 
