@@ -52,6 +52,8 @@ in
     pkgs.fd
     pkgs.home-manager
     pkgs.yubioath-flutter
+    pkgs.nixd
+    pkgs.nil
     pkgs.nixfmt
     pkgs.nvd
     # pkgs.librewolf
