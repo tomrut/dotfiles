@@ -1,7 +1,6 @@
 {
   pkgs,
   inputs,
-  config,
   ...
 }:
 
@@ -27,6 +26,9 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    nixgl.nixGLIntel
+    nil
+    nixd
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -110,7 +112,28 @@
         # Zero Data Retention
         anthropic_retention = false;
       };
+
+      lsp = {
+        # rust-analyzer = {
+        #   binary = {
+        #     # path = lib.getExe pkgs.rust-analyzer;
+        #     path_lookup = true;
+        #   };
+        # };
+
+        nixd = {
+          binary = {
+            path_lookup = true;
+          };
+        };
+
+      };
     };
+
+    extensions = [
+      "nix"
+      "html"
+    ];
 
   };
 
@@ -136,6 +159,7 @@
       vim = "nvim";
       vi = "nvim";
       v = "nvim";
+      zed = "nixGLIntel zeditor";
       swayTree = "swaymsg -t get_tree";
       swayOutputs = "swaymsg -t get_outputs";
       bk = "~/bin/make_backup.sh";

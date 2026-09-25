@@ -6,6 +6,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixvim.url = "github:nix-community/nixvim";
+    nixgl.url = "github:nix-community/nixGL";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,6 +19,7 @@
       home-manager,
       nixpkgs,
       nixvim,
+      nixgl,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -26,9 +28,16 @@
         inputs.home-manager.flakeModules.home-manager
       ];
       flake = {
+
         # Concrete Home Manager configuration.
         homeConfigurations.tomek = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { system = "x86_64-linux"; };
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            overlays = [
+              nixgl.overlay
+            ];
+          };
+
           modules = [
             ./home.nix
           ];
@@ -37,7 +46,6 @@
           };
         };
       };
-      # See flake.parts for more features, such as `perSystem`
     };
 
 }
