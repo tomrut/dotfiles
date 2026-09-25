@@ -22,6 +22,28 @@ There are three nixos configurations + common modules
   sudo nixos-rebuild switch --no-write-lock-file --flake .#nixos-laptop
 ``
 
+## TPM2 for Luks 
+``
+
+
+  sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+7 /dev/nvme0n1p3
+
+  sudo dracut -fv --regenerate-all
+  sudo update-grub
+  
+  # /etc/crypttab not changed
+  sudo apt install tpm2-tools dracut
+  added to /etc/grub/default not sure if necessary, especially this rd.luks=1, seems awakward
+  GRUB_CMDLINE_LINUX="rd.auto rd.luks=1"
+
+  # added following file: /etc/dracut.conf.d/99-crypt-tpm.conf
+  add_dracutmodules+=" crypt systemd tpm2-tss lvm "
+  install_items+=" /etc/crypttab /etc/fstab /lib/systemd/system-generators/systemd-cryptsetup-generator /lib/systemd/systemd-cryptsetup "
+  hostonly="no"
+  
+``
+
+
 # Neovim
 ## Shortcuts
 [[nvim quick reference][ https://neovim.io/doc/user/quickref.html]]
