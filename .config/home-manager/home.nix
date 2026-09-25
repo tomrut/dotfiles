@@ -63,9 +63,7 @@
     #   org.gradle.daemon.idletimeout=3600000
     # '';
   };
-  # programs.nixvim = {
-  #   enable = true;
-  # };
+
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
   # shell provided by Home Manager. If you don't want to manage your shell
@@ -83,12 +81,13 @@
   #  /etc/profiles/per-user/tomek/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "nvim";
   };
 
   programs.zed-editor = {
     enable = true;
     # package = pkgs-unstable.zed-editor;
+
     userSettings = {
       project_panel = {
         dock = "left";
@@ -103,6 +102,10 @@
         mode = "system";
         light = "Ayu Light";
         dark = "Ayu Dark";
+      };
+
+      experimental.theme_overrides = {
+        editor.document_highlight.bracket_background = "#ff0001";
       };
 
       telemetry = {
