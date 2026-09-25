@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  lib,
   ...
 }:
 
@@ -33,6 +34,7 @@
     # # "Hello, world!" when run.
     # pkgs.hello
     mc
+    typescript-language-server
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -94,7 +96,7 @@
 
       base_keymap = "JetBrains";
       ui_font_size = 16;
-      buffer_font_size = 15;
+      buffer_font_size = 16;
       max_tabs = 6;
 
       theme = {
@@ -113,6 +115,11 @@
         anthropic_retention = false;
       };
 
+      node = {
+        path = lib.getExe pkgs.nodejs;
+        npm_path = lib.getExe' pkgs.nodejs "npm";
+      };
+
       lsp = {
         # rust-analyzer = {
         #   binary = {
@@ -128,11 +135,30 @@
         };
 
       };
+
+      languages = {
+        "Nix" = {
+          format_on_save = "on";
+          formatter = {
+            external = {
+              command = "nixfmt";
+              arguments = [
+                "--filename"
+                "{buffer_path}"
+              ];
+            };
+          };
+        };
+      };
     };
+
+
 
     extensions = [
       "nix"
       "html"
+      "tsgo"
+      # react-typescript-snippets
     ];
 
   };

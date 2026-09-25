@@ -39,7 +39,7 @@ floating_modifier $mod normal
 bindsym $mod+Shift+c reload
 
 # Lock screen
-bindsym Ctrl+Alt+l exec swaylock -f -c 000000
+bindsym $mod+l exec swaylock -f -c 000000
 # functional lock key
 bindcode 160 exec swaylock -f -c 000000
 bindsym Ctrl+Alt+Delete exec $powermenu
