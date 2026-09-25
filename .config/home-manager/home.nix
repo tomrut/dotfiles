@@ -82,6 +82,38 @@
     # EDITOR = "emacs";
   };
 
+  programs.zed-editor = {
+    enable = true;
+    # package = pkgs-unstable.zed-editor;
+    userSettings = {
+      project_panel = {
+        dock = "left";
+      };
+
+      base_keymap = "JetBrains";
+      ui_font_size = 16;
+      buffer_font_size = 15;
+      max_tabs = 6;
+
+      theme = {
+        mode = "system";
+        light = "Ayu Light";
+        dark = "Ayu Dark";
+      };
+
+      telemetry = {
+        # Send debug info like crash reports.
+        diagnostics = false;
+        # Send anonymized usage data like what languages you're using Zed with.
+        metrics = false;
+        # Allow sending requests to Anthropic models that cannot be offered with
+        # Zero Data Retention
+        anthropic_retention = false;
+      };
+    };
+
+  };
+
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
@@ -136,7 +168,7 @@
 
     };
     envExtra = ''
-
+      . "$HOME/.nix-profile/etc/profile.d/nix.sh"
       if [[ $(($(date +%-j) % 2)) == 1 ]]; then
         export current_drive=1
       else
@@ -166,6 +198,8 @@
     '';
   };
 
+  programs.lazygit.enable = true;
+
   programs.fzf = {
     colors = {
       bg = "#1e1e1e";
@@ -175,17 +209,21 @@
     };
     enable = true;
     enableZshIntegration = true;
-    changeDirWidgetCommand = "fd --type d";
-    changeDirWidgetOptions = [
-      "--preview 'tree -C {} | head -200'"
-    ];
+    changeDirWidget = {
+      command = "fd --type d";
+      options = [
+        "--preview 'tree -C {} | head -200'"
+      ];
+    };
 
-    fileWidgetCommand = ''
-      fd --type f
-    '';
-    fileWidgetOptions = [
-      "--preview 'head {}'"
-    ];
+    fileWidget = {
+      command = ''
+        fd --type f
+      '';
+      options = [
+        "--preview 'head {}'"
+      ];
+    };
 
   };
   # Let Home Manager install and manage itself.
