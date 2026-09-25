@@ -7,14 +7,6 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixvim.url = "github:nix-community/nixvim";
     nixgl.url = "github:nix-community/nixGL";
-    git-hooks = {
-      url = "github:cachix/git-hooks.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    treefmt-nix = {
-       url = "github:numtide/treefmt-nix";
-       inputs.nixpkgs.follows = "nixpkgs";
-    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,8 +20,6 @@
       nixpkgs,
       nixvim,
       nixgl,
-      treefmt-nix,
-      git-hooks,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -47,19 +37,6 @@
               nixgl.overlay
             ];
           };
-
-          # reefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
-          # preCommit = git-hooks.lib.${system}.run {
-          #   src = ./.;
-          #   hooks = {
-          #     nixfmt-rfc-style = {
-          #       enable = true;
-          #       package = pkgs.nixfmt;
-          #     };
-          #     statix.enable = true;
-          #     shellcheck.enable = true;
-          #   };
-          # };
 
           modules = [
             ./home.nix
