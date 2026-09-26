@@ -391,15 +391,15 @@
 
     ts-autotag.enable = true;
 
-    ts-comments = {
-      enable = true;
-      package = pkgs.tree-sitter;
-    };
+    # ts-comments = {
+    #   enable = true;
+    #   package = pkgs.tree-sitter;
+    # };
 
-    ts-context-commentstring = {
-      enable = true;
-      package = pkgs.tree-sitter;
-    };
+    # ts-context-commentstring = {
+    #   enable = true;
+    #   package = pkgs.tree-sitter;
+    # };
 
     web-devicons.enable = true;
 

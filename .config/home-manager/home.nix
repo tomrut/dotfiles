@@ -86,7 +86,6 @@
 
   programs.zed-editor = {
     enable = true;
-    # package = pkgs-unstable.zed-editor;
 
     userSettings = {
       project_panel = {
@@ -154,8 +153,6 @@
         };
       };
     };
-
-
 
     extensions = [
       "nix"
@@ -289,7 +286,6 @@
     dates = "daily";
     automatic = true;
   };
-
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
