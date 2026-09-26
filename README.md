@@ -32,7 +32,8 @@ There are three nixos configurations + common modules
 ``sudo apt install tpm2-tools dracut``
 
 ### Enroll tpm2 key to luks device
-``sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+7 /dev/nvme0n1p3``
+# pcrs +12 - modification of grub
+``sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+7+12 /dev/nvme0n1p3``
 
 ### add following file: /etc/dracut.conf.d/99-crypt-tpm.conf
 ``

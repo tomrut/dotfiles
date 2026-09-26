@@ -380,13 +380,26 @@
       };
     };
 
-    #treesitter-refactor.enable = true;
-    #treesitter-textobjects.enable = true;
+    treesitter-refactor = {
+      enable = true;
+      package = pkgs.tree-sitter;
+    };
+    treesitter-textobjects = {
+      enable = true;
+      package = pkgs.tree-sitter;
+    };
 
     ts-autotag.enable = true;
 
-    #ts-comments.enable = true;
-    #ts-context-commentstring.enable = true;
+    ts-comments = {
+      enable = true;
+      package = pkgs.tree-sitter;
+    };
+
+    ts-context-commentstring = {
+      enable = true;
+      package = pkgs.tree-sitter;
+    };
 
     web-devicons.enable = true;
 
