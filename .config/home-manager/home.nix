@@ -30,11 +30,14 @@
     nixgl.nixGLIntel
     nil
     nixd
+    nixfmt
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
     mc
     typescript-language-server
+    nodejs_24
+    pnpm
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -118,8 +121,8 @@
       };
 
       node = {
-        path = lib.getExe pkgs.nodejs;
-        npm_path = lib.getExe' pkgs.nodejs "npm";
+        path = lib.getExe pkgs.nodejs_24;
+        npm_path = lib.getExe' pkgs.nodejs "pnpm";
       };
 
       lsp = {
@@ -245,6 +248,13 @@
             --query "$*"
       )
 
+      autoload -Uz vcs_info
+      precmd() { vcs_info }
+
+      zstyle ':vcs_info:git:*' formats '%b '
+      setopt PROMPT_SUBST
+
+      PROMPT='%F{green}%n@%m%f%F{blue}%~%f %F{red}''${vcs_info_msg_0_}%f''$ '
     '';
   };
 
