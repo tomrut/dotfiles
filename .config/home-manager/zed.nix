@@ -21,12 +21,12 @@
       max_tabs = 6;
 
       theme = {
-        mode = "system";
+        mode = "dark";
         light = "Ayu Light";
         dark = "Ayu Dark";
       };
 
-      experimental.theme_overrides = {
+      theme_overrides = {
         editor.document_highlight.bracket_background = "#ff0001";
       };
 
