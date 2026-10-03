@@ -1,15 +1,16 @@
 {
   pkgs,
   inputs,
-  lib,
-  config,
   ...
 }:
 
 {
   imports = [
     inputs.nixvim.homeModules.nixvim
+    ./fzf.nix
     ./nvim
+    ./zed.nix
+    ./zsh.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -28,11 +29,14 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+
+    # necessary for zed editor
     nixgl.nixGLIntel
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
     mc
+    lazygit
 
     # nix development
     nil
@@ -99,253 +103,6 @@
   };
 
   # https://nix-community.github.io/home-manager/options/home-manager/programs/index.html
-
-  programs.zed-editor = {
-    enable = true;
-
-    userSettings = {
-      project_panel = {
-        dock = "left";
-      };
-
-      base_keymap = "JetBrains";
-      ui_font_size = 16;
-      buffer_font_size = 16;
-      max_tabs = 6;
-
-      theme = {
-        mode = "system";
-        light = "Ayu Light";
-        dark = "Ayu Dark";
-      };
-
-      experimental.theme_overrides = {
-        editor.document_highlight.bracket_background = "#ff0001";
-      };
-
-      telemetry = {
-        # Send debug info like crash reports.
-        diagnostics = false;
-        # Send anonymized usage data like what languages you're using Zed with.
-        metrics = false;
-        # Allow sending requests to Anthropic models that cannot be offered with
-        # Zero Data Retention
-        anthropic_retention = false;
-      };
-
-      node = {
-        path = lib.getExe pkgs.nodejs_24;
-        npm_path = lib.getExe' pkgs.nodejs "pnpm";
-      };
-
-      lsp = {
-        # rust-analyzer = {
-        #   binary = {
-        #     # path = lib.getExe pkgs.rust-analyzer;
-        #     path_lookup = true;
-        #   };
-        # };
-
-        jdtls = {
-          settings = {
-            java_home = "${pkgs.jdk21}";
-            lombok_support = true;
-            jdk_auto_download = false;
-            min_memmory = "1G";
-            max_memmory = "2G";
-
-            initialization_options = {
-              settings = {
-                java = {
-                  configuration = {
-                    runtimes = [
-                      {
-                        name = "JavaSE-21";
-                        path = "${pkgs.jdk21}";
-                        default = true;
-                      }
-                    ];
-                  };
-                };
-              };
-            };
-          };
-        };
-
-        nixd = {
-          binary = {
-            path_lookup = true;
-          };
-        };
-
-      };
-
-      languages = {
-        "Java" = {
-          language_servers = [ "jdtls" ];
-        };
-
-        "Nix" = {
-          format_on_save = "on";
-          formatter = {
-            external = {
-              command = "nixfmt";
-              arguments = [
-                "--filename"
-                "{buffer_path}"
-              ];
-            };
-          };
-        };
-      };
-    };
-
-    extensions = [
-      "nix"
-      "html"
-      "tsgo"
-      "java"
-      # react-typescript-snippets
-    ];
-
-  };
-
-  xdg.dataFile."applications/dev.zed.Zed.desktop" = {
-    force = true;
-
-    text =
-      builtins.replaceStrings
-        [ "Exec=zeditor" ]
-        [
-          "Exec=${config.home.profileDirectory}/bin/nixGLIntel ${config.home.profileDirectory}/bin/zeditor"
-        ]
-        (builtins.readFile "${pkgs.zed-editor}/share/applications/dev.zed.Zed.desktop");
-  };
-
-  programs.zsh = {
-    enable = true;
-    autosuggestion.enable = true;
-    enableCompletion = true;
-    autocd = true;
-    shellAliases = {
-      aa = "eval $(alias| wofi --dmenu | awk -F '[=]' '{print $1}')";
-      mci = "mvn clean install -DskipTests";
-      mcit = "mvn clean install";
-      mcp = "mvn clean package -DskipTests";
-      mcpt = "mvn clean package";
-      lg = "lazygit";
-      gst = "git status";
-      gd = "git diff";
-      gds = "git diff --staged";
-      ga = "git add .";
-      gcm = "git commit -m $1";
-      gp = "git push";
-      gP = "git pull";
-      vim = "nvim";
-      vi = "nvim";
-      v = "nvim";
-      zeditor = "nixGLIntel ${pkgs.zed-editor}/bin/zeditor";
-      swayTree = "swaymsg -t get_tree";
-      swayOutputs = "swaymsg -t get_outputs";
-      bk = "~/bin/make_backup.sh";
-      tmrs = "systemctl list-timers";
-      nreb = "sudo nixos-rebuild switch --no-write-lock-file";
-      ncg = "sudo nix-collect-garbage -d";
-      nhg = "home-manager generations";
-      nin = "nix-store --query --requisites /run/current-system | cut -d- -f2- | sort | uniq";
-      nvdiff = "nvd diff $(ls -d1v /nix/var/nix/profiles/system-*-link|tail -n 2)";
-      m = "neomutt";
-      f = "fzf --preview 'bat --color=always {}'";
-      rfv = "rfv";
-      # l = "eza -bGF --header --git --color=always --group-directories-first --icons";
-      # ll = "eza -la --icons --octal-permissions --group-directories-first";
-      # llm = "eza -lbGd --header --git --sort=modified --color=always --group-directories-first --icons";
-      # la = "eza --long --all --group --group-directories-first";
-      # lx = "eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --color=always --group-directories-first --icons";
-
-      # specialty views
-      # lt = "eza --tree --level=2 --color=always --group-directories-first --icons";
-      # lld = "eza -a | grep -E '^\.'";
-
-      # battery charging
-      chargeOnceBat0 = "sudo tlp chargeonce BAT0";
-      chargeOnceBat1 = "sudo tlp chargeonce BAT1";
-      chargeOnceAll = "chargeOnceBat0; chargeOnceBat1";
-      chargeFullBat0 = "sudo tlp fullcharge BAT0";
-      chargeFullBat1 = "sudo tlp fullcharge BAT1";
-      chargeFullAll = "chargeFullBat0; chargeFullBat1";
-
-    };
-    envExtra = ''
-      . "$HOME/.nix-profile/etc/profile.d/nix.sh"
-      if [[ $(($(date +%-j) % 2)) == 1 ]]; then
-        export current_drive=1
-      else
-        export current_drive=2
-      fi
-
-      export gpg_cmd=${pkgs.gnupg}/bin/gpg
-
-      rfv() (
-        RELOAD='reload:rg --column --color=always --smart-case {q} || :'
-        OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
-                  nvim {1} +{2}     # No selection. Open the current line in Vim.
-                else
-                  nvim +cw -q {+f}  # Build quickfix list for the selected items.
-                fi'
-        fzf --disabled --ansi --multi \
-            --bind "start:$RELOAD" --bind "change:$RELOAD" \
-            --bind "enter:become:$OPENER" \
-            --bind "ctrl-o:execute:$OPENER" \
-            --bind 'alt-a:select-all,alt-d:deselect-all,ctrl-/:toggle-preview' \
-            --delimiter : \
-            --preview 'bat --style=full --color=always --highlight-line {2} {1}' \
-            --preview-window '~4,+{2}+4/3,<80(up)' \
-            --query "$*"
-      )
-
-      #autoload -Uz vcs_info
-      #precmd() { vcs_info }
-
-      #zstyle ':vcs_info:git:*' formats '%b '
-      #setopt PROMPT_SUBST
-
-      #PROMPT='%F{green}%n@%m%f%F{blue}%~%f %F{red}''${vcs_info_msg_0_}%f➤ '
-      PROMPT='%F{green}%n@%m%f %F{blue}%~%f %F{red}➤%f '
-
-      # emac like keyboard bindings for foot 
-      bindkey -e
-    '';
-  };
-
-  programs.lazygit.enable = true;
-
-  programs.fzf = {
-    colors = {
-      bg = "#1e1e1e";
-      "bg+" = "#1e1e1e";
-      fg = "#d4d4d4";
-      "fg+" = "#d4d4d4";
-    };
-    enable = true;
-    enableZshIntegration = true;
-    changeDirWidget = {
-      command = "fd --type d";
-      options = [
-        "--preview 'tree -C {} | head -200'"
-      ];
-    };
-
-    fileWidget = {
-      command = ''
-        fd --type f
-      '';
-      options = [
-        "--preview 'head {}'"
-      ];
-    };
-
-  };
 
   services.home-manager.autoUpgrade = {
     enable = true;
