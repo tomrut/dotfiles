@@ -65,27 +65,27 @@
           };
           json = [ "jq" ];
           lua = [ "stylua" ];
-          python = [
-            "isort"
-            "black"
-          ];
-          typescriptreact = [
-            "prettierd"
-            "prettier"
-          ];
-          typescript = [
-            "prettierd"
-            "prettier"
-          ];
-          html = [
-            "prettierd"
-            "prettier"
-          ];
-          css = [
-            "prettierd"
-            "prettier"
-          ];
-          rust = [ "rustfmt" ];
+          # python = [
+          #   "isort"
+          #   "black"
+          # ];
+          # typescriptreact = [
+          #   "prettierd"
+          #   "prettier"
+          # ];
+          # typescript = [
+          #   "prettierd"
+          #   "prettier"
+          # ];
+          # html = [
+          #   "prettierd"
+          #   "prettier"
+          # ];
+          # css = [
+          #   "prettierd"
+          #   "prettier"
+          # ];
+          # rust = [ "rustfmt" ];
           sh = [ "shfmt" ];
           nix = [ "nixpkgs-fmt" ];
         };
@@ -145,10 +145,10 @@
       };
     };
 
-    harpoon = {
-      enable = true;
-      enableTelescope = true;
-    };
+    # harpoon = {
+    #   enable = true;
+    #   enableTelescope = true;
+    # };
 
     highlight-colors = {
       enable = true;
@@ -203,25 +203,25 @@
         cssls.enable = true;
         dockerls.enable = false;
         earthlyls.enable = false;
-        emmet_ls.enable = true;
+        emmet_ls.enable = false;
         golangci_lint_ls.enable = false;
         gopls.enable = false;
-        html.enable = true;
+        html.enable = false;
         java_language_server.enable = false;
         jdtls.enable = false;
-        jsonls.enable = true;
+        jsonls.enable = false;
         lua_ls.enable = true;
         nushell.enable = false;
-        pylsp.enable = true;
+        pylsp.enable = false;
         pylyzer.enable = false;
         pyright.enable = false;
 
-        tailwindcss.enable = true;
+        tailwindcss.enable = false;
         terraformls.enable = false;
-        ts_ls.enable = true;
+        ts_ls.enable = false;
 
         helm_ls = {
-          enable = true;
+          enable = false;
           filetypes = [ "helm" ];
         };
 
@@ -235,7 +235,7 @@
         };
 
         yamlls = {
-          enable = true;
+          enable = false;
           filetypes = [ "yaml" ];
         };
       };
@@ -247,19 +247,19 @@
 
     lualine.enable = true;
 
-    luasnip = {
-      enable = true;
-      fromVscode = [ { } ];
-    };
+    # luasnip = {
+    #   enable = true;
+    #   fromVscode = [ { } ];
+    # };
 
-    navbuddy = {
-      enable = true;
-      settings = {
-        lsp = {
-          auto_attach = true;
-        };
-      };
-    };
+    # navbuddy = {
+    #   enable = true;
+    #   settings = {
+    #     lsp = {
+    #       auto_attach = true;
+    #     };
+    #   };
+    # };
 
     # neotest = {
     #   enable = true;
@@ -290,7 +290,7 @@
     #   };
     # };
 
-    vim-test.enable = true;
+    vim-test.enable = false;
     nvim-autopairs.enable = true;
     nvim-surround.enable = true;
 
@@ -334,9 +334,9 @@
 
     rainbow-delimiters.enable = true;
 
-    rustaceanvim = {
-      enable = true;
-    };
+    # rustaceanvim = {
+    #   enable = true;
+    # };
 
     telescope = {
       enable = true;
@@ -389,7 +389,7 @@
       package = pkgs.tree-sitter;
     };
 
-    ts-autotag.enable = true;
+    # ts-autotag.enable = true;
 
     # ts-comments = {
     #   enable = true;
@@ -401,7 +401,7 @@
     #   package = pkgs.tree-sitter;
     # };
 
-    web-devicons.enable = true;
+    # web-devicons.enable = true;
 
     which-key = {
       enable = true;
