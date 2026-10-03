@@ -2,6 +2,7 @@
   pkgs,
   inputs,
   lib,
+  config,
   ...
 }:
 
@@ -166,6 +167,18 @@
 
   };
 
+  xdg.dataFile."applications/dev.zed.Zed.desktop" = {
+    force = true;
+
+    text =
+      builtins.replaceStrings
+        [ "Exec=zeditor" ]
+        [
+          "Exec=${config.home.profileDirectory}/bin/nixGLIntel ${config.home.profileDirectory}/bin/zeditor"
+        ]
+        (builtins.readFile "${pkgs.zed-editor}/share/applications/dev.zed.Zed.desktop");
+  };
+
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
@@ -188,7 +201,7 @@
       vim = "nvim";
       vi = "nvim";
       v = "nvim";
-      zed = "nixGLIntel zeditor";
+      zeditor = "nixGLIntel ${pkgs.zed-editor}/bin/zeditor";
       swayTree = "swaymsg -t get_tree";
       swayOutputs = "swaymsg -t get_outputs";
       bk = "~/bin/make_backup.sh";
@@ -256,6 +269,9 @@
 
       #PROMPT='%F{green}%n@%m%f%F{blue}%~%f %F{red}''${vcs_info_msg_0_}%f➤ '
       PROMPT='%F{green}%n@%m%f %F{blue}%~%f %F{red}➤%f '
+
+      # emac like keyboard bindings for foot 
+      bindkey -e
     '';
   };
 

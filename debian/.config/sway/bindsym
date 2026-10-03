@@ -205,7 +205,7 @@ bindsym $mod+w exec firefox
 bindsym $mod+e exec $term -T ranger -e ranger
 bindsym $mod+p exec keepassxc
 bindsym $mod+m exec vlc
-bindsym $mod+s exec /home/tomek/bin/zed.sh
+bindsym $mod+s exec /home/tomek/.nix-profile/bin/nixGLIntel /home/tomek/.nix-profile/bin/zeditor
 bindsym $mod+n exec $term -T notes -D ~/docs/notes /home/tomek/.nix-profile/bin/nvim index.md
 
 # Snip a selection and pipe to swappy
