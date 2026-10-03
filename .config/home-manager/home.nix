@@ -29,16 +29,26 @@
   # environment.
   home.packages = with pkgs; [
     nixgl.nixGLIntel
-    nil
-    nixd
-    nixfmt
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
     mc
+
+    # nix development
+    nil
+    nixd
+    nixfmt
+
+    # typescript development
     typescript-language-server
     nodejs_24
     pnpm
+
+    # java development
+    jdk21
+    jdt-language-server
+    maven
+    gradle
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -88,6 +98,8 @@
     EDITOR = "nvim";
   };
 
+  # https://nix-community.github.io/home-manager/options/home-manager/programs/index.html
+
   programs.zed-editor = {
     enable = true;
 
@@ -134,6 +146,32 @@
         #   };
         # };
 
+        jdtls = {
+          settings = {
+            java_home = "${pkgs.jdk21}";
+            lombok_support = true;
+            jdk_auto_download = false;
+            min_memmory = "1G";
+            max_memmory = "2G";
+
+            initialization_options = {
+              settings = {
+                java = {
+                  configuration = {
+                    runtimes = [
+                      {
+                        name = "JavaSE-21";
+                        path = "${pkgs.jdk21}";
+                        default = true;
+                      }
+                    ];
+                  };
+                };
+              };
+            };
+          };
+        };
+
         nixd = {
           binary = {
             path_lookup = true;
@@ -143,6 +181,10 @@
       };
 
       languages = {
+        "Java" = {
+          language_servers = [ "jdtls" ];
+        };
+
         "Nix" = {
           format_on_save = "on";
           formatter = {
@@ -162,6 +204,7 @@
       "nix"
       "html"
       "tsgo"
+      "java"
       # react-typescript-snippets
     ];
 
