@@ -131,6 +131,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 bindsym $mod+Backspace output eDP-1 toggle
 bindsym --locked XF86Display output eDP-1 power toggle
+bindsym XF86WLAN exec $term -T nmtui nmtui
 
 bindsym XF86Webcam exec shotwell
 #
