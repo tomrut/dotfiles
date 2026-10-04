@@ -33,9 +33,7 @@
     systemd =
       {
         enable = true;
-        initrdBin = with pkgs; [ keyutils ];
-        storePaths = [ "${pkgs.systemd}/bin/systemd-ask-password" ];
-        users.root.shell = "${pkgs.systemd}/bin/systemd-ask-password";
+        users.root.shell = "/usr/bin/systemd-tty-ask-password-agent";
       };
 
     network = {
