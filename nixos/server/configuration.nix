@@ -32,15 +32,15 @@
     ];
     systemd =
       let
-        askPass = pkgs.writeShellScriptBin "systemctl-askpass" ''
+        askPass = pkgs.writeShellScriptBin "systemd-ask-password" ''
           ${pkgs.systemd}/bin/systemctl default
         '';
       in
       {
         enable = true;
         initrdBin = with pkgs; [ keyutils ];
-        storePaths = [ "${askPass}/bin/systemctl-askpass" ];
-        users.root.shell = "${askPass}/bin/systemctl-askpass";
+        storePaths = [ "${askPass}/bin/systemd-ask-password" ];
+        users.root.shell = "${askPass}/bin/systemd-ask-password";
       };
 
     network = {
