@@ -31,16 +31,11 @@
       "kvm_amd"
     ];
     systemd =
-      let
-        askPass = pkgs.writeShellScriptBin "systemd-ask-password" ''
-          ${pkgs.systemd}/bin/systemctl default
-        '';
-      in
       {
         enable = true;
         initrdBin = with pkgs; [ keyutils ];
-        storePaths = [ "${askPass}/bin/systemd-ask-password" ];
-        users.root.shell = "${askPass}/bin/systemd-ask-password";
+        storePaths = [ "${pkgs.systemd}/bin/systemd-ask-password" ];
+        users.root.shell = "${pkgs.systemd}/bin/systemd-ask-password";
       };
 
     network = {
