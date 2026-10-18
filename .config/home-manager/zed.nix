@@ -9,6 +9,13 @@
 
   programs.zed-editor = {
     enable = true;
+    package = pkgs.zed-editor.fhsWithPackages (
+      pkgs: with pkgs; [
+        typescript-language-server
+        nixd
+        nil
+      ]
+    );
 
     userSettings = {
       project_panel = {
@@ -52,6 +59,10 @@
         #     path_lookup = true;
         #   };
         # };
+        typescript-language-server.binary = {
+          path = "/home/tomek/.nix-profile/bin/typescript-language-server";
+          arguments = [ "--stdio" ];
+        };
 
         jdtls = {
           settings = {
@@ -104,6 +115,16 @@
             };
           };
         };
+
+        TypeScript.language_servers = [
+          "typescript-language-server"
+        ];
+        TSX.language_servers = [
+          "typescript-language-server"
+        ];
+        JavaScript.language_servers = [
+          "typescript-language-server"
+        ];
       };
     };
 
