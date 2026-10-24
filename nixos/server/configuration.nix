@@ -154,6 +154,16 @@
       host  sameuser    all     ::1/128 scram-sha-256
     '';
 
+    ensureUsers = [
+    {
+      name = "mydatabase";
+      ensureDBOwnership = true;
+      ensureClauses = {
+        login = true;
+      };
+    }
+  ];
+
     identMap = ''
       # ArbitraryMapName systemUser DBUser
          superuser_map      root      postgres
