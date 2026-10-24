@@ -143,10 +143,7 @@
   services.postgresql = {
     enable = true;
     ensureDatabases = [ "mydatabase" ];
-
-
     enableTCPIP = true;
-    ensureDatabases = [ "tootieapp" ];
     settings = {
         ssl = true;
     };
