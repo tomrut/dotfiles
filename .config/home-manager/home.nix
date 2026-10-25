@@ -37,12 +37,13 @@
     # pkgs.hello
     mc
     lazygit
-
+    git
     # nix development
     nil
     nixd
     nixfmt
 
+    openssh
     # typescript development
     typescript-language-server
     nodejs_24

@@ -14,6 +14,7 @@
         typescript-language-server
         nixd
         nil
+        vscode-json-languageserver
       ]
     );
 
