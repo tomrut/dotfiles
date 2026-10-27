@@ -15,6 +15,11 @@
         nixd
         nil
         vscode-json-languageserver
+        vscode-html-languageserver
+        tailwindcss-language-server
+        yaml-language-server
+        eslint
+
       ]
     );
 
@@ -63,6 +68,19 @@
         typescript-language-server.binary = {
           path = "/home/tomek/.nix-profile/bin/typescript-language-server";
           arguments = [ "--stdio" ];
+        };
+
+        tailwindcss-intellisense-css = {
+          binary.path = "/home/tomek/.nix-profile/bin/tailwindcss-language-server";
+          settings = {
+            classFunctions = [
+              "cva"
+              "cx"
+            ];
+            experimental = {
+              classRegex = [ "[cls|className]\\s\\:\\=\\s\"([^\"]*)" ];
+            };
+          };
         };
 
         jdtls = {
@@ -126,6 +144,13 @@
         JavaScript.language_servers = [
           "typescript-language-server"
         ];
+        CSS = {
+          language_servers = [
+            "tailwindcss-intellisense-css"
+            "!vscode-css-language-server"
+            "..."
+          ];
+        };
       };
     };
 
