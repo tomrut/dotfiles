@@ -47,9 +47,9 @@
     # typescript development
     typescript-language-server
     tailwindcss-language-server
-    eslint
     vscode-html-languageserver
     yaml-language-server
+    vtsls
     nodejs_24
     pnpm
 

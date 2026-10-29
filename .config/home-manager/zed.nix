@@ -18,8 +18,7 @@
         vscode-html-languageserver
         tailwindcss-language-server
         yaml-language-server
-        eslint
-
+        vtsls
       ]
     );
 
@@ -31,7 +30,7 @@
       base_keymap = "JetBrains";
       ui_font_size = 16;
       buffer_font_size = 16;
-      max_tabs = 6;
+      max_tabs = 8;
 
       theme = {
         mode = "dark";
@@ -136,10 +135,16 @@
         };
 
         TypeScript.language_servers = [
+          "tailwindcss-intellisense-css"
           "typescript-language-server"
+          "!eslint"
+          "..."
         ];
         TSX.language_servers = [
+          "tailwindcss-intellisense-css"
           "typescript-language-server"
+          "!eslint"
+          "..."
         ];
         JavaScript.language_servers = [
           "typescript-language-server"
@@ -148,6 +153,7 @@
           language_servers = [
             "tailwindcss-intellisense-css"
             "!vscode-css-language-server"
+            "!eslint"
             "..."
           ];
         };
