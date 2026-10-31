@@ -48,8 +48,8 @@
     typescript-language-server
     tailwindcss-language-server
     vscode-html-languageserver
+    vscode-js-debug
     yaml-language-server
-    vtsls
     nodejs_24
     pnpm
 

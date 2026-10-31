@@ -18,7 +18,6 @@
         vscode-html-languageserver
         tailwindcss-language-server
         yaml-language-server
-        vtsls
       ]
     );
 
@@ -31,6 +30,8 @@
       ui_font_size = 16;
       buffer_font_size = 16;
       max_tabs = 8;
+
+      code_lens = "on";
 
       theme = {
         mode = "dark";
@@ -64,9 +65,25 @@
         #     path_lookup = true;
         #   };
         # };
-        typescript-language-server.binary = {
-          path = "/home/tomek/.nix-profile/bin/typescript-language-server";
-          arguments = [ "--stdio" ];
+        typescript-language-server = {
+
+          binary = {
+            path = "/home/tomek/.nix-profile/bin/typescript-language-server";
+            arguments = [ "--stdio" ];
+          };
+
+          initialization_options = {
+            preferences = {
+              includeInlayParameterNameHints = "all";
+              includeInlayParameterNameHintsWhenArgumentMatchesName = true;
+              includeInlayFunctionParameterTypeHints = true;
+              includeInlayVariableTypeHints = true;
+              includeInlayVariableTypeHintsWhenTypeMatchesName = true;
+              includeInlayPropertyDeclarationTypeHints = true;
+              includeInlayFunctionLikeReturnTypeHints = true;
+              includeInlayEnumMemberValueHints = true;
+            };
+          };
         };
 
         tailwindcss-intellisense-css = {
@@ -77,7 +94,17 @@
               "cx"
             ];
             experimental = {
-              classRegex = [ "[cls|className]\\s\\:\\=\\s\"([^\"]*)" ];
+              classRegex = [
+                "\\.className\\s*[+]?=\\s*['\"]([^'\"]*)['\"]"
+                "\\.setAttributeNS\\(.*,\\s*['\"]class['\"],\\s*['\"]([^'\"]*)['\"]"
+                "\\.setAttribute\\(['\"]class['\"],\\s*['\"]([^'\"]*)['\"]"
+                "\\.classList\\.add\\(['\"]([^'\"]*)['\"]"
+                "\\.classList\\.remove\\(['\"]([^'\"]*)['\"]"
+                "\\.classList\\.toggle\\(['\"]([^'\"]*)['\"]"
+                "\\.classList\\.contains\\(['\"]([^'\"]*)['\"]"
+                "\\.classList\\.replace\\(\\s*['\"]([^'\"]*)['\"]"
+                "\\.classList\\.replace\\([^,)]+,\\s*['\"]([^'\"]*)['\"]"
+              ];
             };
           };
         };
@@ -138,22 +165,26 @@
           "tailwindcss-intellisense-css"
           "typescript-language-server"
           "!eslint"
+          "!vtsls"
           "..."
         ];
         TSX.language_servers = [
           "tailwindcss-intellisense-css"
           "typescript-language-server"
           "!eslint"
+          "!eslint"
           "..."
         ];
         JavaScript.language_servers = [
           "typescript-language-server"
+          "!vtsls"
         ];
         CSS = {
           language_servers = [
             "tailwindcss-intellisense-css"
             "!vscode-css-language-server"
             "!eslint"
+            "!vtsls"
             "..."
           ];
         };
