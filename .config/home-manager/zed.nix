@@ -39,10 +39,6 @@
         dark = "Ayu Dark";
       };
 
-      theme_overrides = {
-        editor.document_highlight.bracket_background = "#ff0001";
-      };
-
       telemetry = {
         # Send debug info like crash reports.
         diagnostics = false;
@@ -137,7 +133,7 @@
 
         nixd = {
           binary = {
-            path_lookup = true;
+            path = "/home/tomek/.nix-profile/bin/nixd";
           };
         };
 
