@@ -31,10 +31,10 @@
       swayOutputs = "swaymsg -t get_outputs";
       bk = "~/bin/make_backup.sh";
       tmrs = "systemctl list-timers";
-      nreb = "sudo nixos-rebuild switch --no-write-lock-file";
-      ncg = "sudo nix-collect-garbage -d";
+      ncg = "nix-collect-garbage -d";
       nhg = "home-manager generations";
-      nin = "nix-store --query --requisites /run/current-system | cut -d- -f2- | sort | uniq";
+      nhs = "home-manager switch";
+      nhr = "home-manager remove-generations";
       nvdiff = "nvd diff $(ls -d1v /nix/var/nix/profiles/system-*-link|tail -n 2)";
       m = "neomutt";
       f = "fzf --preview 'bat --color=always {}'";
@@ -51,12 +51,7 @@
 
       # battery charging
       chargeOnceBat0 = "sudo tlp chargeonce BAT0";
-      chargeOnceBat1 = "sudo tlp chargeonce BAT1";
-      chargeOnceAll = "chargeOnceBat0; chargeOnceBat1";
       chargeFullBat0 = "sudo tlp fullcharge BAT0";
-      chargeFullBat1 = "sudo tlp fullcharge BAT1";
-      chargeFullAll = "chargeFullBat0; chargeFullBat1";
-
     };
     envExtra = ''
       . "$HOME/.nix-profile/etc/profile.d/nix.sh"
