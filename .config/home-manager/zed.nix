@@ -168,7 +168,7 @@
           "tailwindcss-intellisense-css"
           "typescript-language-server"
           "!eslint"
-          "!eslint"
+          "!vtsls"
           "..."
         ];
         JavaScript.language_servers = [
