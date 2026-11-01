@@ -48,6 +48,7 @@
     typescript-language-server
     tailwindcss-language-server
     vscode-html-languageserver
+    vscode-css-languageserver
     vscode-js-debug
     yaml-language-server
     nodejs_24

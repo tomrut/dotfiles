@@ -16,6 +16,7 @@
         nil
         vscode-json-languageserver
         vscode-html-languageserver
+        vscode-css-languageserver
         tailwindcss-language-server
         yaml-language-server
       ]
@@ -178,7 +179,7 @@
         CSS = {
           language_servers = [
             "tailwindcss-intellisense-css"
-            "!vscode-css-language-server"
+            "vscode-css-language-server"
             "!eslint"
             "!vtsls"
             "..."
