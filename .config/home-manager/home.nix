@@ -9,7 +9,7 @@
     inputs.nixvim.homeModules.nixvim
     ./nvim
     ../../nixos/home-manager/fzf.nix
-    ../../nixos/home-manager/gl-wrapped-zed.nix
+    ../../nixos/home-manager/zed-wrapped.nix
     ../../nixos/home-manager/java.nix
     ../../nixos/home-manager/reactjs.nix
     ../../nixos/home-manager/zsh.nix

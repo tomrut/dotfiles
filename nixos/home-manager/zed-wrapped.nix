@@ -42,6 +42,25 @@
         yaml-language-server
       ]
     );
+
+    userSettings = {
+      lsp = {
+        # rust-analyzer = {
+        #   binary = {
+        #     # path = lib.getExe pkgs.rust-analyzer;
+        #     path_lookup = true;
+        #   };
+        # };
+        typescript-language-server.binary = {
+          path = "/home/tomek/.nix-profile/bin/typescript-language-server";
+          arguments = [ "--stdio" ];
+        };
+        tailwindcss-intellisense-css.binary.path = "/home/tomek/.nix-profile/bin/tailwindcss-language-server";
+        nixd.binary.path = "/home/tomek/.nix-profile/bin/nixd";
+
+      };
+
+    };
   };
 
   xdg.dataFile."applications/dev.zed.Zed.desktop" = {
