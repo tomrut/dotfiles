@@ -14,7 +14,7 @@ in
   imports = [
     #    inputs.nixvim.homeModules.nixvim
     #      ./nixvim
-    ./fzf.nix
+    #./fzf.nix
     ./zed.nix
   ];
 
