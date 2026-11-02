@@ -7,10 +7,12 @@
 {
   imports = [
     inputs.nixvim.homeModules.nixvim
-    ./fzf.nix
     ./nvim
-    ./zed.nix
-    ./zsh.nix
+    ../../nixos/home-manager/fzf.nix
+    ../../nixos/home-manager/zed.nix
+    ../../nixos/home-manager/java.nix
+    ../../nixos/home-manager/reactjs.nix
+    ../../nixos/home-manager/zsh.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -38,27 +40,9 @@
     mc
     lazygit
     git
-    # nix development
-    nil
-    nixd
-    nixfmt
 
     openssh
-    # typescript development
-    typescript-language-server
-    tailwindcss-language-server
-    vscode-html-languageserver
-    vscode-css-languageserver
-    vscode-js-debug
-    yaml-language-server
-    nodejs_24
-    pnpm
 
-    # java development
-    jdk21
-    jdt-language-server
-    maven
-    gradle
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
