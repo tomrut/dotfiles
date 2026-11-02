@@ -50,13 +50,17 @@
         #     path_lookup = true;
         #   };
         # };
-        typescript-language-server = {
-
+        nixd = {
           binary = {
-            path = "/home/tomek/.nix-profile/bin/typescript-language-server";
+            path = "${pkgs.nixd}/bin/nixd";
+          };
+        };
+
+        typescript-language-server = {
+          binary = {
+            path = "${pkgs.typescript-language-server}/bin/typescript-language-server";
             arguments = [ "--stdio" ];
           };
-
           initialization_options = {
             preferences = {
               includeInlayParameterNameHints = "all";
@@ -72,7 +76,9 @@
         };
 
         tailwindcss-intellisense-css = {
-          binary.path = "/home/tomek/.nix-profile/bin/tailwindcss-language-server";
+          binary = {
+            path = "${pkgs.tailwindcss-language-server}/bin/tailwindcss-language-server";
+          };
           settings = {
             classFunctions = [
               "cva"
@@ -119,13 +125,6 @@
             };
           };
         };
-
-        nixd = {
-          binary = {
-            path = "/home/tomek/.nix-profile/bin/nixd";
-          };
-        };
-
       };
 
       languages = {

@@ -51,12 +51,6 @@
         #     path_lookup = true;
         #   };
         # };
-        typescript-language-server.binary = {
-          path = "/home/tomek/.nix-profile/bin/typescript-language-server";
-          arguments = [ "--stdio" ];
-        };
-        tailwindcss-intellisense-css.binary.path = "/home/tomek/.nix-profile/bin/tailwindcss-language-server";
-        nixd.binary.path = "/home/tomek/.nix-profile/bin/nixd";
 
       };
 
