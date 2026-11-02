@@ -22,9 +22,7 @@
     # typescript development
     typescript-language-server
     tailwindcss-language-server
-    vscode-html-languageserver
-    vscode-css-languageserver
-    vscode-js-debug
+    vscode-langservers-extracted
     yaml-language-server
     jdt-language-server
   ];
