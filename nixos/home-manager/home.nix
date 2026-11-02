@@ -11,10 +11,12 @@ let
 in
 {
 
-  #  imports = [
-  #    inputs.nixvim.homeModules.nixvim
-  #      ./nixvim
-  #  ];
+  imports = [
+    #    inputs.nixvim.homeModules.nixvim
+    #      ./nixvim
+    ./fzf.nix
+    ./zed.nix
+  ];
 
   home.packages = [
     pkgs.ripgrep
@@ -162,10 +164,10 @@ in
         local col = vim.fn.col('.') - 1
         return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
       end
-       
+
       local opts = { silent = true, expr = true, replace_keycodes = false }
       local keyset = vim.keymap.set
-       
+
       keyset("i", "<TAB>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
       keyset("i", "<S-TAB>", 'coc#pum#visible() ? coc#pum#prev(1) : "<C-h>"', opts)
       keyset("i", "<CR>", 'coc#pum#visible() ? coc#pum#confirm() : "<C-g>u<CR><c-r>=coc#on_enter()<CR>"', opts)
@@ -317,29 +319,6 @@ in
     '';
   };
 
-  programs.fzf = {
-    colors = {
-      bg = "#1e1e1e";
-      "bg+" = "#1e1e1e";
-      fg = "#d4d4d4";
-      "fg+" = "#d4d4d4";
-    };
-    enable = true;
-    enableZshIntegration = true;
-    changeDirWidgetCommand = "fd --type d";
-    changeDirWidgetOptions = [
-      "--preview 'tree -C {} | head -200'"
-    ];
-
-    fileWidgetCommand = ''
-      fd --type f
-    '';
-    fileWidgetOptions = [
-      "--preview 'head {}'"
-    ];
-
-  };
-
   programs.bat.enable = true;
 
   # Let Home Manager install and manage itself.
@@ -367,38 +346,6 @@ in
 
   programs.zathura = {
     enable = true;
-  };
-
-  programs.zed-editor = {
-    enable = true;
-    package = pkgs-unstable.zed-editor;
-    userSettings = {
-      project_panel = {
-        dock = "left";
-      };
-
-      base_keymap = "JetBrains";
-      ui_font_size = 16;
-      buffer_font_size = 15;
-      max_tabs = 6;
-
-      theme = {
-        mode = "system";
-        light = "Ayu Light";
-        dark = "Ayu Dark";
-      };
-
-      telemetry = {
-        # Send debug info like crash reports.
-        diagnostics = false;
-        # Send anonymized usage data like what languages you're using Zed with.
-        metrics = false;
-        # Allow sending requests to Anthropic models that cannot be offered with
-        # Zero Data Retention
-        anthropic_retention = false;
-      };
-    };
-
   };
 
   # programs.vscode = {
